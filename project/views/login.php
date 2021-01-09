@@ -16,7 +16,7 @@
 
 <form method='post' name='loginForm' id=login-form>
 	<label for='email'>E-Mail</label> <br />
-	<input type='email' name='email' id='email'>
+	<input type='email' name='email' id='email' value=<?=isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '';?> ><br />>
 	<span id='emailError'></span><br />
 	<br />
 	<label for='password'>Passwort</label> <br />
