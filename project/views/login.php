@@ -22,6 +22,6 @@
 	<label for='password'>Passwort</label> <br />
 	<input type='password' name='password' id='password' /><br />
 	<span id='passwordError'></span><br />
-	<input type='submit' name='submitBtn' value='Login' class='loginButton'><br />
+	<input type='submit' name='submitBtn' value='Anmelden' class='loginButton'><br />
 </form>
 </section>

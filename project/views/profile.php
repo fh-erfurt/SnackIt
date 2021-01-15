@@ -4,10 +4,11 @@
             <?=$message?>
         </section>
     <? endif; ?>
+
 <form method=post>
     <? if(isset($changePassword) && $changePassword === true):?>
         <section class=password>
-            <h4>Passwortänderung</h4>
+            <h4>Passwort ändern</h4>
             <div class=table>
                 <div class=row>
                     <div class=col>Altes Passwort: </div>
