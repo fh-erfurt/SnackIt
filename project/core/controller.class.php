@@ -7,7 +7,7 @@ namespace si\core;
 class Controller
 {
 	protected $controller  = null;	// stores the called controller name
-	protected $action 	   = null;	// stores the colled action name
+	protected $action 	   = null;	// stores the called action name
 	protected $currentUser = null;  // store current logged in user here
 
 	protected $params = [];			// stores useful params for view rendering
