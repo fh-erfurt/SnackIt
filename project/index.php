@@ -1,7 +1,5 @@
 <?php
 
-
-
 // load needed variables/defines/configs
 require_once 'config/init.php';
 require_once 'config/database.php';
@@ -26,23 +24,25 @@ $actionName = 'index'; // default action if nothing is set
 if(isset($_GET['c']))
 {
     $controllerName = $_GET['c'];
+	echo $controllerName;
 }
 
 // check an action is given
 if(isset($_GET['a']))
 {
     $actionName = $_GET['a'];
+	echo $actionName;
 }
 
 // check controller/class and method exists
-if(file_exists(CONTROLLERSPATH.$controllerName.'Controller.php'))
+if(file_exists(CONTROLLERSPATH.$controllerName.'_controller.php'))
 {
     // include the controller file
-    require_once CONTROLLERSPATH.$controllerName.'Controller.php';
+    require_once CONTROLLERSPATH.$controllerName.'_controller.php';
 
     // generate the class name of the controller using the name extended by Controller
     // also add the namespace in front
-    $className = '\\dwp\\controller\\'.ucfirst($controllerName).'Controller';
+    $className = 'dwp\\controller\\'.ucfirst($controllerName).'Controller';
 
     // generate an instace of the controller using the name, stored in $className
     // it is the same like calling for example: new \dwp\controller\PagesController()
@@ -67,11 +67,12 @@ if(file_exists(CONTROLLERSPATH.$controllerName.'Controller.php'))
 else
 {
     // TODO: Handle better errors with an Redirect to an error page
-    die('404 Controller you call does not exists');
+    die('404 Controller you call does not exist');
 }
 
 
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -83,6 +84,7 @@ else
 </head>
 <body>
     <?php
+		require_once VIEWSPATH.'layout.php';
 
         // this method will render the view of the called action
         // for this the the file in the views directory will be included

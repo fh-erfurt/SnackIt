@@ -1,16 +1,17 @@
 <?php
 
 namespace si\models;
-require_once __DIR__.'/base.model.class.php';
+require_once 'basemodel.class.php';
 
-class User extends si\models\BaseModel{
+class User extends BaseModel
+{
 
     const TABLENAME = 'Account';
     private $data;
 
     public function __construct($firstname, $lastname, $email, $addressId, $role, $password = null)
     {
-        $this->data['AccountID'] = $accountID
+        $this->data['AccountID'] = $accountID;
         $this->data['Firstname'] = $firstname;
         $this->data['Lastname'] = $lastname;
         $this->data['Email'] = $email;

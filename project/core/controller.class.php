@@ -1,8 +1,6 @@
 <?php
 
-
-
-namespace si\core;
+namespace dwp\controller;
 
 class Controller
 {
@@ -12,7 +10,7 @@ class Controller
 
 	protected $params = [];			// stores useful params for view rendering
 
-	public function __construct($controller, $action)
+	public function __construct($controller = null, $action = null)
 	{
 		$this->controller = $controller;
 		$this->action = $action;

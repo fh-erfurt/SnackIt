@@ -1,13 +1,9 @@
 <?php
 
+namespace dwp\controller;
 
 
-
-
-namespace si\controller;
-
-
-class PagesController extends \si\core\Controller
+class PagesController extends Controller
 {
 
 	public function actionIndex()
@@ -26,7 +22,7 @@ class PagesController extends \si\core\Controller
 		}
 		else
 		{
-			header('Location: index.php?c=pages&a=login');
+			header('Location: index.php?c=accounts&a=login');
 		}
 
 	}
@@ -124,5 +120,9 @@ class PagesController extends \si\core\Controller
 	{
 		session_destroy();
 		header('Location: index.php?c=pages&a=login');
+	}
+	
+	public function actionAgb()
+	{
 	}
 }

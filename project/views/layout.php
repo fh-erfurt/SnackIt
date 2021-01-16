@@ -20,7 +20,7 @@
 				<header>
 					<nav>
 						<ul>
-							<li><a href='index.php?a=index'>zurück zur Startseite</a></li>
+							<li><a href='index.php?c=pages&a=index'>zurück zur Startseite</a></li>
 							<?php if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true) : ?>
 							<li class=rightNav><a href='index.php?c=accounts&a=profile'>Profil</a></li>
 							<li class=rightNav><a href='index.php?c=accounts&a=logout'>Abmelden</a></li>

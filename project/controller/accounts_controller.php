@@ -1,14 +1,14 @@
 <?php
 
-namespace si\controller;
+namespace dwp\controller;
 
-require_once __DIR__.'/../models/account.class.php';
-require_once __DIR__.'/../models/address.class.php';
-require_once __DIR__.'/../helper/helper.php';
+require_once 'models/account.class.php';
+require_once 'models/address.class.php';
+require_once 'helper/helper.php';
 use si\models\User;
 use si\models\Address;
 
-class AccountsController extends si\core\Controller
+class AccountsController extends Controller
 {
 	public function actionLogin()
 	{

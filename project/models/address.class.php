@@ -2,9 +2,9 @@
 
 namespace si\models;
 
-require_once __DIR__.'/baseModel.class.php';
+require_once 'baseModel.class.php';
 
-class Address extends si\models\BaseModel{
+class Address extends BaseModel{
 
     const TABLENAME = 'Address';
     private $data;
