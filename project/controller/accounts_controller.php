@@ -21,13 +21,13 @@ class AccountsController extends Controller
 		{
 			if(isset($_POST['submitBtn']))
 			{
-				$email    = htmlspecialchars($_POST['email']) ?? null;
-				$password = htmlspecialchars($_POST['password']) ?? null;
+				$email    = htmlspecialchars($_POST['Email']) ?? null;
+				$password = htmlspecialchars($_POST['Password']) ?? null;
 
 				if(User::validateUser($email, $password))
 				{
 					$_SESSION['loggedIn'] = true;
-					$_SESSION['userId'] = User::getUserIdByEmail($email);
+					$_SESSION['AccountID'] = User::getUserIdByEmail($email);
 
 					
 					saveShoppingCart();
