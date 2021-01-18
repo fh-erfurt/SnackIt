@@ -1,6 +1,6 @@
 <?php
 
-namespace dwp\controller;
+namespace si\controller;
 
 
 class PagesController extends Controller
@@ -123,14 +123,6 @@ class PagesController extends Controller
 	}
 	
 	public function actionAgb()
-	{
-	}
-	
-	public function actionShoppingCart()
-	{
-	}
-	
-	public function actionStartseite()
 	{
 	}
 }
