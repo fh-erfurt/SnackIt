@@ -125,4 +125,12 @@ class PagesController extends Controller
 	public function actionAgb()
 	{
 	}
+	
+	public function actionShoppingCart()
+	{
+	}
+	
+	public function actionStartseite()
+	{
+	}
 }

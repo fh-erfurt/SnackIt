@@ -1,6 +1,4 @@
 
-<?php //Erstmal grob aus der PC4U für uns angepasst, die Einträge sind nur Vorschläge?>
-
 <html lang='de'>
 	<head>
 		<title><?=isset($title)? $title : 'SnackIt'?></title>
@@ -20,7 +18,7 @@
 				<header>
 					<nav>
 						<ul>
-							<li><a href='index.php?c=pages&a=index'>zurück zur Startseite</a></li>
+							<li><a href='index.php?c=pages&a=startseite'>zurück zur Startseite</a></li>
 							<?php if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true) : ?>
 							<li class=rightNav><a href='index.php?c=accounts&a=profile'>Profil</a></li>
 							<li class=rightNav><a href='index.php?c=accounts&a=logout'>Abmelden</a></li>
@@ -53,7 +51,8 @@
 				</nav>
 			</section>
 			<main>
-				<?php echo $body ?>
+				<?php //echo $body 
+				$controller->render();?>
 			</main>
 		</div>
 		<footer>

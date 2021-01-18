@@ -18,7 +18,7 @@ session_start();
 
 // check which controller should be loaded
 $controllerName = 'pages'; // default controller if noting is set
-$actionName = 'index'; // default action if nothing is set
+$actionName = 'startseite'; // default action if nothing is set
 
 // check a controller is given
 if(isset($_GET['c']))
@@ -88,7 +88,7 @@ else
 
         // this method will render the view of the called action
         // for this the the file in the views directory will be included
-        $controller->render();
+        //$controller->render();
     ?>
 </body>
 </html>
