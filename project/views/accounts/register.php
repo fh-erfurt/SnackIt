@@ -6,39 +6,39 @@
 <section class=registrationform>
 
 <form method='POST'>
-	<label for='Firstname'>Vorname</label> <br />
-	<input type='text' name='Firstname' id='Firstname' value=<?=isset($_POST['Firstname']) ? htmlspecialchars($_POST['Firstname']) : '';?> ><br />
+	<label for='firstname'>Vorname</label> <br />
+	<input type='text' name='firstname' id='firstname' value=<?=isset($_POST['firstname']) ? htmlspecialchars($_POST['firstname']) : '';?> ><br />
 
-	<label for='Lastname'>Nachname</label> <br />
-	<input type='text' name='Lastname' id='Lastname' value=<?=isset($_POST['Lastname']) ? htmlspecialchars($_POST['Lastname']) : '';?> ><br />
+	<label for='lastname'>Nachname</label> <br />
+	<input type='text' name='lastname' id='lastname' value=<?=isset($_POST['lastname']) ? htmlspecialchars($_POST['lastname']) : '';?> ><br />
 	<br />
 
-	<label for='Email'>E-Mail</label> <br />
-	<input type='Email' name='Email' id='Email' value=<?=isset($_POST['Email']) ? htmlspecialchars($_POST['Email']) : '';?> ><br />
+	<label for='email'>E-Mail</label> <br />
+	<input type='email' name='email' id='email' value=<?=isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '';?> ><br />
 
-	<label for='Password'>Passwort</label> <br />
-	<input type='Password' name='Password' id='Password' /><br />
+	<label for='password'>Passwort</label> <br />
+	<input type='password' name='password' id='password' /><br />
 
-	<label for='Password2'>Passwort wiederholen</label> <br />
-	<input type='Password' name='Password2' id='Password2' /><br />
+	<label for='password2'>Passwort wiederholen</label> <br />
+	<input type='password' name='password2' id='password2' /><br />
     <br />
-	<label for='Country'>Land</label> <br />
-	<input type='text' name='Country' id='Country' value=<?=isset($_POST['Country']) ? htmlspecialchars($_POST['Country']) : '';?> ><br />
+	<label for='country'>Land</label> <br />
+	<input type='text' name='country' id='country' value=<?=isset($_POST['country']) ? htmlspecialchars($_POST['country']) : '';?> ><br />
 
-	<label for='State'>Bundesland</label> <br />
-	<input type='text' name='State' id='State' value=<?=isset($_POST['State']) ? htmlspecialchars($_POST['State']) : '';?> ><br />
+	<label for='state'>Bundesland</label> <br />
+	<input type='text' name='state' id='state' value=<?=isset($_POST['state']) ? htmlspecialchars($_POST['state']) : '';?> ><br />
 
-	<label for='City'>Stadt</label> <br />
-	<input type='text' name='City' id='City' value=<?=isset($_POST['City']) ? htmlspecialchars($_POST['City']) : '';?> ><br />
+	<label for='city'>Stadt</label> <br />
+	<input type='text' name='city' id='city' value=<?=isset($_POST['city']) ? htmlspecialchars($_POST['city']) : '';?> ><br />
 
-	<label for='Street'>Straße</label> <br />
-	<input type='text' name='Street' id='Street' value=<?=isset($_POST['Street']) ? htmlspecialchars($_POST['Street']) : '';?> ><br />
+	<label for='street'>Straße</label> <br />
+	<input type='text' name='street' id='street' value=<?=isset($_POST['street']) ? htmlspecialchars($_POST['street']) : '';?> ><br />
 
-	<label for='Zipcode'>PLZ</label> <br />
-	<input type='text' name='Zipcode' id='Zipcode' value=<?=isset($_POST['Zipcode']) ? htmlspecialchars($_POST['Zipcode']) : '';?> ><br />
+	<label for='zipcode'>PLZ</label> <br />
+	<input type='text' name='zipcode' id='zipcode' value=<?=isset($_POST['zipcode']) ? htmlspecialchars($_POST['zipcode']) : '';?> ><br />
 
-	<label for='Number'>Hausnummer</label> <br />
-	<input type='text' name='Number' id='Number' value=<?=isset($_POST['Number']) ? htmlspecialchars($_POST['Number']) : '';?> ><br />
+	<label for='number'>Hausnummer</label> <br />
+	<input type='text' name='number' id='number' value=<?=isset($_POST['number']) ? htmlspecialchars($_POST['number']) : '';?> ><br />
 	<br />
 	<input type='submit' name='submit' value='Registrieren' class='registerButton'><br/>
 </form>
