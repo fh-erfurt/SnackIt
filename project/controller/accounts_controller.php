@@ -79,29 +79,29 @@ class AccountsController extends Controller
 		{
 			if(isset($_POST['submit']))
 			{
-				$input['email']    = htmlspecialchars($_POST['email']) ?? null;
-				$input['password'] = htmlspecialchars($_POST['password']) ?? null;
-				$input['password2'] = htmlspecialchars($_POST['password2']) ?? null;
-				$input['firstname'] = htmlspecialchars($_POST['firstname']) ?? null;
-				$input['lastname'] = htmlspecialchars($_POST['lastname']) ?? null;
-				$input['country'] = htmlspecialchars($_POST['country']) ?? null;
-				$input['state'] = htmlspecialchars($_POST['state']) ?? null;
-				$input['zipcode'] = htmlspecialchars($_POST['zipcode']) ?? null;
-				$input['city'] = htmlspecialchars($_POST['city']) ?? null;
-				$input['street'] = htmlspecialchars($_POST['street']) ?? null;
-				$input['number'] = htmlspecialchars($_POST['number']) ?? null;
+				$input['Email']    = htmlspecialchars($_POST['Email']) ?? null;
+				$input['Password'] = htmlspecialchars($_POST['Password']) ?? null;
+				$input['Password2'] = htmlspecialchars($_POST['Password2']) ?? null;
+				$input['Firstname'] = htmlspecialchars($_POST['Firstname']) ?? null;
+				$input['Lastname'] = htmlspecialchars($_POST['Lastname']) ?? null;
+				$input['Country'] = htmlspecialchars($_POST['Country']) ?? null;
+				$input['State'] = htmlspecialchars($_POST['State']) ?? null;
+				$input['Zipcode'] = htmlspecialchars($_POST['Zipcode']) ?? null;
+				$input['City'] = htmlspecialchars($_POST['City']) ?? null;
+				$input['Street'] = htmlspecialchars($_POST['Street']) ?? null;
+				$input['Number'] = htmlspecialchars($_POST['Number']) ?? null;
 
 				//passwords should be the same
-				if($input['password'] == $input['password2'])
+				if($input['Password'] == $input['Password2'])
 				{
 					if(!containsNullValue($input))
 					{
 						//add user to DB
-						$user = new User($input['firstname'], $input['lastname'], $input['email'], null, 0, $input['password']);
+						$user = new User($input['Firstname'], $input['Lastname'], $input['Email'], null, 0, $input['Password']);
 						if($user->insert())
 						{
 							//add address to DB
-							$address = new Address($input['country'], $input['state'], $input['zipcode'], $input['city'], $input['street'], $input['number']);
+							$address = new Address($input['Country'], $input['State'], $input['Zipcode'], $input['City'], $input['Street'], $input['Number']);
 							$address->insertIfNotExist();
 
 							//set addressId on user
@@ -110,7 +110,7 @@ class AccountsController extends Controller
 
 							//log user in
 							$_SESSION['loggedIn'] = true;
-							$_SESSION['userId'] = User::getUserIdByEmail($user->email);
+							$_SESSION['AccountID'] = User::getUserIdByEmail($user->email);
 							
 							// save the shopping cart from Session Context to user context
 							saveShoppingCart();
