@@ -1,6 +1,6 @@
 <?php
 
-namespace si\core;
+namespace dwp\core;
 
 abstract class Model
 {

@@ -125,4 +125,8 @@ class PagesController extends Controller
 	public function actionAgb()
 	{
 	}
+	
+	public function actionStartseite()
+	{
+	}
 }

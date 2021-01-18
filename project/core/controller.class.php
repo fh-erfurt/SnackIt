@@ -1,6 +1,6 @@
 <?php
 
-namespace si\controller;
+namespace dwp\controller;
 
 class Controller
 {
