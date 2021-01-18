@@ -15,12 +15,12 @@
 
 
 <form method='post' name='loginForm' id=login-form>
-	<label for='email'>E-Mail</label> <br />
-	<input type='email' name='email' id='email' value=<?=isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '';?> ><br />>
+	<label for='Email'>E-Mail</label> <br />
+	<input type='Email' name='Email' id='Email' value=<?=isset($_POST['Email']) ? htmlspecialchars($_POST['Email']) : '';?> ><br />>
 	<span id='emailError'></span><br />
 	<br />
-	<label for='password'>Passwort</label> <br />
-	<input type='password' name='password' id='password' /><br />
+	<label for='Password'>Passwort</label> <br />
+	<input type='Password' name='Password' id='Password' /><br />
 	<span id='passwordError'></span><br />
 	<input type='submit' name='submitBtn' value='Anmelden' class='loginButton'><br />
 </form>
