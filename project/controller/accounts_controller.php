@@ -1,6 +1,6 @@
 <?php
 
-namespace si\controller;
+namespace dwp\controller;
 
 require_once 'models/account.class.php';
 require_once 'models/address.class.php';
