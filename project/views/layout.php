@@ -35,7 +35,7 @@
 						<a class=icon id=icon-btn>&#9776;</a>
 						<ul class=menu>
 							
-							<li><a href='index.php?c=products&a=list&t=getraenke'>Getränke</a></li>
+							<li><a href='index.php?c=products&a=Snacks&t=Snacks'>Snacks</a></li>
 							<li><a href='index.php?c=products&a=list&t=studentenfutter'>Studentenfutter</a></li>
 							<li><a href='index.php?c=products&a=list&t=backware'>Backware</a></li>
                             <li><a href='index.php?c=products&a=list&t=knabberzeug'>Knabberzeug</a></li>
