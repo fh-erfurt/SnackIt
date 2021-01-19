@@ -4,12 +4,12 @@ namespace dwp\core;
 
 public function containsNullValue($input)
 {
-    $test=true;
+    $test=false;
 
     foreach $element of $input{
         if($element==NULL)
         {
-            $test=false;
+            $test=true;
         }
     }
 
