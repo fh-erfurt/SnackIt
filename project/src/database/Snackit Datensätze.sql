@@ -66,16 +66,16 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `SnackIt`;
-INSERT INTO `Property` (`propertyId`, `createdAt`, `updatedAt`, `type`, `name`, `value`) VALUES (1, DEFAULT, NULL, DEFAULT, 'mainPicture', 'Pringles Original Chips 200g.png');
-INSERT INTO `Property` (`propertyId`, `createdAt`, `updatedAt`, `type`, `name`, `value`) VALUES (2, DEFAULT, NULL, DEFAULT, 'mainPicture', 'Pringles Sour Cream & Onion Chips 200g.png');
-INSERT INTO `Property` (`propertyId`, `createdAt`, `updatedAt`, `type`, `name`, `value`) VALUES (3, DEFAULT, NULL, DEFAULT, 'mainPicture', 'ja! Happy Knabberbox 300g.png');
-INSERT INTO `Property` (`propertyId`, `createdAt`, `updatedAt`, `type`, `name`, `value`) VALUES (4, DEFAULT, NULL, DEFAULT, 'mainPicture', 'Maryland Studentenfutter 300g.png');
-INSERT INTO `Property` (`propertyId`, `createdAt`, `updatedAt`, `type`, `name`, `value`) VALUES (5, DEFAULT, NULL, DEFAULT, 'mainPicture', 'Lorenz Geistes Blitzer 125g.png');
-INSERT INTO `Property` (`propertyId`, `createdAt`, `updatedAt`, `type`, `name`, `value`) VALUES (6, DEFAULT, NULL, DEFAULT, 'mainPicture', 'Quelly Vita 10 ACE Getränk 1,5l(EINWEG).png');
-INSERT INTO `Property` (`propertyId`, `createdAt`, `updatedAt`, `type`, `name`, `value`) VALUES (7, DEFAULT, NULL, DEFAULT, 'mainPicture', 'Coca Cola Cherry ohne Zucker 1,5l(EINWEG).png');
-INSERT INTO `Property` (`propertyId`, `createdAt`, `updatedAt`, `type`, `name`, `value`) VALUES (8, DEFAULT, NULL, DEFAULT, 'mainPicture', 'Red Bull Energy Drink 0,25l(EINWEG).png');
-INSERT INTO `Property` (`propertyId`, `createdAt`, `updatedAt`, `type`, `name`, `value`) VALUES (9, DEFAULT, NULL, DEFAULT, 'mainPicture', 'Pringles Original Chips 200g und Coca Cola Cherry ohne Zucker 1,5l Bundle.png');
-INSERT INTO `Property` (`propertyId`, `createdAt`, `updatedAt`, `type`, `name`, `value`) VALUES (10, DEFAULT, NULL, DEFAULT, 'mainPicture', 'Maryland Studentenfutter 300g und Red Bull Energy Drink 0,25l Bundle.png');
+INSERT INTO `Property` (`propertyId`, `createdAt`, `updatedAt`, `type`, `name`, `value`) VALUES (1, DEFAULT, NULL, DEFAULT, 'mainPicture', 'Pringles Original Chips 200g.jpg');
+INSERT INTO `Property` (`propertyId`, `createdAt`, `updatedAt`, `type`, `name`, `value`) VALUES (2, DEFAULT, NULL, DEFAULT, 'mainPicture', 'Pringles Sour Cream & Onion Chips 200g.jpg');
+INSERT INTO `Property` (`propertyId`, `createdAt`, `updatedAt`, `type`, `name`, `value`) VALUES (3, DEFAULT, NULL, DEFAULT, 'mainPicture', 'ja! Happy Knabberbox 300g.jpg');
+INSERT INTO `Property` (`propertyId`, `createdAt`, `updatedAt`, `type`, `name`, `value`) VALUES (4, DEFAULT, NULL, DEFAULT, 'mainPicture', 'Maryland Studentenfutter 300g.jpg');
+INSERT INTO `Property` (`propertyId`, `createdAt`, `updatedAt`, `type`, `name`, `value`) VALUES (5, DEFAULT, NULL, DEFAULT, 'mainPicture', 'Lorenz Geistes Blitzer 125g.jpg');
+INSERT INTO `Property` (`propertyId`, `createdAt`, `updatedAt`, `type`, `name`, `value`) VALUES (6, DEFAULT, NULL, DEFAULT, 'mainPicture', 'Quelly Vita 10 ACE Getränk 1,5l(EINWEG).jpg');
+INSERT INTO `Property` (`propertyId`, `createdAt`, `updatedAt`, `type`, `name`, `value`) VALUES (7, DEFAULT, NULL, DEFAULT, 'mainPicture', 'Coca Cola Cherry ohne Zucker 1,5l(EINWEG).jpg');
+INSERT INTO `Property` (`propertyId`, `createdAt`, `updatedAt`, `type`, `name`, `value`) VALUES (8, DEFAULT, NULL, DEFAULT, 'mainPicture', 'Red Bull Energy Drink 0,25l(EINWEG).jpg');
+INSERT INTO `Property` (`propertyId`, `createdAt`, `updatedAt`, `type`, `name`, `value`) VALUES (9, DEFAULT, NULL, DEFAULT, 'mainPicture', 'Pringles Original Chips 200g und Coca Cola Cherry ohne Zucker 1,5l Bundle.jpg');
+INSERT INTO `Property` (`propertyId`, `createdAt`, `updatedAt`, `type`, `name`, `value`) VALUES (10, DEFAULT, NULL, DEFAULT, 'mainPicture', 'Maryland Studentenfutter 300g und Red Bull Energy Drink 0,25l Bundle.jpg');
 
 INSERT INTO `Property` (`propertyId`, `createdAt`, `updatedAt`, `type`, `name`, `value`) VALUES (11, DEFAULT, NULL, DEFAULT, 'inside', 'Chips');
 INSERT INTO `Property` (`propertyId`, `createdAt`, `updatedAt`, `type`, `name`, `value`) VALUES (12, DEFAULT, NULL, DEFAULT, 'inside', 'Nüsse');
