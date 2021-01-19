@@ -2,11 +2,11 @@
 
 namespace dwp\core;
 
-public function containsNullValue($input)
+ function containsNullValue($input)
 {
     $test=false;
 
-    foreach $element of $input{
+    foreach ($input as $element){
         if($element==NULL)
         {
             $test=true;

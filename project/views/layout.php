@@ -16,9 +16,9 @@
 		<div class='content-wrap'>
 			<section class=top>
 				<header>
-					<nav>
+				<a href='index.php?c=pages&a=startseite'><img src="assets\pictures\logo.png"></a>
+					<nav class=navbarTop>
 						<ul>
-							<li><a href='index.php?c=pages&a=startseite'>zurück zur Startseite</a></li>
 							<?php if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true) : ?>
 							<li class=rightNav><a href='index.php?c=accounts&a=profile'>Profil</a></li>
 							<li class=rightNav><a href='index.php?c=accounts&a=logout'>Abmelden</a></li>
@@ -30,21 +30,18 @@
 						</ul>
 					</nav>
 				</header>
-				<nav class=topnav>
+				<nav class=navbarMain>
 					<div class=menu-container>
-						<a class=icon id=icon-btn>&#9776;</a>
-						<ul class=menu>
-							
+						<ul class=menu>							
 							<li><a href='index.php?c=products&a=Snacks&t=Snacks'>Snacks</a></li>
-							<li><a href='index.php?c=products&a=list&t=studentenfutter'>Studentenfutter</a></li>
-							<li><a href='index.php?c=products&a=list&t=backware'>Backware</a></li>
+							<li><a href='index.php?c=products&a=list&t=studentenfutter'>Getränke</a></li>
+							<li><a href='index.php?c=products&a=list&t=backware'>Angebote</a></li>
                             <li><a href='index.php?c=products&a=list&t=knabberzeug'>Knabberzeug</a></li>
-							<li><span class=link>Zubehör<i class="arrow down"></i></span>
-								<ul class=submenu>
+								<!-- <ul class=submenu>
 									<li><a href='index.php?c=products&a=list&t=soßen'>Soßen</a></li>
 									<li><a href='index.php?c=products&a=list&t=deko'>Deko</a></li>
 									<li><a href='index.php?c=products&a=list&t=more'>Weiteres Zubehör</a></li>
-								</ul>
+								</ul> -->
 							</li>
 						</ul>
 					</div>
@@ -59,7 +56,7 @@
 			<a href='index.php?a=documentation'>Dokumentation</a>
 			<a href='index.php?a=agb'>AGB</a>
 			<a href='index.php?a=impressum'>Impressum</a>
-			<a href='index.php?a=privacyPolicy'>Datenschutzerklärung</a>
+			<a href='index.php?a=privacyPolicy'>Datenschutzerklärung</a><br>
 			&copy; SnackIt (2020-2021)
 		</footer>
 

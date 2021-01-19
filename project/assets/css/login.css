@@ -1,10 +1,32 @@
-.loginstyle {
-
+*{
 
 }
 
-.loginButton {
+.login{
 
+    text-align: center;
+    padding: 100;
+    padding-right: 10;
+    padding-left: 0;
+    margin: auto;
+    margin-top: 40;
+    margin-bottom: 40;
+    border-radius: 20px;
+    width: 15%;
+    background-color: gray;
+    background-clip: padding-box;    
+}
 
+.login input{
+    width: auto;
+}
 
+.loginButton{
+    background-color: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.loginButton:hover{
+    background-color: red;
 }
