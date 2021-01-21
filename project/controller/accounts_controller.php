@@ -5,7 +5,7 @@ namespace dwp\controller;
 require_once 'models/account.class.php';
 require_once 'models/address.class.php';
 require_once 'helper/helper.php';
-use si\models\User;
+use si\models\Account;
 use si\models\Address;
 
 class AccountsController extends Controller
@@ -24,10 +24,10 @@ class AccountsController extends Controller
 				$email    = htmlspecialchars($_POST['email']) ?? null;
 				$password = htmlspecialchars($_POST['password']) ?? null;
 
-				if(User::validateUser($email, $password))
+				if(Account::validateUser($email, $password))
 				{
 					$_SESSION['loggedIn'] = true;
-					$_SESSION['accountID'] = User::getUserIdByEmail($email);
+					$_SESSION['accountID'] = Account::getUserIdByEmail($email);
 
 					
 					saveShoppingCart();
@@ -94,10 +94,10 @@ class AccountsController extends Controller
 				//passwords should be the same
 				if($input['password'] == $input['password2'])
 				{
-					if(!containsNullValue($input))
+					if(!containsNull($input))
 					{
 						//add user to DB
-						$user = new User($input['firstname'], $input['lastname'], $input['email'], null, 0, $input['password']);
+						$user = new Account($input['firstname'], $input['lastname'], $input['email'], null, 0, $input['password']);
 						if($user->insert())
 						{
 							//add address to DB
@@ -110,7 +110,7 @@ class AccountsController extends Controller
 
 							//log user in
 							$_SESSION['loggedIn'] = true;
-							$_SESSION['accountID'] = User::getUserIdByEmail($user->email);
+							$_SESSION['accountID'] = Account::getUserIdByEmail($user->email);
 							
 							// save the shopping cart from Session Context to user context
 							saveShoppingCart();
@@ -155,7 +155,7 @@ class AccountsController extends Controller
 
 		if($_SESSION['loggedIn'] === true)
 		{
-			$user = User::getUserById($_SESSION['userId']);
+			$user = Account::getUserById($_SESSION['userId']);
 			$address = Address::getAddressById($user->addressId);
 
 			if(isset($_POST['changePassword']))
@@ -175,7 +175,7 @@ class AccountsController extends Controller
 				$newPassword = htmlspecialchars($input['newPassword']) ?? null;
 				$newPassword2 = htmlspecialchars($input['newPassword2']) ?? null;
 				//check old password
-				if(User::validateUser($user->email, $oldPassword))
+				if(Account::validateUser($user->email, $oldPassword))
 				{
 					//passwords should be the same
 					if($newPassword == $newPassword2)
@@ -233,7 +233,7 @@ class AccountsController extends Controller
 				$input['street'] 	= htmlspecialchars($_POST['street']) ?? null;
 				$input['number'] 	= htmlspecialchars($_POST['number']) ?? null;
 
-				if(!containsNullValue($input))
+				if(!containsNull($input))
 				{
 					$addressChanged = false;
 					if( $address->country 	!= $input['country'] ||

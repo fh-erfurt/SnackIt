@@ -1,6 +1,5 @@
 <?php
 
-
 $dns = 'mysql:host=localhost;dbname=SnackIt';
 $dbuser = 'root';
 $dbpassword = '';
@@ -20,4 +19,5 @@ catch(\PDOException $e)
 {
 	die( 'Database connection failed: ' . $e->getMessage() );
 }
+
 ?>

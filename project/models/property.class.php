@@ -1,10 +1,10 @@
 <?php
-
+// GROß UND KLEINSCHREIBUNG MUSS NOCH AN DB ANGEPASST WERDEN
 namespace si\models;
 
-require_once __DIR__.'/baseModel.class.php';
+require_once 'models/baseModel.class.php';
 
-class Property extends si\models\BaseModel{
+class Property extends BaseModel{
 
     const SPECIAL_PROPERTIES = [
         'mainPicture',  // picture, that should be shown in product list

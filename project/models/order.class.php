@@ -1,11 +1,11 @@
 <?php
-
+// GROß UND KLEINSCHREIBUNG MUSS NOCH AN DB ANGEPASST WERDEN
 namespace si\models;
 
-require_once __DIR__.'/baseModel.class.php';
-require_once __DIR__.'/Product.class.php';
+require_once 'models/basemodel.class.php';
+require_once 'models/product.class.php';
 
-class Order extends si\models\BaseModel{
+class Order extends BaseModel{
 
     const TABLENAME = 'Orders';
     const P_T_O_TABLENAME = 'Product_to_Order';

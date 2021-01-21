@@ -129,4 +129,12 @@ class PagesController extends Controller
 	public function actionStartseite()
 	{
 	}
+	
+	public function actionList()
+	{
+	}
+	
+	public function actionSnacks()
+	{
+	}
 }

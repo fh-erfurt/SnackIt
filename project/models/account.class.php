@@ -3,7 +3,7 @@
 namespace si\models;
 require_once 'basemodel.class.php';
 
-class User extends BaseModel
+class Account extends BaseModel
 {
 
     const TABLENAME = 'Account';
@@ -11,12 +11,12 @@ class User extends BaseModel
 
     public function __construct($firstname, $lastname, $email, $addressId, $role, $password = null)
     {
-        $this->data['AccountID'] = $accountID;
+        $this->data['AccountID'] = $accountID = null;
         $this->data['Firstname'] = $firstname;
         $this->data['Lastname'] = $lastname;
         $this->data['Email'] = $email;
         $this->data['Role'] = $role;
-        $this->data['AddressID'] = $addressID;
+        $this->data['AddressID'] = $addressId;
         if($password !== null)
         {
             $this->data['Password'] = $password;
@@ -108,7 +108,7 @@ class User extends BaseModel
                 {
                     // user with email exists
                     // now check password
-                    return password_verify($password, $result['Password']);
+                    return password_verify($password, $result['password']);
                 }   
             }
             return FALSE;
@@ -129,19 +129,20 @@ class User extends BaseModel
         try
         { 
             //check if user with this email exists in DB
-            if(User::getUserIdByEmail($email))
+            if(Account::getUserIdByEmail($this->data['Email']))
             {
                 return false;
             }
 
-            $sql = 'INSERT INTO ' . self::tablename() . '(firstname, lastname, email, password, addressID, role) VALUES (:firstname, :lastname, :email, :password, :addressID, :role);'; 
+            $sql = 'INSERT INTO ' . self::tablename() . '(FirstName, LastName, Email, Password, AddressId, Role) VALUES (:Firstname, :Lastname, :Email, :Password, :AddressID, :Role);'; 
             $statement = $db->prepare($sql);
-            $statement->bindParam(':firstname', $this->firstname);
-            $statement->bindParam(':lastname', $this->lastname);
-            $statement->bindParam(':email', $this->email);
-            $statement->bindParam(':password', password_hash($this->password, PASSWORD_DEFAULT));
-            $statement->bindParam(':addressID', $this->addressId);
-            $statement->bindParam(':role', $this->role);
+            $statement->bindParam(':Firstname', $this->data['Firstname']);
+            $statement->bindParam(':Lastname', $this->data['Lastname']);
+            $statement->bindParam(':Email', $this->data['Email']);
+			$PW = password_hash($this->data['Password'], PASSWORD_DEFAULT);
+            $statement->bindParam(':Password', $PW);
+            $statement->bindParam(':AddressID', $this->data['AddressID']);
+            $statement->bindParam(':Role', $this->data['Role']);
 
             $statement->execute();
             return true;
@@ -161,8 +162,8 @@ class User extends BaseModel
         { 
             $sql = 'UPDATE ' . self::tablename() . ' SET addressId = :addressId WHERE email = :email;'; 
             $statement = $db->prepare($sql);
-            $statement->bindParam(':addressId', $this->addressId);
-            $statement->bindParam(':email', $this->email);
+            $statement->bindParam(':addressId', $this->data['AddressID']);
+            $statement->bindParam(':email', $this->data['Email']);
 
             $statement->execute();
             return true;
@@ -183,30 +184,30 @@ class User extends BaseModel
         { 
             // if user changed his E-Mail it should not be used by another user already
             // if user didn't change his E-Mail the corresponding userId should match
-            $checkId = User::getUserIdByEmail($this->email);
-            if($checkId != null && $checkId != $this->accountId)
+            $checkId = User::getUserIdByEmail($this->data['Email']);
+            if($checkId != null && $checkId != $this->data['AccountID'])
             {
                 return false;
             }
 
             //if user does not change password it should be null
             $addPassword = '';
-            if(isset($this->password) && $this->password != null)
+            if(isset($this->data['Password']) && $this->data['Password'] != null)
             {
                 $addPassword ='password = :password, ';
             }
-            $sql = 'UPDATE ' . self::tablename() . ' SET firstname = :firstname, lastname = :lastname, email = :email, '.$addPassword.'addressId = :addressId, role = :role WHERE accountId = :accountId;'; 
+            $sql = 'UPDATE ' . self::tablename() . ' SET FirstName = :firstname, LastName = :lastname, Email = :email, '.$addPassword.'AddressId = :addressId, Role = :role WHERE AccountId = :accountId;'; 
             $statement = $db->prepare($sql);
-            $statement->bindParam(':firstname', $this->firstname);
-            $statement->bindParam(':lastname', $this->lastname);
-            $statement->bindParam(':email', $this->email);
-            if(isset($this->password) && $this->password != null)
+            $statement->bindParam(':firstname', $this->data['Firtsname']);
+            $statement->bindParam(':lastname', $this->data['Lastname']);
+            $statement->bindParam(':email', $this->data['Email']);
+            if(isset($this->password) && $this->data['Password'] != null)
             {
-                $statement->bindParam(':password', password_hash($this->password, PASSWORD_DEFAULT));
+                $statement->bindParam(':password', password_hash($this->data['Password'], PASSWORD_DEFAULT));
             }
-            $statement->bindParam(':addressId', $this->addressId);
-            $statement->bindParam(':role', $this->role);
-            $statement->bindParam(':accountId', $this->userId);
+            $statement->bindParam(':addressId', $this->data['AddressId']);
+            $statement->bindParam(':role', $this->data['Role']);
+            $statement->bindParam(':accountId', $this->data['AccountId']);
 
             $statement->execute();
             return true;
@@ -222,7 +223,7 @@ class User extends BaseModel
         $db = $GLOBALS['db'];
         try
         {
-            $sql = 'DELETE FROM ' . self::tablename() . ' WHERE email=' . $db->quote($this->email) . ';';
+            $sql = 'DELETE FROM ' . self::tablename() . ' WHERE Email=' . $db->quote($this->data['Email']) . ';';
             $db->exec($sql);
             return true;
         }
@@ -237,8 +238,8 @@ class User extends BaseModel
         $db = $GLOBALS['db'];
         try
         {
-            if(isset($this->userId))
-            $sql = 'SELECT accountId FROM ' . self::tablename() . ' WHERE email=' . $db->quote($this->email) . ';';
+            if(isset($this->data['AccountId']))
+            $sql = 'SELECT accountId FROM ' . self::tablename() . ' WHERE email=' . $db->quote($this->data['Email']) . ';';
             $result = $db->query($sql)->fetch(\PDO::FETCH_ASSOC);
             if(!empty($result['accountId']))
             {

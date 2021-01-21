@@ -33,10 +33,10 @@
 				<nav class=navbarMain>
 					<div class=menu-container>
 						<ul class=menu>							
-							<li><a href='index.php?c=products&a=Snacks&t=Snacks'>Snacks</a></li>
-							<li><a href='index.php?c=products&a=list&t=studentenfutter'>Getränke</a></li>
-							<li><a href='index.php?c=products&a=list&t=backware'>Angebote</a></li>
-                            <li><a href='index.php?c=products&a=list&t=knabberzeug'>Knabberzeug</a></li>
+							<li><a href='index.php?c=pages&a=Snacks&t=Snacks'>Snacks</a></li>
+							<li><a href='index.php?c=pages&a=list&t=studentenfutter'>Getränke</a></li>
+							<li><a href='index.php?c=pages&a=list&t=backware'>Angebote</a></li>
+                            <li><a href='index.php?c=pages&a=list&t=knabberzeug'>Knabberzeug</a></li>
 								<!-- <ul class=submenu>
 									<li><a href='index.php?c=products&a=list&t=soßen'>Soßen</a></li>
 									<li><a href='index.php?c=products&a=list&t=deko'>Deko</a></li>

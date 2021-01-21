@@ -56,7 +56,7 @@ class Address extends BaseModel{
     }
 
     /**
-     * This function inserts the adress with all its attributes into the database and sets its 'addressId'
+     * This function inserts the adress into the database and sets its 'addressId'
      * if the address already exists, only the attribute 'addressId' is set
      */
     public function insertIfNotExist()
@@ -79,14 +79,14 @@ class Address extends BaseModel{
             {
                 // no address in DB -> insert new adress
 
-                $sql = 'INSERT INTO ' . self::tablename() . '(country, state, zipcode, city, street, number) VALUES (:country, :state, :zipcode, :city, :street, :number)'; 
+                $sql = 'INSERT INTO ' . self::tablename() . '(Country, State, Zipcode, City, Street, Number) VALUES (:country, :state, :zipcode, :city, :street, :number)'; 
                 $statement = $db->prepare($sql);
-                $statement->bindParam(':country', $this->country);
-                $statement->bindParam(':state', $this->state);
-                $statement->bindParam(':zipcode', $this->zipcode);
-                $statement->bindParam(':city', $this->city);
-                $statement->bindParam(':street', $this->street);
-                $statement->bindParam(':number', $this->number);
+                $statement->bindParam(':country', $this->data['country']);
+                $statement->bindParam(':state', $this->data['state']);
+                $statement->bindParam(':zipcode', $this->data['zipcode']);
+                $statement->bindParam(':city', $this->data['city']);
+                $statement->bindParam(':street', $this->data['street']);
+                $statement->bindParam(':number', $this->data['number']);
 
                 $statement->execute();
 

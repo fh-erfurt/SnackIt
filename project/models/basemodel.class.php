@@ -4,9 +4,10 @@ namespace si\models;
 
 abstract class BaseModel
 {
-    public function tablename()
+    public static function tablename()
     {
         $class = get_called_class();
+		
         if(defined($class.'::TABLENAME'))
         {
             return $class::TABLENAME;
