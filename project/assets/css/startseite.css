@@ -1,0 +1,37 @@
+
+.StartBackground{
+background-size: cover;
+background-color: green;
+}
+h1 {
+  color: Red;
+  text-align: center;
+  font-family: verdana;
+}
+
+h2 {
+  color: Orange;
+  text-align: center;
+  font-family: verdana;
+}
+
+p {
+	padding: 10px;
+	color: black;
+  font-family: verdana;
+  text-align: center;
+  font-size: 20px;
+}
+
+.pictures {
+	text-align:center;
+	
+}
+
+.pictures img{
+	border-radius: 50%;
+	height: 300px;
+	width: 300px;
+	margin: 3%;
+	
+}

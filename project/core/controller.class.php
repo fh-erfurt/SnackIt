@@ -43,6 +43,7 @@ class Controller
 		if(!file_exists($viewPath))
 		{
 			// TODO: create and redirect to an error page
+			require_once 'views/pages/error404.php';
 			die('404 The view for your called controller and action are missing');
 		}
 

@@ -1,22 +1,21 @@
 
-<html lang='de'>
+<html class=layout lang='de'>
 	<head>
-		<title><?=isset($title)? $title : 'SnackIt'?></title>
+		<title><?=isset($title)? 'SnackIt: '. $title : 'SnackIt'?></title>
 		<meta charset='UTF-8'/>
 		<meta name='viewport' content='width=device-width, initial-scale=1'>
-		<link rel='shortcut icon' type='image/x-icon' href='assets/pictures/favicon/favicon.ico'>
-		<link rel='stylesheet' type='text/css' href='assets/css/layout.css'>
-		<?php if(isset($css) && is_array($css)) : ?>
-			<?php foreach($css as $file) : ?>
+		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+		<link rel="stylesheet" href="assets/css/layout.css">
+		<!-- <?php //if(isset($css) && is_array($css)) : ?>
+			<?php //foreach($css as $file) : ?>
 			<link rel='stylesheet' type='text/css' href="assets/css/<?=$file?>.css">
-			<?php endforeach; ?>
-		<?php endif; ?>
+			<?php //endforeach; ?>
+		<?php //endif; ?> -->
 	</head>
 	<body>
 		<div class='content-wrap'>
 			<section class=top>
 				<header>
-				<a href='index.php?c=pages&a=startseite'><img src="assets\pictures\logo.png"></a>
 					<nav class=navbarTop>
 						<ul>
 							<?php if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true) : ?>
@@ -32,23 +31,23 @@
 				</header>
 				<nav class=navbarMain>
 					<div class=menu-container>
-						<ul class=menu>							
+						<ul class=menu>
+							<li><a href='index.php?c=pages&a=startseite' style="margin-left: 16px; margin-right: 0px; margin-top: -48px;" ><img src="assets\pictures\logomenu.png" class="logomenu" ></a><li>
 							<li><a href='index.php?c=pages&a=Snacks&t=Snacks'>Snacks</a></li>
-							<li><a href='index.php?c=pages&a=list&t=studentenfutter'>Getränke</a></li>
+							<li><a href='index.php?c=pages&a=list&t=studentenfutter' >Getränke</a></li>
 							<li><a href='index.php?c=pages&a=list&t=backware'>Angebote</a></li>
-                            <li><a href='index.php?c=pages&a=list&t=knabberzeug'>Knabberzeug</a></li>
+							<li><a href='index.php?c=pages&a=list&t=knabberzeug'>Knabberzeug</a></li>
 								<!-- <ul class=submenu>
 									<li><a href='index.php?c=products&a=list&t=soßen'>Soßen</a></li>
 									<li><a href='index.php?c=products&a=list&t=deko'>Deko</a></li>
 									<li><a href='index.php?c=products&a=list&t=more'>Weiteres Zubehör</a></li>
 								</ul> -->
-							</li>
 						</ul>
 					</div>
 				</nav>
 			</section>
 			<main>
-				<?php //echo $body 
+				<?php
 				$controller->render();?>
 			</main>
 		</div>

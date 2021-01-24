@@ -24,14 +24,13 @@ $actionName = 'startseite'; // default action if nothing is set
 if(isset($_GET['c']))
 {
     $controllerName = $_GET['c'];
-	echo $controllerName;
 }
 
 // check an action is given
 if(isset($_GET['a']))
 {
     $actionName = $_GET['a'];
-	echo $actionName;
+	$title = ucfirst($_GET['a']);
 }
 
 // check controller/class and method exists
@@ -54,7 +53,8 @@ if(file_exists(CONTROLLERSPATH.$controllerName.'_controller.php'))
     if(!method_exists($controller, $actionMethod))
     {
         // TODO: Handle better errors with an Redirect to an error page
-        die('404 Method you call does not exists');
+        require_once 'views/pages/error404.php';
+		die('404 Method you call does not exists');
     }
     else
     {
@@ -67,6 +67,7 @@ if(file_exists(CONTROLLERSPATH.$controllerName.'_controller.php'))
 else
 {
     // TODO: Handle better errors with an Redirect to an error page
+    require_once 'views/pages/error404.php';
     die('404 Controller you call does not exist');
 }
 
@@ -79,8 +80,8 @@ else
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/styles/style.css">
-    <title>SnackIt</title>
+    
+    
 </head>
 <body>
     <?php

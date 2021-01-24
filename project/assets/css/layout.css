@@ -2,8 +2,8 @@
 
 
 :root {
-    --main-bg-color: rgb(167, 167, 167);
-  }
+    --main-bg-color: rgb(64, 64, 64);
+}
 
 *{
     margin: 0;
@@ -25,8 +25,20 @@ nav ul li{
 
 nav ul li a{
     display: block;
-    padding: 16px;
-    padding-right: 24px;
+    margin-left: 16px;
+    margin-right: 16px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+.logomenu {
+   display:inline;
+    height: 75px;
+}
+.navbarTop{
+    height: 50px;
+}
+.navbarTop ul {
+    text-align: right;
 }
 
 .navbarTop ul {
@@ -46,19 +58,13 @@ nav ul li a{
     color: gray;
 }
 
-img{
-    width: 300px;
-    float: left; ;
-    padding-top: 10;
-}
-
 .navbarMain {
-    background-color: #942415;
+    background-color: #7F0000;
     margin-top: 80;
 }
 
 .navbarMain ul li a{
-    color: var(--main-bg-color);
+    color: #FF6E00;
 }
 
 .navbarMain ul li a:link{
@@ -69,8 +75,16 @@ img{
     color: white;
 }
 
+
 footer{
-    text-align: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #7F0000;
+  color: white;
+  text-align: center;
+	
 }
 
 footer a{
@@ -78,5 +92,5 @@ footer a{
 }
 
 footer a:hover{
-    color: gray;
+    color: red;
 }
