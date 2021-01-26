@@ -8,8 +8,8 @@ require_once 'models/property.class.php';
 class Product extends BaseModel
 {
     const PRODUCT_TYPES = [
-        'snacks' => 1,
-        'drinks' => 2, 
+        'snacks' => 0,
+        'drinks' => 1, 
         'other' => 99 ];
     const TABLENAME = 'Product';
     const P_H_P_TABLENAME = 'Product_has_Property';
@@ -50,7 +50,7 @@ class Product extends BaseModel
 
         try
         {
-            $sql = 'SELECT productId, name, price, prodType, onStock FROM ' . self::tablename() . ' WHERE productId = ' . $db->quote($id) . ';';
+            $sql = 'SELECT ProductID, ProdName, Price, ProdType, OnStock FROM ' . self::tablename() . ' WHERE ProductID = ' . $db->quote($id) . ';';
             $result = $db->query($sql)->fetch();
 
             if(!empty($result))
@@ -90,9 +90,9 @@ class Product extends BaseModel
 
         try
         {
-            $sql = 'SELECT prod.productId, prod.name, prod.price, prod.prodType, prod.onStock FROM ' . self::tablename() . 
+            $sql = 'SELECT prod.ProductID, prod.Name, prod.Price, prod.ProdType, prod.OnStock FROM ' . self::tablename() . 
             ' prod JOIN '. self::P_H_P_TABLENAME . ' php, ' . Property::TABLENAME . 
-            ' prop WHERE prod.productId = php.productId AND php.propertyId = prop.propertyId';
+            ' prop WHERE prod.ProductID = php.ProductID AND php.PropertyID = prop.PropertyID';
 
             foreach($properties as $type => $value)
             {
@@ -131,7 +131,7 @@ class Product extends BaseModel
 
         try
         {
-            $sql = 'SELECT productId, name, price, prodType, onStock FROM ' . self::tablename() . ' WHERE prodType = ' . self::PRODUCT_TYPES[$type] . ';';
+            $sql = 'SELECT ProductID, ProdName, Price, ProdType, OnStock FROM ' . self::tablename() . ' WHERE ProdType = ' . self::PRODUCT_TYPES[$type] . ';';
             $result = $db->query($sql)->fetchAll();
 
             if(!empty($result))
@@ -167,7 +167,7 @@ class Product extends BaseModel
                 return false;
             }
 
-            $sql = 'INSERT INTO ' . self::tablename() . ' (name, price, prodType, onStock) VALUES (:name, :price, :prodType, :onStock);'; 
+            $sql = 'INSERT INTO ' . self::tablename() . ' (ProdName, Price, ProdType, OnStock) VALUES (:name, :price, :prodType, :onStock);'; 
             $statement = $db->prepare($sql);
             $statement->bindParam(':name', $this->name);
             $statement->bindParam(':price', $this->price);
@@ -218,7 +218,7 @@ class Product extends BaseModel
         $db = $GLOBALS['db'];
         try
         {
-            $sql = 'INSERT INTO ' . self::P_H_P_TABLENAME . ' (productId, propertyId) VALUES (:productId, :propertyId);';
+            $sql = 'INSERT INTO ' . self::P_H_P_TABLENAME . ' (ProductID, PropertyID) VALUES (:productId, :propertyId);';
 
             $statement = $db->prepare($sql);
             $statement->bindParam(':productId', $this->productId);
@@ -251,7 +251,7 @@ class Product extends BaseModel
         try
         {
             $sql = 'DELETE php FROM ' . self::P_H_P_TABLENAME . 'php JOIN ' . Property::TABLENAME . 
-                   ' p ON p.propertyId = php.propertyId WHERE p.name =' . $db->quote($name) . ' AND p.value = ' . $db->quote($value) . ' AND php.productId = ' . $db->quote($this->productId) . ';';
+                   ' p ON p.PropertyID = php.PropertyID WHERE p.ProductName =' . $db->quote($name) . ' AND p.Value = ' . $db->quote($value) . ' AND php.ProductID = ' . $db->quote($this->productId) . ';';
             $db->exec($sql);
 
             unset($this->properties[$name]);
@@ -286,8 +286,8 @@ class Product extends BaseModel
         $db = $GLOBALS['db'];
         try
         {
-            $sql = 'SELECT p.propertyId, p.type, p.name, p.value FROM ' . Property::TABLENAME . ' p JOIN ' . self::P_H_P_TABLENAME . 
-                   ' php ON p.propertyId = php.propertyId AND php.productId = ' . $db->quote($this->productId) . ';';
+            $sql = 'SELECT p.PropertyID, p.Type, p.Name, p.Value FROM ' . Property::TABLENAME . ' p JOIN ' . self::P_H_P_TABLENAME . 
+                   ' php ON p.PropertyID = php.PropertyID AND php.ProductID = ' . $db->quote($this->productId) . ';';
             $result = $db->query($sql)->fetchAll();
 
             if(!empty($result))
@@ -324,7 +324,7 @@ class Product extends BaseModel
         $db = $GLOBALS['db'];
         try
         {
-            $sql = 'DELETE FROM ' . self::tablename() . ' WHERE productId=' . $db->quote($this->productId) . ';';
+            $sql = 'DELETE FROM ' . self::tablename() . ' WHERE ProductID=' . $db->quote($this->productId) . ';';
             $db->exec($sql);
             return true;
         }
@@ -362,9 +362,9 @@ class Product extends BaseModel
         $db = $GLOBALS['db'];
         try
         {
-            $sql = 'SELECT productId FROM '. self::tablename() . 
+            $sql = 'SELECT ProductID FROM '. self::tablename() . 
             ' WHERE name = '    . $db->quote($this->name) . 
-            ' AND prodType = '  . $db->quote($this->prodType) . ';'; 
+            ' AND ProdType = '  . $db->quote($this->prodType) . ';'; 
             
             $result = $db->query($sql)->fetch();
 

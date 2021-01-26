@@ -7,7 +7,7 @@ abstract class BaseModel
     public static function tablename()
     {
         $class = get_called_class();
-		
+		ucfirst($class); 
         if(defined($class.'::TABLENAME'))
         {
             return $class::TABLENAME;
