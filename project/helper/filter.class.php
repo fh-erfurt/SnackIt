@@ -1,10 +1,11 @@
 <?php
 
-namespace de\pc4u\helper;
+namespace si\helper;
 
 require_once __DIR__.'/../models/account.class.php';
 require_once __DIR__.'/../models/address.class.php';
 require_once __DIR__.'/../models/product.class.php';
+require_once __DIR__.'/../helper/helper.php';
 use si\models\Account;
 use si\models\Address;
 use si\models\Product;
@@ -34,6 +35,7 @@ class Filter{
         {
             if($category == 'featured')
             {
+				
                 $products = Product::getFeaturedProducts();
             }
             else
@@ -42,6 +44,7 @@ class Filter{
             }
             if(count($products) == 0)
             {
+				echo 'Test';
                 return null;
             }
 
@@ -92,6 +95,7 @@ class Filter{
         }
         else
         {
+			
             return null;
         }
     }

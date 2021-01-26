@@ -1,3 +1,5 @@
+<? ?>
+
 <form method=get>
     <? if(isset($_GET['c'])): ?>
         <input type=hidden name='c' value='<?=$_GET['c']?>'?>
@@ -16,10 +18,10 @@
     <!--price-->
     <span>Preis:</span></br>
     <label>
-        Min: <input class=searchbymin type=number name='minPrice' min='<?=isset($minPrice)? $minPrice : 0?>' <?=isset($maxPrice) ? "max='$maxPrice'" : '' ?> value='<?=isset($_GET['minPrice']) ? $_GET['minPrice'] : isset($minPrice)? $minPrice : ''?>' placeholder='Minimum' step=any>
+        Min: <input class=searchbymin type=number name='minPrice' min='<?=isset($minPrice)? $minPrice : 0?>' <?=isset($maxPrice) ? "max='$maxPrice'" : '' ?> value='<?=isset($_GET['minPrice']) ? $_GET['minPrice'] : (isset($minPrice)? $minPrice : '')?>' placeholder='Minimum' step=any>
     </label></br>
     <label>
-        Max: <input class=searchbymax type=number name='maxPrice' min='<?=isset($minPrice)? $minPrice : 0?>' <?=isset($maxPrice) ? "max='$maxPrice'" : '' ?> value='<?=isset($_GET['maxPrice']) ? $_GET['maxPrice'] : isset($maxPrice)? $maxPrice : ''?>' placeholder='Maximum' step=any>
+        Max: <input class=searchbymax type=number name='maxPrice' min='<?=isset($minPrice)? $minPrice : 0?>' <?=isset($maxPrice) ? "max='$maxPrice'" : '' ?> value='<?=isset($_GET['maxPrice']) ? $_GET['maxPrice'] : (isset($maxPrice)? $maxPrice : '')?>' placeholder='Maximum' step=any>
     </label></br></br>
     <!--onStock-->
     <label>

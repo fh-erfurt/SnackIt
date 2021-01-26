@@ -19,14 +19,16 @@ class ProductsController extends si\core\Controller
      */
 	public function actionList()
 	{
+		
         $productType = $_GET['t'] ?? null;
-
+		
         // check if product type exists
         if($productType === null || !array_key_exists(strtolower($productType), Product::PRODUCT_TYPES))
         {
+			
             header('Location: index.php');
         }
-
+		
         
         $products = Product::getProductsByType(strtolower($productType));
         $filter = Filter::getFilterByCategory(strtolower($productType));
@@ -67,7 +69,7 @@ class ProductsController extends si\core\Controller
         
         // filter pages
         $container = filterProductsByPages($products);
-
+echo 'HELLOO';
         $this->_params['title'] = 'SI | ' . $productTypeTitle;
         $this->_params['products'] = $container['products'];
         $this->_params['pageTitle'] = $productTypeTitle;

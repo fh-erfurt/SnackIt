@@ -8,8 +8,9 @@ require_once 'models/property.class.php';
 class Product extends BaseModel
 {
     const PRODUCT_TYPES = [
-        'snacks' => 0,
-        'drinks' => 1, 
+		'featured' => 0,
+        'snacks' => 1,
+        'drinks' => 2, 
         'other' => 99 ];
     const TABLENAME = 'Product';
     const P_H_P_TABLENAME = 'Product_has_Property';
@@ -69,6 +70,7 @@ class Product extends BaseModel
 
     public static function getFeaturedProducts()
     {
+		
         $featuredProperty = array('featured' => null);
         return Product::getProductsWithProperties($featuredProperty, true);
     }
@@ -84,36 +86,41 @@ class Product extends BaseModel
         {
             return null;
         }
-
+		
         $db = $GLOBALS['db'];
+		
         $products = [];
 
         try
         {
-            $sql = 'SELECT prod.ProductID, prod.Name, prod.Price, prod.ProdType, prod.OnStock FROM ' . self::tablename() . 
+			
+            $sql = 'SELECT prod.ProductID, prod.ProdName, prod.Price, prod.ProdType, prod.OnStock FROM ' . self::tablename() . 
             ' prod JOIN '. self::P_H_P_TABLENAME . ' php, ' . Property::TABLENAME . 
             ' prop WHERE prod.ProductID = php.ProductID AND php.PropertyID = prop.PropertyID';
 
             foreach($properties as $type => $value)
             {
-                $sql .= ' AND prop.type = ' . $db->quote($type);
+                $sql .= ' AND prop.Type = ' . $db->quote($type);
                 if($searchWithoutValue === false)
                 {
-                    $sql .= ' AND prop.value = ' . $db->quote($value);
+                    $sql .= ' AND prop.Value = ' . $db->quote($value);
                 }
             }
             $sql .= ';';
-
+			
             $result = $db->query($sql)->fetchAll();
-
-            if(!empty($result))
+			
+            if(!empty($result)) 
             {
+				
                 foreach($result as $row)
                 {
-                    $product = new Product($row['name'], $row['price'], $row['prodType'], $row['onStock']);
-                    $product->productId = $row['productId'];
+					
+                    $product = new Product($row['ProdName'], $row['Price'], $row['ProdType'], $row['OnStock']);
+                    $product->productId = $row['ProductID'];
                     $product->loadProperties();
                     $products[] = $product;
+					
                 }
             }
             return $products;
@@ -138,8 +145,8 @@ class Product extends BaseModel
             {
                 foreach($result as $row)
                 {
-                    $product = new Product($row['name'], $row['price'], $row['prodType'], $row['onStock']);
-                    $product->productId = $row['productId'];
+                    $product = new Product($row['ProdName'], $row['Price'], $row['ProdType'], $row['OnStock']);
+                    $product->productId = $row['ProductID'];
                     $product->loadProperties();
                     $products[] = $product;
                 }
@@ -295,19 +302,19 @@ class Product extends BaseModel
                 $this->properties = null;
                 foreach($result as $row)
                 {
-                    $property = new Property($row['type'], $row['name'], $row['value']);
-                    $property->propertyId = $row['propertyId'];
-                    if(isset($this->properties[$row['type']]))
+                    $property = new Property($row['Type'], $row['Name'], $row['Value']);
+                    $property->propertyId = $row['PropertyID'];
+                    if(isset($this->properties[$row['Type']]))
                     {
-                        if(!is_array($this->properties[$row['type']]))
+                        if(!is_array($this->properties[$row['Type']]))
                         {
-                            $this->properties[$row['type']] = array($this->properties[$row['type']]);
+                            $this->properties[$row['Type']] = array($this->properties[$row['Type']]);
                         }
-                        $this->properties[$row['type']][] = $property;
+                        $this->properties[$row['Type']][] = $property;
                     }
                     else
                     {
-                        $this->properties[$row['type']] = $property;
+                        $this->properties[$row['Type']] = $property;
                     }
                 }
             }

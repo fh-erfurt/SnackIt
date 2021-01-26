@@ -2,6 +2,16 @@
 
 namespace dwp\controller;
 
+//require_once __DIR__.'/../models/user.class.php';
+require_once __DIR__.'/../models/address.class.php';
+require_once __DIR__.'/../models/product.class.php';
+require_once __DIR__.'/../models/order.class.php';
+require_once __DIR__.'/../helper/filter.class.php';
+//use models\User.class.php;
+use si\models\Address;
+use si\models\Product;
+use si\models\Order;
+use si\helper\Filter;
 
 class PagesController extends Controller
 {
@@ -132,10 +142,33 @@ class PagesController extends Controller
 	
 	public function actionList()
 	{
+		
 	}
 	
 	public function actionSnacks()
 	{
+		$this->_params['title'] = 'SnackIt - Alles was du brauchst!';
+
+		$products = Product::getFeaturedProducts();
 		
+		$filter = Filter::getFilterByCategory('featured');
+		
+		if(isset($_GET['applyFilter']))
+		{
+			$products = Filter::applyFilter($products);
+		}
+
+		$container = filterProductsByPages($products);
+        
+        $this->_params['products'] 		= $container['products'];
+        $this->_params['maxPage'] 		= $container['maxPage'];
+        $this->_params['page'] 			= $container['page'];
+        $this->_params['getParameters'] = $container['getParameters'];
+        $this->_params['pageTitle'] 	= 'Vorgestellte Produkte';
+        $this->_params['minPrice'] 		= $filter['minPrice'];
+        $this->_params['maxPrice'] 		= $filter['maxPrice'];
+        $this->_params['filter'] 		= $filter['filter'];
+        $this->_params['css'][] 		= 'products';
+        $this->_params['js'][] 			= 'products';
 	}
 }

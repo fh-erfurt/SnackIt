@@ -1,6 +1,6 @@
 <div class=row>
     <section class='search column'>
-        <?  require(__DIR__ . '/../viewparts/filter.php');
+        <?  require 'views/viewparts/filter.php';
         ?>
     </section>
     <section class='column middle'>
