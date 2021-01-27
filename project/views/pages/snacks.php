@@ -1,7 +1,6 @@
 <h1>Snacks</h1>
 <? 
-print_r($products);
-if(isset($products) && !empty($products)) //DIE VARIABLE IST NICHT VORHANDEN ABER DER GRUND DAFÜR IST NICHT BEKANNT
+if(isset($products) && !empty($products)) 
     {
     include(__DIR__ . '/../products/list.php');
     }

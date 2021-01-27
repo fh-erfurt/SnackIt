@@ -160,15 +160,15 @@ class PagesController extends Controller
 
 		$container = filterProductsByPages($products);
         
-        $this->_params['products'] 		= $container['products'];
-        $this->_params['maxPage'] 		= $container['maxPage'];
-        $this->_params['page'] 			= $container['page'];
-        $this->_params['getParameters'] = $container['getParameters'];
-        $this->_params['pageTitle'] 	= 'Vorgestellte Produkte';
-        $this->_params['minPrice'] 		= $filter['minPrice'];
-        $this->_params['maxPrice'] 		= $filter['maxPrice'];
-        $this->_params['filter'] 		= $filter['filter'];
-        $this->_params['css'][] 		= 'products';
-        $this->_params['js'][] 			= 'products';
+        $this->params['products'] 		= $container['products'];
+        $this->params['maxPage'] 		= $container['maxPage'];
+        $this->params['page'] 			= $container['page'];
+        $this->params['getParameters'] = $container['getParameters'];
+        $this->params['pageTitle'] 	= 'Vorgestellte Produkte';
+        $this->params['minPrice'] 		= $filter['minPrice'];
+        $this->params['maxPrice'] 		= $filter['maxPrice'];
+        $this->params['filter'] 		= $filter['filter'];
+        $this->params['css'][] 		= 'products';
+        $this->params['js'][] 			= 'products';
 	}
 }

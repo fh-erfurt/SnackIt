@@ -37,7 +37,7 @@ if(isset($_GET['a']))
 if(file_exists(CONTROLLERSPATH.$controllerName.'_controller.php'))
 {
     // include the controller file
-    require_once CONTROLLERSPATH.$controllerName.'_controller.php';
+    include_once CONTROLLERSPATH.$controllerName.'_controller.php';
 
     // generate the class name of the controller using the name extended by Controller
     // also add the namespace in front
@@ -85,7 +85,7 @@ else
 </head>
 <body>
     <?php
-		require_once VIEWSPATH.'layout.php';
+		include VIEWSPATH.'layout.php';
 
         // this method will render the view of the called action
         // for this the the file in the views directory will be included

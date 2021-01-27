@@ -49,7 +49,9 @@ class Controller
 
 		// extract the params array to get all needed variables for the view
 		extract($this->params);
-
+		
+		
+		
 		// just include the view here, it's like putting the code of the php file by copy paste on this position.
 		include $viewPath;
 	}

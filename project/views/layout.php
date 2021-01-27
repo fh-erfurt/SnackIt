@@ -47,8 +47,10 @@
 				</nav>
 			</section>
 			<main>
-				<?php
-				$controller->render();?>
+				
+				<?php //echo $body;
+				$controller->render();
+				?>
 			</main>
 		</div>
 		<footer>
