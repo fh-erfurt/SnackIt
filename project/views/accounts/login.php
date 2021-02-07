@@ -12,11 +12,11 @@
 	<br />
 
 	<form method='post' name='loginForm' id=login-form>
-		<label class="email" for='email'>E-Mail</label> <br />
+		<label class="email" for='email' style="padding-right: 157px;">E-Mail</label> <br />
 		<input type='email' name='email' style="margin-top: 10px;height: 20px;width: 200px;border: none;background-color: #212121;color: #FF6E00;" id='email' value=<?=isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '';?> ><br />
 		<span id='emailError'></span>
 		<br />
-		<label for='password'>Passwort</label> <br />
+		<label for='password' style="padding-right: 134px;" >Passwort</label> <br />
 		<input type='password' name='password' style="margin-top: 10px;height: 20px;width: 200px;border: none;background-color: #212121;color: #FF6E00;" id='password' /><br />
 		<span id='passwordError'></span><br />
 		<input type='submit' name='submitBtn' value='Anmelden' class='loginButton'><br />
