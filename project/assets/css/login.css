@@ -1,20 +1,17 @@
 *{
 
 }
-
 .login{
-
+	
     text-align: center;
-    padding: 100;
-    padding-right: 10;
-    padding-left: 0;
-    margin: auto;
-    margin-top: 40;
-    margin-bottom: 40;
-    border-radius: 20px;
-    width: 15%;
-    background-color: gray;
+    margin-top: 50px;
+    margin-left: 30%;
+    margin-right: 30%;
+    width: auto;
+	vertical-align: middle;
+    background-color: #2D2D2D;
     background-clip: padding-box;    
+    color: #FF6E00;
 }
 
 .login input{
@@ -23,10 +20,16 @@
 
 .loginButton{
     background-color: white;
-    border-radius: 8px;
     cursor: pointer;
+    padding: 10px;
+	padding-left: 20px;
+	padding-right: 20px;
+	color: #FF6E00;
+	background-color: #212121;
+	border: none;
+	margin-bottom: 20px;
 }
 
 .loginButton:hover{
-    background-color: red;
+    background-color: #191919;
 }

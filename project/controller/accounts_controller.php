@@ -5,8 +5,8 @@ namespace dwp\controller;
 require_once 'models/account.class.php';
 require_once 'models/address.class.php';
 require_once 'helper/helper.php';
-use si\models\Account;
-use si\models\Address;
+use models\Account;
+use models\Address;
 
 class AccountsController extends Controller
 {
