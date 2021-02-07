@@ -17,7 +17,7 @@
             </section>
             <? foreach($products as $id => $product): ?><!--
              --><article class='product'>
-                    <a href='index.php?c=products&a=item&id=<?=$product->productId?>'>
+                    <a href='index.php?c=products&a=item&id=<?=$product->ProductId?>'>
                         <div class=img-container>
                             <span class=helper></span><img src='assets/pictures/products/<?=($product->getProperty('mainPicture') !== null) ? $product->getProperty('mainPicture')->value : 'placeholder.png'?>' alt='<?=$product->name?>'><br>
                         </div>

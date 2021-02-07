@@ -147,7 +147,7 @@ class PagesController extends Controller
 	
 	public function actionSnacks()
 	{
-		$this->_params['title'] = 'SnackIt - Alles was du brauchst!';
+		$this->params['title'] = 'SnackIt - Alles was du brauchst!';
 
 		$products = Product::getFeaturedProducts();
 		
