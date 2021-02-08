@@ -1,6 +1,6 @@
 <?php
 
-namespace dwp\controller;
+
 
 class Controller
 {
@@ -15,11 +15,6 @@ class Controller
 		$this->controller = $controller;
 		$this->action = $action;
 
-		if($this->loggedIn())
-		{
-			// TODO: Load the current user using the session and the account model
-			// 		 write user model object to member variable currentUser
-		}
 	}
 
 	/**
@@ -37,7 +32,7 @@ class Controller
 	public function render()
 	{
 		// generate the view path
-		$viewPath = VIEWSPATH.$this->controller.DIRECTORY_SEPARATOR.$this->action.'.php';
+		$viewPath = 'views/'.$this->controller.DIRECTORY_SEPARATOR.$this->action.'.php';
 
 		// check the file exists
 		if(!file_exists($viewPath))
@@ -49,10 +44,11 @@ class Controller
 
 		// extract the params array to get all needed variables for the view
 		extract($this->params);
-		
-		
-		
+			
+			
 		// just include the view here, it's like putting the code of the php file by copy paste on this position.
+		//include $viewPath;
+		
 		include $viewPath;
 	}
 

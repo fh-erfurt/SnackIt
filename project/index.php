@@ -1,13 +1,13 @@
 <?php
 
 // load needed variables/defines/configs
-require_once 'config/init.php';
+
 require_once 'config/database.php';
 
 // load core stuff
-require_once COREPATH.'functions.php';
-require_once COREPATH.'controller.class.php';
-require_once COREPATH.'model.class.php';
+
+require_once 'core/controller.class.php';
+
 
 
 // TODO: load all created models
@@ -30,18 +30,18 @@ if(isset($_GET['c']))
 if(isset($_GET['a']))
 {
     $actionName = $_GET['a'];
-	$title = ucfirst($_GET['a']);
+	
 }
 
 // check controller/class and method exists
-if(file_exists(CONTROLLERSPATH.$controllerName.'_controller.php'))
+if(file_exists('controller/'.$controllerName.'_controller.php'))
 {
     // include the controller file
-    include_once CONTROLLERSPATH.$controllerName.'_controller.php';
+    include_once 'controller/'.$controllerName.'_controller.php';
 
     // generate the class name of the controller using the name extended by Controller
     // also add the namespace in front
-    $className = 'dwp\\controller\\'.ucfirst($controllerName).'Controller';
+    $className = ucfirst($controllerName).'Controller';
 
     // generate an instace of the controller using the name, stored in $className
     // it is the same like calling for example: new \dwp\controller\PagesController()
@@ -53,7 +53,6 @@ if(file_exists(CONTROLLERSPATH.$controllerName.'_controller.php'))
     if(!method_exists($controller, $actionMethod))
     {
         // TODO: Handle better errors with an Redirect to an error page
-        require_once 'views/pages/error404.php';
 		die('404 Method you call does not exists');
     }
     else
@@ -61,13 +60,13 @@ if(file_exists(CONTROLLERSPATH.$controllerName.'_controller.php'))
         // call the action method to do the job
         // so the action cann fill the params for the view which will be used 
         // in the render process later
+		
         $controller->{$actionMethod}();
     }
 }
 else
 {
     // TODO: Handle better errors with an Redirect to an error page
-    require_once 'views/pages/error404.php';
     die('404 Controller you call does not exist');
 }
 
@@ -85,7 +84,7 @@ else
 </head>
 <body>
     <?php
-		include VIEWSPATH.'layout.php';
+		include 'views/'.'layout.php';
 
         // this method will render the view of the called action
         // for this the the file in the views directory will be included

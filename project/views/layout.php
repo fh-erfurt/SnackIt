@@ -1,14 +1,14 @@
 
 <html class=layout lang='de'>
 	<head>
-		<title><?=isset($title)? 'SnackIt: '. $title : 'SnackIt'?></title>
+		
 		<meta charset='UTF-8'/>
 		<meta name='viewport' content='width=device-width, initial-scale=1'>
 		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
 		<link rel="stylesheet" href="assets/css/layout.css">
 		<!-- <?php //if(isset($css) && is_array($css)) : ?>
 			<?php //foreach($css as $file) : ?>
-			<link rel='stylesheet' type='text/css' href="assets/css/<?=$file?>.css">
+			<link rel='stylesheet' type='text/css' href="assets/css/login.css">
 			<?php //endforeach; ?>
 		<?php //endif; ?> -->
 	</head>
@@ -19,11 +19,11 @@
 					<nav class=navbarTop>
 						<ul>
 							<?php if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true) : ?>
-							<li class=rightNav><a href='index.php?c=accounts&a=profile'>Profil</a></li>
-							<li class=rightNav><a href='index.php?c=accounts&a=logout'>Abmelden</a></li>
+							<li class=rightNav><a href='index.php?c=pages&a=profile'>Profil</a></li>
+							<li class=rightNav><a href='index.php?c=pages&a=logout'>Abmelden</a></li>
 							<?php else : ?>
-							<li class=rightNav><a href='index.php?c=accounts&a=login'>Login</a></li>
-							<li class=rightNav><a href='index.php?c=accounts&a=register'>Registrieren</a></li>
+							<li class=rightNav><a href='index.php?c=pages&a=login'>Login</a></li>
+							<li class=rightNav><a href='index.php?c=pages&a=register'>Registrieren</a></li>
 							<?php endif; ?>
 							<li class=rightNav><a href='index.php?a=shoppingCart'>Warenkorb<?=(isset($_SESSION['shoppingCartCount']) && $_SESSION['shoppingCartCount'] > 0)? ' ('.$_SESSION['shoppingCartCount'].')' : ''?></a></li>
 						</ul>
@@ -48,7 +48,8 @@
 			</section>
 			<main>
 				
-				<?php //echo $body;
+				<?php 
+				//echo $body;
 				$controller->render();
 				?>
 			</main>
