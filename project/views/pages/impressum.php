@@ -1,3 +1,8 @@
+
+<head>
+<title><?=isset($title)? 'SnackIt: '. $title : 'SnackIt'?></title>
+</head>
+
 <h1 class="adsimple-321140941">Impressum</h1>
 <p class="adsimple-321140941">Informationspflicht laut § 5 TMG.</p>
 <p class="adsimple-321140941">SnackIt<br />Altonaer Straße 25, <br />99085  Erfurt, <br />Deutschland</p>

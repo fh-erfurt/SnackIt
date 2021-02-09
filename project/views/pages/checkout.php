@@ -1,5 +1,9 @@
 <link rel='stylesheet' type='text/css' href='assets/css/checkout.css'>
 
+<head>
+<title><?=isset($title)? 'SnackIt: '. $title : 'SnackIt'?></title>
+</head>
+
 </br>
 
 <div class=checkout>

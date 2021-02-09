@@ -14,6 +14,8 @@ class PagesController extends Controller
 
 	public function actionLogin()
 	{
+		$this->params['title'] = 'Login';
+
 		// store error message
 		$errMsg = null;
 
@@ -45,6 +47,7 @@ class PagesController extends Controller
 
 	public function actionRegister()
 	{
+		$this->params['title'] = 'Registrierung';
 	}
 	
 
@@ -56,21 +59,26 @@ class PagesController extends Controller
 	
 	public function actionAgb()
 	{
+		$this->params['title'] = 'AGB';
 	}
 	
 	public function actionStartseite()
 	{
-	}
-	
-	public function actionList()
-	{
-		
+		$this->params['title'] = 'Alles was du brauchst!';
 	}
 	
 	public function actionSnacks()
 	{
-	$this->params['title'] = 'SnackIt - Alles was du brauchst!';
+	$this->params['title'] = 'Snacks';	
+	}
 
-		
+	public function actionGetränke()
+	{
+	$this->params['title'] = 'Getränke';	
+	}
+
+	public function actionAngebote()
+	{
+	$this->params['title'] = 'Angebote';	
 	}
 }

@@ -1,3 +1,7 @@
+<head>
+<title><?=isset($title)? 'SnackIt: '. $title : 'SnackIt'?></title>
+</head>
+
 <h3>Profil</h3>
     <? if(isset($message)): ?>
         <section class='message <?=$messageType?>'>

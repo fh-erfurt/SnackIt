@@ -1,5 +1,5 @@
 *{
-    
+
 }
 
 main{
@@ -7,7 +7,8 @@ main{
     align-items: center;
     justify-content: center;
 }
-.login{
+
+.register{
     text-align: center;
     margin-top: 50px;
     margin-bottom: 150px;
@@ -16,7 +17,7 @@ main{
     color: #FF6E00;
 }
 
-.login h1{
+.register h1{
     padding-top: 20px;
 }
 
@@ -26,29 +27,24 @@ form{
     margin: auto;
 }
 
-.login input{
+.register input{
     height: 20px;
     width: 100%;
     border: none;
     color: white;
-    background-color: #212121;
+    background-color: #212121 !important;
     -webkit-text-fill-color: white;
     -webkit-box-shadow: 0 0 0px 1000px #212121 inset;
 }
 
-.loginButton{
+.registerButton{
     cursor: pointer;
     height: 50px !important;
     -webkit-text-fill-color: #FF6E00 !important;
 	background-color: #212121;
 	border: none;
-	margin-bottom: 20px;  
 }
 
-.loginButton:hover{
+.registerButton:hover{
     background-color: #191919;
-}
-
-.noAcc{
-    font-size: 15px;
 }

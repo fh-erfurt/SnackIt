@@ -1,3 +1,7 @@
+<head>
+<title><?=isset($title)? 'SnackIt: '. $title : 'SnackIt'?></title>
+</head>
+
 Allgemeine Geschäftsbedingungen der Firma SnackIt<br />
 
 <br />

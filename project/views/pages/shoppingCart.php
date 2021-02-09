@@ -1,3 +1,7 @@
+<head>
+<title><?=isset($title)? 'SnackIt: '. $title : 'SnackIt'?></title>
+</head>
+
 </br>
 <h1 class=yourshoppingcart>Ihr Einkaufswagen</h1>
 </br>

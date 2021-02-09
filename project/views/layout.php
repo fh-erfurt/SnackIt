@@ -34,8 +34,8 @@
 						<ul class=menu>
 							<li><a href='index.php?c=pages&a=startseite' style="margin-left: 16px; margin-right: 0px; margin-top: -48px;" ><img src="assets\pictures\logomenu.png" class="logomenu" ></a><li>
 							<li><a href='index.php?c=pages&a=Snacks&t=Snacks'>Snacks</a></li>
-							<li><a href='index.php?c=pages&a=list&t=studentenfutter' >Getränke</a></li>
-							<li><a href='index.php?c=pages&a=list&t=backware'>Angebote</a></li>
+							<li><a href='index.php?c=pages&a=Getränke&t=Getränke' >Getränke</a></li>
+							<li><a href='index.php?c=pages&a=Angebote&t=Angebote'>Angebote</a></li>
 							<li><a href='index.php?c=pages&a=list&t=knabberzeug'>Knabberzeug</a></li>
 								<!-- <ul class=submenu>
 									<li><a href='index.php?c=products&a=list&t=soßen'>Soßen</a></li>

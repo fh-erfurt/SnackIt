@@ -1,3 +1,8 @@
+
+<head>
+<title><?=isset($title)? 'SnackIt: '. $title : 'SnackIt'?></title>
+</head>
+
 <div class=row>
     <section class='search column'>
         <?  require 'views/viewparts/filter.php';
