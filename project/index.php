@@ -3,6 +3,7 @@
 // load needed variables/defines/configs
 
 require_once 'config/database.php';
+require_once 'helper/functions.php';
 
 // load core stuff
 
