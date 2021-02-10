@@ -36,19 +36,42 @@ form{
     -webkit-box-shadow: 0 0 0px 1000px #212121 inset;
 }
 
+.login input:hover{
+    background-color: #191919;
+    -webkit-box-shadow: 0 0 0px 1000px #191919 inset;
+}
+
 .loginButton{
+    font-size: large;
     cursor: pointer;
     height: 50px !important;
     -webkit-text-fill-color: #FF6E00 !important;
 	background-color: #212121;
 	border: none;
-	margin-bottom: 20px;  
+	margin-bottom: 20px;
+    margin-left: 2px;  
 }
 
 .loginButton:hover{
     background-color: #191919;
+    -webkit-box-shadow: 0 0 0px 1000px #191919 inset;
+}
+
+.error{
+    color: #bd0000;
+    font-size: large;
+    text-align: center;
 }
 
 .noAcc{
     font-size: 15px;
+}
+
+.registerNow{
+    color: #8d0000;
+    font-size: larger;
+}
+
+.registerNow:hover{
+    color: #bd0000;
 }

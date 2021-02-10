@@ -36,19 +36,21 @@
 		<label for='city'>Stadt</label> <br />
 		<input type='text' name='city' id='city' value=<?=isset($_POST['city']) ? htmlspecialchars($_POST['city']) : '';?> ><br />
 		<br />
-		<label for='street'>Straße</label> <br />
-		<input type='text' name='street' id='street' value=<?=isset($_POST['street']) ? htmlspecialchars($_POST['street']) : '';?> ><br />
-		<br />
 		<label for='zipcode'>PLZ</label> <br />
 		<input type='text' name='zipcode' id='zipcode' value=<?=isset($_POST['zipcode']) ? htmlspecialchars($_POST['zipcode']) : '';?> ><br />
+		<br />
+		<label for='street'>Straße</label> <br />
+		<input type='text' name='street' id='street' value=<?=isset($_POST['street']) ? htmlspecialchars($_POST['street']) : '';?> ><br />
 		<br />
 		<label for='number'>Hausnummer</label> <br />
 		<input type='text' name='number' id='number' value=<?=isset($_POST['number']) ? htmlspecialchars($_POST['number']) : '';?> ><br />
 		<br />
 		<input type='submit' name='submit' value='Registrieren' class='registerButton'><br/>
+		<p class="error"><?echo $ErrorMsg;?></p><br>
+		<label class='accExists' for='Register'>Schon Registriert?</label> <a class='loginNow' href='index.php?c=pages&a=login'> Jetzt einloggen</a> <br />
 	</form>
 	<br>
-	<?echo $ErrorMsg;?>
+
 </div>
 </section>
 

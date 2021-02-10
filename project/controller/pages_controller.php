@@ -37,7 +37,7 @@ class PagesController extends Controller
 				header('Location: index.php');
 			}
 			else{
-				$errMsg = "Passwort und Email stimmt nicht überein";
+				$errMsg = "Passwort und Email stimmen nicht überein.";
 				$_SESSION['loggedIn'] = false;
 			}
 			
@@ -89,7 +89,7 @@ class PagesController extends Controller
 				}
 				else
 				{
-					$this->params['ErrorMsg'] = 'Passwörter stimmen nicht überein';
+					$this->params['ErrorMsg'] = 'Passwörter stimmen nicht überein.';
 				}
 			}
 		

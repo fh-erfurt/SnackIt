@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Caveat&family=Roboto&display=swap');
 
-
 :root {
     --main-bg-color: rgb(64, 64, 64);
 }
@@ -8,7 +7,6 @@
 *{
     margin: 0;
 }
-
 
 body{
     background-color: var(--main-bg-color);

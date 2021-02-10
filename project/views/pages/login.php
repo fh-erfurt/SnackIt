@@ -17,14 +17,13 @@
 	<form method='post' name='loginForm' id=login-form>
 		<label class="email" for='email'>E-Mail</label> <br />
 		<input type='email' name='email' id='email' value=<?=isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '';?> ><br />
-		<span id='emailError'></span><br />
 		<label class="password" for='password' >Passwort</label> <br />
 		<input type='password' name='password' id='password'/><br />
-		<span id='passwordError'></span><br />
+		<br>
 		<input type='submit' name='submitBtn' value='Anmelden' class='loginButton'><br />
-		<label class="noAcc" for='Register'>Noch kein Konto?</label> <a href="index.php?c=accounts&a=register" style="color: #9E0000;font-size: 15px;"> Jetzt registrieren</a> <br />
+		<p class="error"><?echo $errMsg;?></p><br>
+		<label class='noAcc' for='Register'>Noch kein Konto?</label> <a class='registerNow' href='index.php?c=pages&a=register'> Jetzt registrieren</a> <br />
+		<br>
 	</form>
-	<br>
-	<?echo $errMsg;?>
 </div>	
 </section>

@@ -37,14 +37,41 @@ form{
     -webkit-box-shadow: 0 0 0px 1000px #212121 inset;
 }
 
+.register input:hover{
+    background-color: #191919;
+    -webkit-box-shadow: 0 0 0px 1000px #191919 inset;
+}
+
 .registerButton{
+    font-size: large;
     cursor: pointer;
     height: 50px !important;
     -webkit-text-fill-color: #FF6E00 !important;
 	background-color: #212121;
 	border: none;
+    margin-bottom: 20px;
 }
 
 .registerButton:hover{
     background-color: #191919;
+    -webkit-box-shadow: 0 0 0px 1000px #191919 inset;
+}
+
+.error{
+    color: #bd0000;
+    font-size: large;
+    text-align: center;
+}
+
+.accExists{
+    font-size: 15px;
+}
+
+.loginNow{
+    color: #8d0000;
+    font-size: larger;
+}
+
+.loginNow:hover{
+    color: #bd0000;
 }
