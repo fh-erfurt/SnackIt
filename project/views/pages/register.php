@@ -33,9 +33,6 @@
 		<label for='country'>Land</label> <br />
 		<input type='text' name='country' id='country' value=<?=isset($_POST['country']) ? htmlspecialchars($_POST['country']) : '';?> ><br />
 		<br />
-		<label for='state'>Bundesland</label> <br />
-		<input type='text' name='state' id='state' value=<?=isset($_POST['state']) ? htmlspecialchars($_POST['state']) : '';?> ><br />
-		<br />
 		<label for='city'>Stadt</label> <br />
 		<input type='text' name='city' id='city' value=<?=isset($_POST['city']) ? htmlspecialchars($_POST['city']) : '';?> ><br />
 		<br />
@@ -51,6 +48,7 @@
 		<input type='submit' name='submit' value='Registrieren' class='registerButton'><br/>
 	</form>
 	<br>
+	<?echo $ErrorMsg;?>
 </div>
 </section>
 
