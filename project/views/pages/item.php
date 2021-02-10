@@ -1,3 +1,8 @@
+
+<head>
+<title><?=isset($title)? 'SnackIt: '. $title : 'SnackIt'?></title>
+</head>
+
 <section class='productView'>
     <div class='images'>
         <? foreach($images as $image): ?>

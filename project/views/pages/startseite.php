@@ -1,7 +1,9 @@
+<link rel="stylesheet" href="assets/css/startseite.css">
+
 <html>
 <head>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
-<link rel="stylesheet" href="assets/css/startseite.css">
+<title><?=isset($title)? 'SnackIt: '. $title : 'SnackIt'?></title>
 </head>
 <div class=StartBackground>
 	<h1>Willkommen bei SnackIt</h1>

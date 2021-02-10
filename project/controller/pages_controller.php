@@ -16,37 +16,85 @@ class PagesController extends Controller
 
 	public function actionLogin()
 	{
+		$this->params['title'] = 'Login';
+
 		// store error message
-		$errMsg = null;
+		$errMsg =null;
 
 		// retrieve inputs 
-		$username = isset($_POST['username']) ? $_POST['username'] : '';
+		$email = isset($_POST['email']) ? $_POST['email'] : 'fehler';
 		$password = isset($_POST['password']) ? $_POST['password'] : '';
-
+		
 		// check user send login field
-		if(isset($_POST['submit']))
+		if(isset($_POST['submitBtn']))
 		{
-
-			// TODO: Validate input first
-			// TODO: Check login values with database accounts
-			// TODO: Store useful variables into the session like account and also set loggedIn = true
+			
+			if(validateAccount($email, $password))
+			{
+				
+				$_SESSION['loggedIn'] = true;
+                $_SESSION['AccountID'] = getAccountIdByEmail($email);
+				header('Location: index.php');
+			}
+			else{
+				$errMsg = "Passwort und Email stimmt nicht überein";
+				$_SESSION['loggedIn'] = false;
+			}
+			
+		}
 			
 
-			// if there is no error reset mail
-			if($errMsg === null)
-			{
-				$username = '';
-			}
-
+		// if there is no error reset mail
+		if($errMsg === null)
+		{
+			$email = '';
 		}
 
 		// set param username to prefill login input field
-		$this->params['username'] = $username;
+		$this->params['email'] = $email;
 		$this->params['errMsg'] = $errMsg;
 	}
 
 	public function actionRegister()
 	{
+		$this->params['title'] = 'Registrierung';
+		$this->params['ErrorMsg'] = null;
+		if(!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] === false)
+		{
+			if(isset($_POST['submit']))
+			{
+				$input['email']    = htmlspecialchars($_POST['email']) ?? null;
+				$input['password'] = htmlspecialchars($_POST['password']) ?? null;
+				$input['password2'] = htmlspecialchars($_POST['password2']) ?? null;
+				$input['firstname'] = htmlspecialchars($_POST['firstname']) ?? null;
+				$input['lastname'] = htmlspecialchars($_POST['lastname']) ?? null;
+				$input['country'] = htmlspecialchars($_POST['country']) ?? null;
+				$input['zipcode'] = htmlspecialchars($_POST['zipcode']) ?? null;
+				$input['city'] = htmlspecialchars($_POST['city']) ?? null;
+				$input['street'] = htmlspecialchars($_POST['street']) ?? null;
+				$input['number'] = htmlspecialchars($_POST['number']) ?? null;
+
+				//passwords should be the same
+				if($input['password'] == $input['password2'])
+				{
+					if(!containsNullValue($input))
+					{
+					
+						$this->params['ErrorMsg'] = insertnewAccount($input['email'], $input['password'], $input['password2'], $input['firstname'], $input['lastname'], $input['country'],
+											$input['zipcode'], $input['city'], $input['street'], $input['number']);
+					
+					
+					
+					}
+				}
+				else
+				{
+					$this->params['ErrorMsg'] = 'Passwörter stimmen nicht überein';
+				}
+			}
+		
+		}
+		
 	}
 	
 
@@ -58,23 +106,32 @@ class PagesController extends Controller
 	
 	public function actionAgb()
 	{
+		$this->params['title'] = 'AGB';
 	}
 	
 	public function actionStartseite()
 	{
-	}
-	
-	public function actionList()
-	{
-		
+		$this->params['title'] = 'Alles was du brauchst!';
 	}
 	
 	public function actionSnacks()
 	{
+	$this->params['title'] = 'Snacks';	
+	}
+
+	public function actionGetränke()
+	{
+		$this->params['title'] = 'Getränke';
+
         $typeSnacks=0;
         $products = Product::getProductsByType($typeSnacks);
 		$this->params['products'] = $products;
 		
     }
 	
+
+	public function actionAngebote()
+	{
+	$this->params['title'] = 'Angebote';	
+	}
 }
