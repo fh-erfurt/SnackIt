@@ -1,7 +1,7 @@
 <?php
 
 
-require_once __DIR__.'/../models/product.class.php';
+require_once 'models/product.class.php';
 
 
 class PagesController extends Controller
@@ -117,19 +117,17 @@ class PagesController extends Controller
 	public function actionSnacks()
 	{
 	$this->params['title'] = 'Snacks';	
+
+	$typeSnacks=0;
+	$products = Product::getProductsByType($typeSnacks);
+	$this->params['products'] = $products;
 	}
 
 	public function actionGetränke()
 	{
 		$this->params['title'] = 'Getränke';
-
-        $typeSnacks=0;
-        $products = Product::getProductsByType($typeSnacks);
-		$this->params['products'] = $products;
-		
     }
 	
-
 	public function actionAngebote()
 	{
 	$this->params['title'] = 'Angebote';	
