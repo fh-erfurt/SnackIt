@@ -7,13 +7,11 @@
 	//Validates the login
     function validateAccount($email, $password) 
     {
-		echo "TEST";
         $db = $GLOBALS['db'];
         try
         {
             if(!empty($email) && !empty($password))
             {
-                echo "TEST";
                 // TODO: check if email is safe to use in SQL Statement
                 $sql = 'SELECT Email, Password FROM ' . 'account' . ' WHERE Email=' . $db->quote($email) . ';';
     
@@ -69,8 +67,21 @@
        try
        {
 		   $addressId = queryAddressId($country, $zipcode, $city, $street, $number);
-           if($addressId !== false)
+		   $password = password_hash($password, PASSWORD_DEFAULT);
+		   $Emailexists = null;
+		   
+		   $sql = 'SELECT Email FROM '. 'account' . 
+            ' WHERE Email = ' . $db->quote($email) .';';
+		   
+		   $Emailexists = $db->query($sql)->fetch(\PDO::FETCH_ASSOC);
+		   
+		   if($Emailexists != null)
+		   {
+			   return 'Account mit der Email schon vorhanden';
+           }		   
+		   elseif($addressId !== false && $Emailexists == null)
             {
+				
                 //address found
                 $sql = 'INSERT INTO ' . 'account' . '(FirstName, LastName, Email, Password, AddressId) VALUES  (:firstname, :lastname, :email, :password, :addressId)';
                 $statement = $db->prepare($sql);
@@ -83,10 +94,9 @@
                 $statement->execute(); 
         
             }
-            else
+            else 
             {
                 // no address in DB -> insert new adress
-
                 $sql = 'INSERT INTO ' . 'address' . '(Country, Zipcode, City, Street, Number) VALUES  (:country, :zipcode, :city, :street, :number)'; 
                 $statement = $db->prepare($sql);
                 $statement->bindParam(':country', $country);               
@@ -99,8 +109,9 @@
 
                 // set the new addressId
                 $addressId = queryAddressId($country, $zipcode, $city, $street, $number);
-                if($addressId !== false)
-                {
+                
+                
+					
                     $sql = 'INSERT INTO ' . 'account' . '(FirstName, LastName, Email, Password, AddressId) VALUES  (:firstname, :lastname, :email, :password, :addressId)';
                     $statement = $db->prepare($sql);
                     $statement->bindParam(':firstname', $firstname);               
@@ -110,18 +121,21 @@
                     $statement->bindParam(':addressId', $addressId);
     
                     $statement->execute();
-                }
+                
             }
-            return true;
-            
-       }
-       catch(\PDOException $e)
-       {
+			$_SESSION['loggedIn'] = true;
+            $_SESSION['AccountID'] = getAccountIdByEmail($email);
+			header('Location: index.php');
+		   }
+		   catch(\PDOException $e)
+			{
             die('Select statement failed in insertnewAccount: ' . $e->getMessage());
-       }
+			}          
+    }
+       
 		
 		
-	}
+	
 	
     //gives the addressid of the address
 	function queryAddressId($country, $zipcode, $city, $street, $number)

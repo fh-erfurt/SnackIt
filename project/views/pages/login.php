@@ -25,5 +25,6 @@
 		<label class='noAcc' for='Register'>Noch kein Konto?</label> <a class='registerNow' href='index.php?c=pages&a=register'> Jetzt registrieren</a> <br />
 	</form>
 	<br>
+	<?echo $errMsg;?>
 </div>	
 </section>

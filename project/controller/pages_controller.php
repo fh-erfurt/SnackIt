@@ -15,7 +15,7 @@ class PagesController extends Controller
 		$this->params['title'] = 'Login';
 
 		// store error message
-		$errMsg = null;
+		$errMsg =null;
 
 		// retrieve inputs 
 		$email = isset($_POST['email']) ? $_POST['email'] : 'fehler';
@@ -54,7 +54,7 @@ class PagesController extends Controller
 	public function actionRegister()
 	{
 		$this->params['title'] = 'Registrierung';
-		
+		$this->params['ErrorMsg'] = null;
 		if(!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] === false)
 		{
 			if(isset($_POST['submit']))
@@ -65,7 +65,6 @@ class PagesController extends Controller
 				$input['firstname'] = htmlspecialchars($_POST['firstname']) ?? null;
 				$input['lastname'] = htmlspecialchars($_POST['lastname']) ?? null;
 				$input['country'] = htmlspecialchars($_POST['country']) ?? null;
-				$input['state'] = htmlspecialchars($_POST['state']) ?? null;
 				$input['zipcode'] = htmlspecialchars($_POST['zipcode']) ?? null;
 				$input['city'] = htmlspecialchars($_POST['city']) ?? null;
 				$input['street'] = htmlspecialchars($_POST['street']) ?? null;
@@ -77,10 +76,16 @@ class PagesController extends Controller
 					if(!containsNullValue($input))
 					{
 					
-						insertnewAccount($input['email'], $input['password'], $input['password2'], $input['firstname'], $input['lastname'], $input['country'],
+						$this->params['ErrorMsg'] = insertnewAccount($input['email'], $input['password'], $input['password2'], $input['firstname'], $input['lastname'], $input['country'],
 											$input['zipcode'], $input['city'], $input['street'], $input['number']);
 					
+					
+					
 					}
+				}
+				else
+				{
+					$this->params['ErrorMsg'] = 'Passwörter stimmen nicht überein';
 				}
 			}
 		
