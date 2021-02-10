@@ -53,13 +53,7 @@
 				?>
 			</main>
 		</div>
-		<footer>
-			<a href='index.php?a=documentation'>Dokumentation</a>
-			<a href='index.php?a=agb'>AGB</a>
-			<a href='index.php?a=impressum'>Impressum</a>
-			<a href='index.php?a=privacyPolicy'>Datenschutzerklärung</a><br>
-			&copy; SnackIt (2020-2021)
-		</footer>
+
 
 		<?php if(isset($js) && is_array($js)) : ?>
 			<?php foreach($js as $file) : ?>
@@ -67,4 +61,13 @@
 			<?php endforeach; ?>
 		<?php endif; ?>
 	</body>
+	<footer>
+			<br>
+			<a href='index.php?a=documentation'>Dokumentation</a>
+			<a href='index.php?a=agb'>AGB</a>
+			<a href='index.php?a=impressum'>Impressum</a>
+			<a href='index.php?a=privacyPolicy'>Datenschutzerklärung</a><br>
+			<br>
+			&copy; SnackIt (2020-2021)
+		</footer>
 </html>
