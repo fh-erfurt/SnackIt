@@ -61,42 +61,55 @@
         }
     }
 	
-	
+	//inserts the new account into the db //NEEDS TESTING
 	function insertnewAccount($email, $password, $password2, $firstname, $lastname, $country,
 											$zipcode, $city, $street, $number)
 	{
 		$db = $GLOBALS['db'];
        try
        {
-		   $addressId = $this->queryAddressId($country, $zipcode, $city, $street, $number);
+		   $addressId = queryAddressId($country, $zipcode, $city, $street, $number);
            if($addressId !== false)
             {
                 //address found
-                if(empty($this->data['addressId']))
-                {
-                    $sql = 'INSERT INTO ' . Account . '(FirstName, LastName, Email, Password, AddressId) VALUES' ($firstname, :state, :zipcode, :city, :street, :number); 
-                }
+                $sql = 'INSERT INTO ' . 'account' . '(FirstName, LastName, Email, Password, AddressId) VALUES  (:firstname, :lastname, :email, :password, :addressId)';
+                $statement = $db->prepare($sql);
+                $statement->bindParam(':firstname', $firstname);               
+                $statement->bindParam(':lastname', $lastname);
+                $statement->bindParam(':email', $email);
+                $statement->bindParam(':password', $password);
+                $statement->bindParam(':addressId', $addressId);
+
+                $statement->execute(); 
+        
             }
             else
             {
                 // no address in DB -> insert new adress
 
-                $sql = 'INSERT INTO ' . self::tablename() . '(country, state, zipcode, city, street, number) VALUES (:country, :state, :zipcode, :city, :street, :number)'; 
+                $sql = 'INSERT INTO ' . 'address' . '(Country, Zipcode, City, Street, Number) VALUES  (:country, :zipcode, :city, :street, :number)'; 
                 $statement = $db->prepare($sql);
-                $statement->bindParam(':country', $this->country);
-                $statement->bindParam(':state', $this->state);
-                $statement->bindParam(':zipcode', $this->zipcode);
-                $statement->bindParam(':city', $this->city);
-                $statement->bindParam(':street', $this->street);
-                $statement->bindParam(':number', $this->number);
+                $statement->bindParam(':country', $country);               
+                $statement->bindParam(':zipcode', $zipcode);
+                $statement->bindParam(':city', $city);
+                $statement->bindParam(':street', $street);
+                $statement->bindParam(':number', $number);
 
                 $statement->execute();
 
                 // set the new addressId
-                $addressId = $this->queryAddressId();
+                $addressId = queryAddressId($country, $zipcode, $city, $street, $number);
                 if($addressId !== false)
                 {
-                    $this->data['addressId'] = $addressId;
+                    $sql = 'INSERT INTO ' . 'account' . '(FirstName, LastName, Email, Password, AddressId) VALUES  (:firstname, :lastname, :email, :password, :addressId)';
+                    $statement = $db->prepare($sql);
+                    $statement->bindParam(':firstname', $firstname);               
+                    $statement->bindParam(':lastname', $lastname);
+                    $statement->bindParam(':email', $email);
+                    $statement->bindParam(':password', $password);
+                    $statement->bindParam(':addressId', $addressId);
+    
+                    $statement->execute();
                 }
             }
             return true;
@@ -104,18 +117,19 @@
        }
        catch(\PDOException $e)
        {
-            die('Select statement failed: ' . $e->getMessage());
+            die('Select statement failed in insertnewAccount: ' . $e->getMessage());
        }
 		
 		
 	}
 	
-	 private function queryAddressId($country, $zipcode, $city, $street, $number)
+    //gives the addressid of the address
+	function queryAddressId($country, $zipcode, $city, $street, $number)
     {
         $db = $GLOBALS['db'];
         try
         {
-            $sql = 'SELECT addressId FROM '. self::tablename() . 
+            $sql = 'SELECT AddressId FROM '. 'address' . 
             ' WHERE Country = ' . $db->quote($country) . 
             ' AND Zipcode = '   . $db->quote($zipcode) . 
             ' AND City = '      . $db->quote($city) . 
@@ -124,19 +138,30 @@
             
             $result = $db->query($sql)->fetch(\PDO::FETCH_ASSOC);
 
-            if(!empty($result['addressId']))
+            if(!empty($result['AddressId']))
             {
-                return $result['addressId'];
+                return $result['AddressId'];
             }
             return false;
         }
         catch(\PDOException $e)
         {
-            die('Select statement failed: ' . $e->getMessage());
+            die('Select statement failed in queryAddressId: ' . $e->getMessage());
         }
         
     }
 	
-	
+    //looks up if there is a Null value in the array
+	function containsNullValue($array)
+{
+    foreach($array as $key => $value)
+    {
+        if($value == null)
+        {
+            return true;
+        }
+    }
+    return false;
+}
 
 ?>
