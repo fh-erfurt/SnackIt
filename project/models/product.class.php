@@ -3,7 +3,7 @@
 namespace si\models;
 
 require_once __DIR__.'/baseModel.class.php';
-require_once __DIR__.'/property.class.php';
+//require_once __DIR__.'/property.class.php';
 
 class Product extends \si\models\baseModel
 {
@@ -19,7 +19,7 @@ class Product extends \si\models\baseModel
 
     public function __construct($name, $price, $prodType, $onStock = 0)
     {
-        $this->data['Name'] = $name;
+        $this->data['ProdName'] = $name;
         $this->data['Price'] = $price;
         $this->data['ProdType'] = $prodType;
         $this->data['OnStock'] = $onStock;
@@ -74,16 +74,16 @@ class Product extends \si\models\baseModel
 
         try
         {
-            $sql = 'SELECT ProductID, ProdName, Price, ProdType, OnStock FROM ' . self::tablename() . ' WHERE ProdType = ' . self::PRODUCT_TYPES[$type] . ';';
+            $sql = 'SELECT ProductID, ProdName, Price, ProdType, OnStock FROM product WHERE ProdType = ' . $type . ';';
             $result = $db->query($sql)->fetchAll();
-
+          
             if(!empty($result))
             {
                 foreach($result as $row)
                 {
                     $product = new Product($row['ProdName'], $row['Price'], $row['ProdType'], $row['OnStock']);
                     $product->productId = $row['ProductID'];
-                    $product->loadProperties();
+                    //$product->loadProperties();
                     $products[] = $product;
                 }
             }
