@@ -1,5 +1,9 @@
 <?php
 
+
+require_once __DIR__.'/../models/product.class.php';
+
+
 class PagesController extends Controller
 {
 
@@ -117,8 +121,14 @@ class PagesController extends Controller
 
 	public function actionGetränke()
 	{
-	$this->params['title'] = 'Getränke';	
-	}
+		$this->params['title'] = 'Getränke';
+
+        $typeSnacks=0;
+        $products = Product::getProductsByType($typeSnacks);
+		$this->params['products'] = $products;
+		
+    }
+	
 
 	public function actionAngebote()
 	{
