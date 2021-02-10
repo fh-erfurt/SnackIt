@@ -1,6 +1,8 @@
 <?php
 
 
+require_once __DIR__.'/../models/product.class.php';
+
 
 class PagesController extends Controller
 {
@@ -69,8 +71,10 @@ class PagesController extends Controller
 	
 	public function actionSnacks()
 	{
-	$this->params['title'] = 'SnackIt - Alles was du brauchst!';
-
+        $typeSnacks=0;
+        $products = Product::getProductsByType($typeSnacks);
+		$this->params['products'] = $products;
 		
-	}
+    }
+	
 }
