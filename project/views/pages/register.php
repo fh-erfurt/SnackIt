@@ -49,6 +49,7 @@
 		<input type='text' name='number' id='number' value=<?=isset($_POST['number']) ? htmlspecialchars($_POST['number']) : '';?> ><br />
 		<br />
 		<input type='submit' name='submit' value='Registrieren' class='registerButton'><br/>
+		<label class='accExists' for='Register'>Schon Registriert?</label> <a class='loginNow' href='index.php?c=pages&a=login'> Jetzt einloggen</a> <br />
 	</form>
 	<br>
 </div>
