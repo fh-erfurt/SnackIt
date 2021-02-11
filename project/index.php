@@ -1,4 +1,3 @@
-
 <?php
 
 // load needed variables/defines/configs
@@ -79,7 +78,6 @@ else
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="icon" type="image/png" href="assets/pictures/favicon-32x32.png" sizes="32x32" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -94,5 +92,4 @@ else
         //$controller->render();
     ?>
 </body>
-
 </html>

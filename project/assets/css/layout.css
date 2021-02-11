@@ -1,27 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Caveat&family=Roboto&display=swap');
 
 :root {
-    --main-bg-color: rgb(65, 65, 65);
+    --main-bg-color: rgb(64, 64, 64);
 }
 
 *{
     margin: 0;
 }
 
-html{
-    height: 100%;
-}
-
 body{
-    height: 100%;
     background-color: var(--main-bg-color);
     font-family: 'Roboto', sans-serif;
-    display: flex;
-    flex-direction: column;
-}
 
-.content-wrap{
-    flex: 1 0 auto;
 }
 
 nav ul {
@@ -63,11 +53,11 @@ nav ul li a{
 
 
 .navbarTop ul li a:hover{
-    text-decoration: underline;
+    color: gray;
 }
 
 .navbarMain {
-    background-color: #850000;
+    background-color: #7F0000;
     margin-top: 80;
 }
 
@@ -80,26 +70,25 @@ nav ul li a{
 }
 
 .navbarMain ul li a:hover{
-    text-decoration: underline;
+    color: white;
 }
 
+
 footer{
-    flex-shrink: 0;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    color: white;
-    background-color: rgb(59, 59, 59);
-    text-align: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #7F0000;
+  color: white;
+  text-align: center;
 	
 }
 
 footer a{
     color: black;
-    padding:10px;
 }
 
 footer a:hover{
-    color: white;
+    color: red;
 }
-

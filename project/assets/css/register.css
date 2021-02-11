@@ -63,6 +63,10 @@ form{
     text-align: center;
 }
 
+.accExists{
+    font-size: 15px;
+}
+
 .loginNow{
     color: #8d0000;
     font-size: larger;

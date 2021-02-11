@@ -19,7 +19,7 @@
 					<nav class=navbarTop>
 						<ul>
 							<?php if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true) : ?>
-							<li class=rightNav><a href='index.php?c=pages&a=profile'>Profil</a></li>
+							<li class=rightNav><a href='index.php?c=pages&a=profil'>Profil</a></li>
 							<li class=rightNav><a href='index.php?c=pages&a=logout'>Abmelden</a></li>
 							<?php else : ?>
 							<li class=rightNav><a href='index.php?c=pages&a=login'>Login</a></li>
@@ -53,7 +53,13 @@
 				?>
 			</main>
 		</div>
-
+		<footer>
+			<a href='index.php?a=documentation'>Dokumentation</a>
+			<a href='index.php?a=agb'>AGB</a>
+			<a href='index.php?a=impressum'>Impressum</a>
+			<a href='index.php?a=privacyPolicy'>Datenschutzerklärung</a><br>
+			&copy; SnackIt (2020-2021)
+		</footer>
 
 		<?php if(isset($js) && is_array($js)) : ?>
 			<?php foreach($js as $file) : ?>
@@ -61,13 +67,4 @@
 			<?php endforeach; ?>
 		<?php endif; ?>
 	</body>
-	<footer>
-			<br>
-			<a href='index.php?a=documentation'>Dokumentation</a>
-			<a href='index.php?a=agb'>AGB</a>
-			<a href='index.php?a=impressum'>Impressum</a>
-			<a href='index.php?a=privacyPolicy'>Datenschutzerklärung</a><br>
-			<br>
-			&copy; SnackIt (2020-2021)
-		</footer>
 </html>
