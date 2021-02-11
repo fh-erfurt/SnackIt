@@ -1,7 +1,7 @@
 <?php
 
 
-require_once __DIR__.'/../models/product.class.php';
+require_once 'models/product.class.php';
 
 
 class PagesController extends Controller
@@ -114,7 +114,7 @@ class PagesController extends Controller
 	$this->params['Account'] = $Account;
 	
 	
-	//NOCH UNBEARBEITET
+	
 		if(isset($_POST['changePassword']))
 			{
 				$this->params['changePassword'] = true;
@@ -174,7 +174,6 @@ class PagesController extends Controller
 
 	}
 	
-	
 	public function actionAgb()
 	{
 		$this->params['title'] = 'AGB';
@@ -188,21 +187,26 @@ class PagesController extends Controller
 	public function actionSnacks()
 	{
 	$this->params['title'] = 'Snacks';	
+
+	$typeSnacks=0;
+	$products = Product::getProductsByType($typeSnacks);
+	$this->params['products'] = $products;
 	}
 
 	public function actionGetränke()
 	{
-		$this->params['title'] = 'Getränke';
+	$this->params['title'] = 'Getränke';
 
-        $typeSnacks=0;
-        $products = Product::getProductsByType($typeSnacks);
-		$this->params['products'] = $products;
-		
+	$typeDrinks=1;
+	$products = Product::getProductsByType($typeDrinks);
+	$this->params['products'] = $products;
     }
 	
-
 	public function actionAngebote()
 	{
-	$this->params['title'] = 'Angebote';	
-	}
+	$this->params['title'] = 'Angebote';
+
+	$typeSale=2;
+	$products = Product::getProductsByType($typeSale);
+	$this->params['products'] = $products;}
 }

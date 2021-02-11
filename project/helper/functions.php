@@ -83,7 +83,6 @@
         }
     }
 	
-	
 	//inserts the new account into the db //NEEDS TESTING
 	function insertnewAccount($email, $password, $password2, $firstname, $lastname, $country,
 											$zipcode, $city, $street, $number)
@@ -201,7 +200,6 @@
         }
     }
     return false;
-	
 }
 
 ?>

@@ -1,7 +1,5 @@
 <?php
 
-namespace si\models;
-
 require_once __DIR__.'/baseModel.class.php';
 //require_once __DIR__.'/property.class.php';
 
