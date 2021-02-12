@@ -229,5 +229,16 @@ class PagesController extends Controller
 
 	$typeSale=2;
 	$products = Product::getProductsByType($typeSale);
-	$this->params['products'] = $products;}
+	$this->params['products'] = $products;
+	}
+
+	public function actionItem()
+	{
+	$this->params['title']= 'Item';
+
+	$productId = $_GET['id'] ?? null;
+	$productId=htmlspecialchars($productId);
+	$product = Product::getProductById($productId);
+	$this->params['product'] = $product;
+	}
 }

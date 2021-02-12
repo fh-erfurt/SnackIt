@@ -1,4 +1,4 @@
-<link rel='stylesheet' type='text/css' href='assets/css/snacks.css'>
+<link rel='stylesheet' type='text/css' href='assets/css/angebote.css'>
 
 <h1>Sale</h1>
 <head>
@@ -10,7 +10,7 @@
 
     <?foreach($products as $id => $product): ?>
         <article class='product'>
-                <a href='index.php?c=pages&a=snacks&id=<?=$product->ProductID?>'>
+                <a href='index.php?c=pages&a=item&id=<?=$product->ProductID?>'>
                         <!--<div>
                         <span><img  class='img' src='assets/pictures/products/<$product->ProdName;?>.png'></span><br>
                         </div>--->

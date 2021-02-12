@@ -1,4 +1,5 @@
 
+
 <html class=layout lang='de'>
 	<head>
 		
@@ -14,37 +15,45 @@
 	</head>
 	<body>
 		<div class='content-wrap'>
-			<section class=top>
+			<section>
 				<header>
-					<nav class=navbarTop>
-						<ul>
+						<nav>
+						<div class="stripe" ><a href='index.php?c=pages&a=startseite'><img class="logo" src='assets/pictures/logo.png'></a></div>
+							<input id="nav-toggle" type="checkbox">	
+							<ul class="left">
+								<li><a href='index.php?c=pages&a=Snacks&t=Snacks'>Snacks</a></li>
+								<li><a href='index.php?c=pages&a=Getränke&t=Getränke' >Getränke</a></li>
+								<li><a href='index.php?c=pages&a=Angebote&t=Angebote'>Angebote</a></li>
+									<!-- <ul class=submenu>
+										<li><a href='index.php?c=products&a=list&t=soßen'>Soßen</a></li>
+										<li><a href='index.php?c=products&a=list&t=deko'>Deko</a></li>
+										<li><a href='index.php?c=products&a=list&t=more'>Weiteres Zubehör</a></li>
+									</ul> -->
+								
+								<label for="nav-toggle" class="icon-burger">
+								<div class="line"></div>
+								<div class="line"></div>
+								<div class="line"></div>
+								
+							</label>
+							</ul>
+																
+							<ul class="right">
 							<?php if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true) : ?>
-							<li class=rightNav><a href='index.php?c=pages&a=profil'>Profil</a></li>
-							<li class=rightNav><a href='index.php?c=pages&a=logout'>Abmelden</a></li>
-							<?php else : ?>
-							<li class=rightNav><a href='index.php?c=pages&a=login'>Login</a></li>
-							<li class=rightNav><a href='index.php?c=pages&a=register'>Registrieren</a></li>
-							<?php endif; ?>
-							<li class=rightNav><a href='index.php?a=shoppingCart'>Warenkorb<?=(isset($_SESSION['shoppingCartCount']) && $_SESSION['shoppingCartCount'] > 0)? ' ('.$_SESSION['shoppingCartCount'].')' : ''?></a></li>
-						</ul>
+								<li class=rightNav><a href='index.php?c=pages&a=profil'>Profil</a></li>
+								<li class=rightNav><a href='index.php?c=pages&a=logout'>Abmelden</a></li>
+								<?php else : ?>
+								<li class=rightNav><a href='index.php?c=pages&a=login'>Login</a></li>
+								<li class=rightNav><a href='index.php?c=pages&a=register'>Registrieren</a></li>
+								<?php endif; ?>
+								<li class=rightNav><a href='index.php?a=shoppingCart'>Warenkorb<?=(isset($_SESSION['shoppingCartCount']) && $_SESSION['shoppingCartCount'] > 0)? ' ('.$_SESSION['shoppingCartCount'].')' : ''?></a></li>
+																
+							</ul>
+
+
 					</nav>
-				</header>
-				<nav class=navbarMain>
-					<div class=menu-container>
-						<ul class=menu>
-							<li><a href='index.php?c=pages&a=startseite' style="margin-left: 16px; margin-right: 0px; margin-top: -48px;" ><img src="assets\pictures\logomenu.png" class="logomenu" ></a><li>
-							<li><a href='index.php?c=pages&a=Snacks&t=Snacks'>Snacks</a></li>
-							<li><a href='index.php?c=pages&a=Getränke&t=Getränke' >Getränke</a></li>
-							<li><a href='index.php?c=pages&a=Angebote&t=Angebote'>Angebote</a></li>
-								<!-- <ul class=submenu>
-									<li><a href='index.php?c=products&a=list&t=soßen'>Soßen</a></li>
-									<li><a href='index.php?c=products&a=list&t=deko'>Deko</a></li>
-									<li><a href='index.php?c=products&a=list&t=more'>Weiteres Zubehör</a></li>
-								</ul> -->
-						</ul>
-					</div>
-				</nav>
-			</section>
+					</header>
+				</section>
 			<main>
 				
 				<?php 
