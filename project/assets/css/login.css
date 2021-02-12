@@ -71,3 +71,9 @@ form{
 .registerNow:hover{
     color: #bd0000;
 }
+
+@media screen and (max-width: 600px){
+    .login{
+        width: 100px;
+    }
+}
