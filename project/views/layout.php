@@ -20,8 +20,6 @@
 						<div class="stripe" ><a href='index.php?c=pages&a=startseite'><img class="logo" src='assets/pictures/logo.png'></a></div>
 							<input id="nav-toggle" type="checkbox">	
 							<ul class="left">
-
-
 								<li><a href='index.php?c=pages&a=Snacks&t=Snacks'>Snacks</a></li>
 								<li><a href='index.php?c=pages&a=Getränke&t=Getränke' >Getränke</a></li>
 								<li><a href='index.php?c=pages&a=Angebote&t=Angebote'>Angebote</a></li>
@@ -41,7 +39,7 @@
 																
 							<ul class="right">
 							<?php if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true) : ?>
-								<li class=rightNav><a href='index.php?c=pages&a=profile'>Profil</a></li>
+								<li class=rightNav><a href='index.php?c=pages&a=profil'>Profil</a></li>
 								<li class=rightNav><a href='index.php?c=pages&a=logout'>Abmelden</a></li>
 								<?php else : ?>
 								<li class=rightNav><a href='index.php?c=pages&a=login'>Login</a></li>
