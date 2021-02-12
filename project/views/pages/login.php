@@ -23,6 +23,9 @@
 		<input type='submit' name='submitBtn' value='Anmelden' class='loginButton'><br />
 		<p class="error"><?echo $errMsg;?></p><br>
 		<label class='noAcc' for='Register'>Noch kein Konto?</label> <a class='registerNow' href='index.php?c=pages&a=register'> Jetzt registrieren</a> <br />
+		<input type="checkbox" name="rememberMe" id="check" value="set"
+        <?=isset($_POST['rememberMe']) ? 'checked' : ''?>>
+        <label for="check">angemeldet bleiben?</label>
 		<br>
 	</form>
 </div>	

@@ -25,9 +25,18 @@ class PagesController extends Controller
 		$email = isset($_POST['email']) ? $_POST['email'] : 'fehler';
 		$password = isset($_POST['password']) ? $_POST['password'] : '';
 		
+		
+	
 		// check user send login field
 		if(isset($_POST['submitBtn']))
 		{
+			
+			if($_POST['rememberMe']){
+				$duration = time() + 3600 * 24 * 30;
+				setcookie('Email', $email, $duration,'/');
+				setcookie('Password', $password, $duration,'/');	
+			}
+			
 			
 			if(validateAccount($email, $password))
 			{
@@ -35,6 +44,7 @@ class PagesController extends Controller
 				$_SESSION['loggedIn'] = true;
                 $_SESSION['AccountID'] = getAccountIdByEmail($email);
 				header('Location: index.php');
+				
 			}
 			else{
 				$errMsg = "Passwort und Email stimmen nicht überein.";
@@ -100,6 +110,8 @@ class PagesController extends Controller
 
 	public function actionLogout()
 	{
+		setcookie('Email', '', -1, '/');
+		setcookie('Password', '', -1, '/');
 		session_destroy();
 		header('Location: index.php?c=pages&a=login');
 	}
@@ -182,6 +194,15 @@ class PagesController extends Controller
 	public function actionStartseite()
 	{
 		$this->params['title'] = 'Alles was du brauchst!';
+		
+		if(isset($_COOKIE['Email']) && isset($_COOKIE['Password'])){
+			if(validateAccount($_COOKIE['Email'],$_COOKIE['Password']))
+			{
+				$_SESSION['loggedIn'] = true;
+				$_SESSION['AccountID'] = getAccountIdByEmail($_COOKIE['Email']);
+				
+			}
+		}
 	}
 	
 	public function actionSnacks()
