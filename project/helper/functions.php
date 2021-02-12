@@ -59,6 +59,30 @@
         }
     }
 	
+	function getAccountDataById($AccountID)
+    {
+        $db = $GLOBALS['db'];
+        try
+        {
+            if(!empty($AccountID))
+            {
+                // TODO: check if email is safe to use in SQL Statement
+                $sql = 'SELECT * FROM account JOIN address on account.AddressId = address.AddressId WHERE AccountID = ' . $db->quote($AccountID) .';';
+    
+                $result = $db->query($sql)->fetch(\PDO::FETCH_ASSOC);
+
+                return $result;
+                  
+            }
+            return null;
+            
+        }
+        catch(\PDOException $e)
+        {
+            die('Select statement failed: ' . $e->getMessage());
+        }
+    }
+	
 	//inserts the new account into the db //NEEDS TESTING
 	function insertnewAccount($email, $password, $password2, $firstname, $lastname, $country,
 											$zipcode, $city, $street, $number)

@@ -104,6 +104,76 @@ class PagesController extends Controller
 		header('Location: index.php?c=pages&a=login');
 	}
 	
+	public function actionProfil()
+	{
+	$this->params['title'] = 'Dein Profil';	
+	
+	$db = $GLOBALS['db'];
+	$Account = [];
+	$Account = getAccountDataById($_SESSION['AccountID']);
+	$this->params['Account'] = $Account;
+	
+	
+	
+		if(isset($_POST['changePassword']))
+			{
+				$this->params['changePassword'] = true;
+				// there is no need for executing the rest of the function 
+				// because the view does not have to know about the user data
+				return; 
+			}
+			
+			if(isset($_POST['changeData']))
+			{
+				$this->params['changeData'] = true;
+			}
+			else if(isset($_POST['confirmPassword']))
+			{
+				$oldPassword = htmlspecialchars($_POST['oldPassword']) ?? null;
+				$newPassword = htmlspecialchars($_POST['newPassword']) ?? null;
+				$newPassword2 = htmlspecialchars($_POST['newPassword2']) ?? null;
+				//check old password
+				if(validateAccount($Account['Email'], $oldPassword))
+				{
+					//passwords should be the same
+					if($newPassword == $newPassword2)
+					{
+						//newPassword should not be null
+						if($newPassword != null)
+						{
+							//change password
+							
+							$sql = 'UPDATE account set Password=(:password) WHERE AccountId ='.$_SESSION['AccountID'];
+							$newPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+							$statement = $db->prepare($sql);
+							$statement->bindParam(':password', $newPassword);
+
+							$statement->execute();
+							
+							
+							$this->params['messageType'] = 'success';
+								$this->params['message'] = 'Dein Passwort wurde erfolgreich geändert!';
+							
+						}
+						
+					}
+					else
+					{
+						$this->params['changePassword'] = true;
+						$this->params['messageType'] = 'error';
+						$this->params['message'] = 'Die eingegebenen Passwörter stimmen nicht überein!';
+					}
+				}
+				else
+				{
+					$this->params['changePassword'] = true;
+					$this->params['messageType'] = 'error';
+					$this->params['message'] = 'Dein aktuelles Passwort ist nicht korrekt!';
+				}
+		}
+
+	}
+	
 	public function actionAgb()
 	{
 		$this->params['title'] = 'AGB';
@@ -125,11 +195,18 @@ class PagesController extends Controller
 
 	public function actionGetränke()
 	{
-		$this->params['title'] = 'Getränke';
+	$this->params['title'] = 'Getränke';
+
+	$typeDrinks=1;
+	$products = Product::getProductsByType($typeDrinks);
+	$this->params['products'] = $products;
     }
 	
 	public function actionAngebote()
 	{
-	$this->params['title'] = 'Angebote';	
-	}
+	$this->params['title'] = 'Angebote';
+
+	$typeSale=2;
+	$products = Product::getProductsByType($typeSale);
+	$this->params['products'] = $products;}
 }
