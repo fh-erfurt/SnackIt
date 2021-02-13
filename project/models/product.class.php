@@ -52,9 +52,9 @@ class Product extends \si\models\baseModel
 
             if(!empty($result))
             {
-                $product = new Product($result['ProdNameName'], $result['Price'], $result['ProdType'], $result['OnStock']);
+                $product = new Product($result['ProdName'], $result['Price'], $result['ProdType'], $result['OnStock']);
                 $product->productId = $result['ProductID'];
-                $product->loadProperties();
+                //$product->loadProperties();
             }
             return $product;
         }
@@ -159,7 +159,7 @@ class Product extends \si\models\baseModel
     /**
      * retrieves all Properties of this product from database for use with functions like 'getProperty' and 'getAllProperties'
      */
-    public function loadProperties()
+    /*public function loadProperties()
     {
         $db = $GLOBALS['db'];
         try
@@ -210,5 +210,6 @@ class Product extends \si\models\baseModel
         {
             die('Error deleting product: ' . $e->getMessage());
         }
-    } 
+    }
+    */ 
 }

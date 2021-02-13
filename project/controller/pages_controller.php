@@ -270,9 +270,9 @@ class PagesController extends Controller
 	{
 	$this->params['title']= 'Item';
 
-	$productId = $_GET['id'] ?? null;
-	$productId=htmlspecialchars($productId);
-	$product = Product::getProductById($productId);
+	$ProductID = $_GET['id'] ?? null;
+	$ProductID=htmlspecialchars($ProductID);
+	$product = Product::getProductById($ProductID);
 	$this->params['product'] = $product;
 	}
 }
