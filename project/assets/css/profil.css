@@ -1,5 +1,5 @@
 *{
-    
+
 }
 
 main{
@@ -7,7 +7,8 @@ main{
     align-items: center;
     justify-content: center;
 }
-.login{
+
+.profile {
     text-align: center;
     margin-top: 50px;
     margin-bottom: 150px;
@@ -22,7 +23,11 @@ form{
     margin: auto;
 }
 
-.login input{
+form h2{
+    color: #FF6E00;
+}
+
+.profile input{
     height: 20px;
     width: 100%;
     border: none;
@@ -32,53 +37,55 @@ form{
     -webkit-box-shadow: 0 0 0px 1000px #212121 inset;
 }
 
-.login input:hover{
+.profile input:hover{
     background-color: #191919;
     -webkit-box-shadow: 0 0 0px 1000px #191919 inset;
 }
 
-.loginButton{
+.label2{
+    color: rgb(194, 194, 194);
+}
+
+.button{
     font-size: large;
     cursor: pointer;
     height: 50px !important;
     -webkit-text-fill-color: #FF6E00 !important;
 	background-color: #212121;
 	border: none;
-	margin-bottom: 20px;
-    margin-left: 2px;  
+    margin-bottom: 20px;
+    width: 100%;
 }
 
-.loginButton:hover{
+.button:hover{
     background-color: #191919;
     -webkit-box-shadow: 0 0 0px 1000px #191919 inset;
 }
 
-.error{
-    color: #FF6E00;
+
+.backButton{
+    width: 50% !important;
+    margin-left: 25%;
     font-size: large;
-    text-align: center;
-}
-
-.registerNow{
-    color: #8d0000;
-    font-size: larger;
-}
-
-.noAcc{
-    text-align: center;
+    cursor: pointer;
+    height: 50px !important;
+    -webkit-text-fill-color: #191919 !important;
+	background-color: #FF6E00;
+    -webkit-box-shadow: 0 0 0px 1000px #FF6E00 inset !important;
+	border: none;
+    margin-bottom: 20px;
     width: 100%;
 }
 
-
-.registerNow:hover{
-    color: #bd0000;
+.backButton:hover{
+    background-color: #191919;
+    -webkit-box-shadow: 0 0 0px 1000px #212121 inset !important;
+    -webkit-text-fill-color: #FF6E00 !important;
 }
-
-
 
 @media screen and (max-width: 768px){
 
-    .login{
+    .profile{
         width: 100%;
     }
 
@@ -89,7 +96,7 @@ form{
 
 @media screen and (max-width: 500px){
 
-    .login{
+    .profile{
         width: 100%;
     }
 

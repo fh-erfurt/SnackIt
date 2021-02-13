@@ -1,68 +1,60 @@
+<link rel='stylesheet' type='text/css' href='assets/css/profil.css'>
+
 <head>
 <title><?=isset($title)? 'SnackIt: '. $title : 'SnackIt'?></title>
 </head>
 
-<h3>Profil</h3>
-    <? if(isset($message)): ?>
-        <section class='message <?=$messageType?>'>
-            <?=$message?>
-        </section>
-    <? endif; ?>
-
-<form method=post>
-    <? if(isset($changePassword) && $changePassword === true):?>
-        <section class=password>
-            <h4>Passwort ändern</h4>
-            <div class=table>
-                <div class=row>
-                    <div class=col>Altes Passwort: </div>
-                    <div class=col><input type=text name=oldPassword></div>
-                </div>
-                <div class=row>
-                    <div class=col>Neues Passwort: </div>
-                    <div class=col><input type=password name=newPassword></div>
-                </div>
-                <div class=row>
-                    <div class=col>Neues Passwort wiederholen: </div>
-                    <div class=col><input type=password name=newPassword2></div>
-                </div>
-            </div>
-        </section>
-    <? else:?>
-        <section class=person>
-            <h4>Personendaten</h4>
-            <div class=table>
-                    <div class=row>
-                        <div class=col>Name: </div>
-                        <div class=col><?=$Account['FirstName'] . ' ' . $Account['LastName']?></div>
-                    </div>
-                    <div class=row>
-                        <div class=col>E-Mail: </div>
-                        <div class=col><?=$Account['Email']?></div>
-                    </div>   
-            </div>
-        </section>
-        <section class=address>
-            <h4>Adresse</h4>
-            <div class=table>
-                    <div class=row>
-                        <div class=col><?=$Account['Street'] . ' ' . $Account['Number']?></div>
-                    </div>
-                    <div class=row>
-                        <div class=col><?=$Account['Zipcode'] . ' ' . $Account['City']?></div>
-                    </div>
-                    <div class=row>
-                        <div class=col><?=$Account['Country']?></div>
-                    </div>
-            </div>
-        </section>
-    <? endif; ?>
-    <section class=change>
-        <? if(isset($changePassword) && $changePassword === true):?>
-            <input type=submit name=confirmPassword value='Passwort aktualisieren'>
-            <input type=submit name=cancel value='Zurück'>
-        <? else: ?>
-            <input type=submit name=changePassword value='Passwort ändern'>
+<div class="profile">
+    <br>
+    <h1>Profil</h1>
+        <? if(isset($message)): ?>
+            <section class='message <?=$messageType?>'>
+                <?=$message?>
+            </section>
         <? endif; ?>
-    </section>
-</form>
+
+        <br>
+        <br>
+
+    <form method=post>
+        <? if(isset($changePassword) && $changePassword === true):?>
+            <section class=password>
+                <h2>Passwort ändern</h2> <br>
+
+                        <label>Altes Passwort</label> <br>
+                        <input type=password name=oldPassword> <br>
+                        <br>
+                        <label>Neues Passwort</label> <br>
+                        <input type=password name=newPassword> <br>
+                        <br>
+                        <label>Neues Passwort wiederholen</label> <br>                        
+                        <input type=password name=newPassword2>
+            </section>
+            <br>
+        <? else:?>
+            <section class=person>
+                <h2>Personendaten</h2> <br>
+
+                    <label>Name: </label><label class="label2"><?=$Account['FirstName'] . ' ' . $Account['LastName']?></label> <br>
+                    <label>E-mail: </label><label class="label2"><?=$Account['Email']?></label>
+            </section>
+            <br>    
+            <section class=address>
+                <h2>Adresse</h2> <br>
+
+                <label class="label2"><?=$Account['Street'] . ' ' . $Account['Number']?></label><br>
+                <label class="label2"><?=$Account['Zipcode'] . ' ' . $Account['City']?></label><br>
+                <label class="label2"><?=$Account['Country']?></label>
+            </section>
+            <br>
+        <? endif; ?>
+        <section class=change>
+            <? if(isset($changePassword) && $changePassword === true):?>
+                <input class='button' type=submit name=confirmPassword value='Passwort aktualisieren'> <br>
+                <input class='backButton' type=submit name=cancel value='Zurück'>
+            <? else: ?>
+                <input class='button' type=submit name=changePassword value='Passwort ändern'>
+            <? endif; ?>
+        </section>
+    </form>
+</div>

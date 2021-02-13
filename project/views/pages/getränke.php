@@ -1,6 +1,6 @@
 <link rel='stylesheet' type='text/css' href='assets/css/getränke.css'>
 
-<h1>Drinks</h1>
+
 <head>
 <title><?=isset($title)? 'SnackIt: '. $title : 'SnackIt'?></title>
 </head>

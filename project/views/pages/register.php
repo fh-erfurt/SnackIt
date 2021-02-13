@@ -5,9 +5,9 @@
 </head>
 
 <div class = "register">
-
+	<br>
 	<h1>Registriere dich jetzt</h1>
-
+	<br>
 	<? if(isset($error)): ?>
 		<p class='errorMessage'><?=$error?></p>
 	<? endif;?>
@@ -47,7 +47,7 @@
 		<br />
 		<input type='submit' name='submit' value='Registrieren' class='registerButton'><br/>
 		<p class="error"><?echo $ErrorMsg;?></p><br>
-		<label class='accExists' for='Register'>Schon Registriert?</label> <a class='loginNow' href='index.php?c=pages&a=login'> Jetzt einloggen</a> <br />
+		<p class='accExists' for='Register'>Schon Registriert?<a class='loginNow' href='index.php?c=pages&a=login'> Jetzt einloggen</a></p> <br />
 	</form>
 	<br>
 

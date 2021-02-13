@@ -17,10 +17,6 @@ main{
     color: #FF6E00;
 }
 
-.register h1{
-    padding-top: 20px;
-}
-
 form{
     text-align: left;
     width: 40%;
@@ -57,8 +53,13 @@ form{
     -webkit-box-shadow: 0 0 0px 1000px #191919 inset;
 }
 
+.accExists{
+    text-align: center;
+    width: 100%;
+}
+
 .error{
-    color: #bd0000;
+    color: #FF6E00;
     font-size: large;
     text-align: center;
 }
@@ -70,4 +71,27 @@ form{
 
 .loginNow:hover{
     color: #bd0000;
+}
+
+@media screen and (max-width: 768px){
+
+    .register{
+        width: 100%;
+    }
+
+    form{
+        width: 60%;
+    }
+}
+
+
+@media screen and (max-width: 500px){
+
+    .register{
+        width: 100%;
+    }
+
+    form{
+        width: 80%;
+    }
 }

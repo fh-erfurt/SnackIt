@@ -19,7 +19,15 @@
 						<nav>
 						<div class="stripe" ><a href='index.php?c=pages&a=startseite'><img class="logo" src='assets/pictures/logo.png'></a></div>
 							<input id="nav-toggle" type="checkbox">	
+
+							
 							<ul class="left">
+
+							<label for="nav-toggle" class="icon-burger">
+								<div class="line"></div>
+								<div class="line"></div>
+								<div class="line"></div>
+								</label>
 								<li><a href='index.php?c=pages&a=Snacks&t=Snacks'>Snacks</a></li>
 								<li><a href='index.php?c=pages&a=Getränke&t=Getränke' >Getränke</a></li>
 								<li><a href='index.php?c=pages&a=Angebote&t=Angebote'>Angebote</a></li>
@@ -29,12 +37,7 @@
 										<li><a href='index.php?c=products&a=list&t=more'>Weiteres Zubehör</a></li>
 									</ul> -->
 								
-								<label for="nav-toggle" class="icon-burger">
-								<div class="line"></div>
-								<div class="line"></div>
-								<div class="line"></div>
-								
-							</label>
+
 							</ul>
 																
 							<ul class="right">

@@ -5,24 +5,26 @@
 </head>
 
 <div class="login">
+	<br>
 	<h1>Login</h1>
 	<section  class=loginstyle>
 	<? if(isset($error)): ?>
 		<p class='errorMessage' id=phpError><?=$error?></p>
 	<? endif;?>
  
-	<br />
-	<br />
+	<br>
+	<br>
 
 	<form method='post' name='loginForm' id=login-form>
-		<label class="email" for='email'>E-Mail</label> <br />
-		<input type='email' name='email' id='email' value=<?=isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '';?> ><br />
-		<label class="password" for='password' >Passwort</label> <br />
-		<input type='password' name='password' id='password'/><br />
+		<label class="email" for='email'>E-Mail</label> <br>
+		<input type='email' name='email' id='email' value=<?=isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '';?> ><br>
 		<br>
-		<input type='submit' name='submitBtn' value='Anmelden' class='loginButton'><br />
+		<label class="password" for='password' >Passwort</label> <br>
+		<input type='password' name='password' id='password'/><br>
+		<br>
+		<input type='submit' name='submitBtn' value='Anmelden' class='loginButton'><br>
 		<p class="error"><?echo $errMsg;?></p><br>
-		<label class='noAcc' for='Register'>Noch kein Konto?</label> <a class='registerNow' href='index.php?c=pages&a=register'> Jetzt registrieren</a> <br />
+		<p class='noAcc' for='Register'>Noch kein Konto?<a class='registerNow' href='index.php?c=pages&a=register'> Jetzt registrieren</a></p>  <br>
 		<br>
 	</form>
 </div>	
