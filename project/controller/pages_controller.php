@@ -127,7 +127,41 @@ class PagesController extends Controller
 	
 	
 	
-		if(isset($_POST['changePassword']))
+	if(isset($_POST['changeEmail']))
+			{
+				$this->params['changeEmail'] = true;
+				// there is no need for executing the rest of the function 
+				// because the view does not have to know about the user data
+				return; 
+			}
+	
+	if(isset($_POST['confirmEmail']))
+			{
+				$newEmail = htmlspecialchars($_POST['NewEmail']) ?? null;
+				if(getAccountIdByEmail($newEmail) == null){
+					
+					//change Email
+							
+							$sql = 'UPDATE account set Email=(:email) WHERE AccountId ='.$_SESSION['AccountID'];
+							$statement = $db->prepare($sql);
+							$statement->bindParam(':email', $newEmail);
+							$statement->execute();
+
+					
+					$this->params['changeEmail'] = true;
+					$this->params['messageType'] = 'success';
+					$this->params['message'] = 'Deine Email wurde erfolgreich geändert!';
+				}
+				else{
+				$this->params['changeEmail'] = true;
+				$this->params['messageType'] = 'error';
+				$this->params['message'] = 'Diese Email existiert bereits!';
+				}
+			}
+	
+	
+	
+		else if(isset($_POST['changePassword']))
 			{
 				$this->params['changePassword'] = true;
 				// there is no need for executing the rest of the function 

@@ -17,7 +17,23 @@
         <br>
 
     <form method=post>
-        <? if(isset($changePassword) && $changePassword === true):?>
+        
+		
+		
+		
+		
+		
+		
+		<? if(isset($changeEmail) && $changeEmail === true):?>
+            <section class=Email>
+                <h2>Email ändern</h2> <br>
+
+                        <label>Neue Email</label> <br>
+                        <input type=email name=NewEmail> <br>
+                        
+            </section>
+            <br>
+		<? elseif(isset($changePassword) && $changePassword === true):?>
             <section class=password>
                 <h2>Passwort ändern</h2> <br>
 
@@ -48,12 +64,20 @@
             </section>
             <br>
         <? endif; ?>
-        <section class=change>
-            <? if(isset($changePassword) && $changePassword === true):?>
+        
+		
+		
+		<section class=change>
+		
+		<? if(isset($changeEmail) && $changeEmail === true):?>
+                <input class='button' type=submit name=confirmEmail value='Email aktualisieren'> <br>
+                <input class='backButton' type=submit name=cancel value='Zurück'>
+            <? elseif(isset($changePassword) && $changePassword === true):?>
                 <input class='button' type=submit name=confirmPassword value='Passwort aktualisieren'> <br>
                 <input class='backButton' type=submit name=cancel value='Zurück'>
             <? else: ?>
                 <input class='button' type=submit name=changePassword value='Passwort ändern'>
+				<input class='button' type=submit name=changeEmail value='Email ändern'>
             <? endif; ?>
         </section>
     </form>
