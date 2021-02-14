@@ -1,6 +1,6 @@
 <?php
 
-
+//todo pass den scheiß an
 
 require_once __DIR__.'/baseModel.class.php';
 
