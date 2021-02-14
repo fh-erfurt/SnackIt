@@ -28,13 +28,20 @@ form{
     border: none;
     color: white;
     background-color: #212121;
+}
+
+.login input[type=password], input[type=email]{
     -webkit-text-fill-color: white;
     -webkit-box-shadow: 0 0 0px 1000px #212121 inset;
 }
 
-.login input:hover{
+.login input[type=password]:hover, input[type=email]:hover{
     background-color: #191919;
     -webkit-box-shadow: 0 0 0px 1000px #191919 inset;
+}
+
+.check{
+    width: 20px !important;
 }
 
 .loginButton{

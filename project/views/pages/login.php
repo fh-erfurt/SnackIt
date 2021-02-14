@@ -23,11 +23,14 @@
 		<input type='password' name='password' id='password'/><br>
 		<br>
 		<input type='submit' name='submitBtn' value='Anmelden' class='loginButton'><br>
+		<input type="checkbox" class="check" name="rememberMe" id="check" value="set"
+        <?=isset($_POST['rememberMe']) ? 'checked' : ''?>>
+		<label for="check">angemeldet bleiben?</label><br>
+		<br>
 		<p class="error"><?echo $errMsg;?></p><br>
 		<p class='noAcc' for='Register'>Noch kein Konto?<a class='registerNow' href='index.php?c=pages&a=register'> Jetzt registrieren</a></p>  <br>
-		<input type="checkbox" name="rememberMe" id="check" value="set"
-        <?=isset($_POST['rememberMe']) ? 'checked' : ''?>>
-        <label for="check">angemeldet bleiben?</label>
+
+
 		<br>
 	</form>
 </div>	
