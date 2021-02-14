@@ -31,7 +31,7 @@ class PagesController extends Controller
 		if(isset($_POST['submitBtn']))
 		{
 			
-			if($_POST['rememberMe']){
+			if(isset($_POST['rememberMe'])){
 				$duration = time() + 3600 * 24 * 30;
 				setcookie('Email', $email, $duration,'/');
 				setcookie('Password', $password, $duration,'/');	
