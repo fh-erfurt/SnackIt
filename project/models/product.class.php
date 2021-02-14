@@ -47,7 +47,7 @@ class Product extends \si\models\baseModel
 
         try
         {
-            $sql = 'SELECT ProductID, ProdName, Price, ProdType, OnStock FROM ' . self::tablename() . ' WHERE ProductID = ' . $db->quote($id) . ';';
+            $sql = 'SELECT ProductID, ProdName, Price, ProdType, OnStock FROM product WHERE ProductID = ' . $db->quote($id) . ';';
             $result = $db->query($sql)->fetch();
 
             if(!empty($result))
