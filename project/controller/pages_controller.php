@@ -31,7 +31,7 @@ class PagesController extends Controller
 		if(isset($_POST['submitBtn']))
 		{
 			
-			if(isset($_POST['rememberMe'])){
+			if($_POST['rememberMe']){
 				$duration = time() + 3600 * 24 * 30;
 				setcookie('Email', $email, $duration,'/');
 				setcookie('Password', $password, $duration,'/');	
@@ -135,7 +135,7 @@ class PagesController extends Controller
 				return; 
 			}
 	
-	if(isset($_POST['confirmEmail']))
+	if(isset($_POST['confirmEmail']) && $_POST['NewEmail'] != null)
 			{
 				$newEmail = htmlspecialchars($_POST['NewEmail']) ?? null;
 				if(getAccountIdByEmail($newEmail) == null){
@@ -158,7 +158,12 @@ class PagesController extends Controller
 				$this->params['message'] = 'Diese Email existiert bereits!';
 				}
 			}
-	
+			else if(isset($_POST['confirmEmail']) && $_POST['NewEmail'] == null)
+			{
+				$this->params['changeEmail'] = true;
+				$this->params['messageType'] = 'error';
+				$this->params['message'] = 'Email Feld ist leer!';
+				}
 	
 	
 		else if(isset($_POST['changePassword']))

@@ -23,9 +23,10 @@ form{
     margin: auto;
 }
 
-.register input{
+.register input, select{
     height: 20px;
     width: 100%;
+    padding: 0;
     border: none;
     color: white;
     background-color: #212121 !important;
@@ -33,7 +34,8 @@ form{
     -webkit-box-shadow: 0 0 0px 1000px #212121 inset;
 }
 
-.register input:hover{
+
+.register input:hover, select:hover{
     background-color: #191919;
     -webkit-box-shadow: 0 0 0px 1000px #191919 inset;
 }
@@ -43,9 +45,6 @@ form{
     cursor: pointer;
     height: 50px !important;
     -webkit-text-fill-color: #FF6E00 !important;
-	background-color: #212121;
-	border: none;
-    margin-bottom: 20px;
 }
 
 .registerButton:hover{

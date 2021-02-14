@@ -23,6 +23,7 @@
 		<input type='password' name='password' id='password'/><br>
 		<br>
 		<input type='submit' name='submitBtn' value='Anmelden' class='loginButton'><br>
+		<br>
 		<input type="checkbox" class="check" name="rememberMe" id="check" value="set"
         <?=isset($_POST['rememberMe']) ? 'checked' : ''?>>
 		<label for="check">angemeldet bleiben?</label><br>

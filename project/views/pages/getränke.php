@@ -15,7 +15,7 @@
                         <span><img  class='img' src='assets/pictures/products/<?=$product->ProdName;?>.png'></span><br>
                         </div>
                         <span><?=$product->ProdName?></span><br>
-                        <span class='prodPrice'><?=$product->Price?> €</span>
+                        <span class='prodPrice'><?=$product->Price?>€</span>
                 </a>
         </article>
     <? endforeach; ?> 

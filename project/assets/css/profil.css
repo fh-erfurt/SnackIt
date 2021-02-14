@@ -28,6 +28,7 @@ form h2{
 }
 
 .profile input{
+    padding: 0px;
     height: 20px;
     width: 100%;
     border: none;
@@ -46,15 +47,16 @@ form h2{
     color: rgb(194, 194, 194);
 }
 
+.message{
+    text-align: center;
+    font-size: larger;
+}
+
 .button{
     font-size: large;
     cursor: pointer;
     height: 50px !important;
     -webkit-text-fill-color: #FF6E00 !important;
-	background-color: #212121;
-	border: none;
-    margin-bottom: 20px;
-    width: 100%;
 }
 
 .button:hover{

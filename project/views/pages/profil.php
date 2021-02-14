@@ -7,22 +7,12 @@
 <div class="profile">
     <br>
     <h1>Profil</h1>
-        <? if(isset($message)): ?>
-            <section class='message <?=$messageType?>'>
-                <?=$message?>
-            </section>
-        <? endif; ?>
+
 
         <br>
         <br>
 
     <form method=post>
-        
-		
-		
-		
-		
-		
 		
 		<? if(isset($changeEmail) && $changeEmail === true):?>
             <section class=Email>
@@ -71,13 +61,23 @@
 		
 		<? if(isset($changeEmail) && $changeEmail === true):?>
                 <input class='button' type=submit name=confirmEmail value='Email aktualisieren'> <br>
+                <br>
+                <? if(isset($message)): ?>
+                <p class='message <?=$messageType?>'><?=$message?></p> <br>
+                <? endif; ?>
                 <input class='backButton' type=submit name=cancel value='Zurück'>
             <? elseif(isset($changePassword) && $changePassword === true):?>
                 <input class='button' type=submit name=confirmPassword value='Passwort aktualisieren'> <br>
+                <br>
+                <? if(isset($message)): ?>
+                <p class='message <?=$messageType?>'><?=$message?></p> <br>
+                <? endif; ?>
                 <input class='backButton' type=submit name=cancel value='Zurück'>
             <? else: ?>
-                <input class='button' type=submit name=changePassword value='Passwort ändern'>
-				<input class='button' type=submit name=changeEmail value='Email ändern'>
+                <input class='button' type=submit name=changePassword value='Passwort ändern'> <br>
+                <br>
+				<input class='button' type=submit name=changeEmail value='Email ändern'><br>
+                <br>
             <? endif; ?>
         </section>
     </form>

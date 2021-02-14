@@ -23,6 +23,7 @@ form{
 }
 
 .login input{
+    padding: 0px;
     height: 20px;
     width: 100%;
     border: none;
@@ -49,10 +50,6 @@ form{
     cursor: pointer;
     height: 50px !important;
     -webkit-text-fill-color: #FF6E00 !important;
-	background-color: #212121;
-	border: none;
-	margin-bottom: 20px;
-    margin-left: 2px;  
 }
 
 .loginButton:hover{
