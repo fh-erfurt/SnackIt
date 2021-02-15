@@ -280,4 +280,11 @@ class PagesController extends Controller
 	$product = Product::getProductById($ProductID);
 	$this->params['product'] = $product;
 	}
+	
+	public function actionShoppingCart()
+	{
+	$this->params['title']= 'Item';
+
+	
+	}
 }
