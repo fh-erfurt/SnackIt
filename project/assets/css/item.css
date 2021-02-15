@@ -1,0 +1,44 @@
+
+.product{
+    width: 700px;
+    margin: auto;
+    margin-top: 150px;
+    display: flex;
+}
+
+.img{
+    width: 400px;
+    height: 400px;
+}
+
+.description{
+    color: #fff;
+}
+
+.description select, input{
+    height: 20px;
+    padding: 0;
+    border: none;
+    color: white;
+    background-color: #212121 !important;
+    -webkit-text-fill-color: white;
+    -webkit-box-shadow: 0 0 0px 1000px #212121 inset;
+}
+
+.description input:hover, select:hover{
+    background-color: #191919;
+    -webkit-box-shadow: 0 0 0px 1000px #191919 inset;
+}
+
+h1{
+    color: #FF6E00;
+}
+
+.add{
+    width: 200px;
+    font-size: large;
+    cursor: pointer;
+    height: 50px !important;
+    -webkit-text-fill-color: #FF6E00 !important;
+}
+

@@ -273,11 +273,13 @@ class PagesController extends Controller
 
 	public function actionItem()
 	{
-	$this->params['title']= 'Item';
+	
 
 	$ProductID = $_GET['id'] ?? null;
 	$ProductID=htmlspecialchars($ProductID);
 	$product = Product::getProductById($ProductID);
 	$this->params['product'] = $product;
+	
+	$this->params['title']= $product->ProdName;
 	}
 }
