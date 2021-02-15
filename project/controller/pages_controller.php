@@ -282,4 +282,11 @@ class PagesController extends Controller
 	
 	$this->params['title']= $product->ProdName;
 	}
+	
+	public function actionShoppingCart()
+	{
+	$this->params['title']= 'Item';
+
+	
+	}
 }
