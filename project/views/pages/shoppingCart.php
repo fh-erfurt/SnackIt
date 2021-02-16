@@ -6,7 +6,7 @@
 <h1 class=yourshoppingcart>Ihr Einkaufswagen</h1>
 </br>
 <section class=shoppingtable>
-<? if(isset($products)) ?>
+<? if(isset($products)): ?>
     <section class='products productTable'>
     <div class='tableHeader row'>
         <span class='head col noRightBorder'></span>

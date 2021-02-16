@@ -13,12 +13,11 @@
                 Es sind <?=$product->OnStock?> Stück verfügbar <br>
                 <br>
                 <label>Bitte wähle die Stückzahl aus</label>
-                <select name="amount" id="amount"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select>
-                <br>
-                <br>
-                <br>
-                <br>
-                <input type="submit" class="add" value="+ in den Warenkorb">
+                <form method='post' class='addToCart'>
+            <span>Anzahl </span>
+            <input type='number' name='count' class='input' value=1 min=1 max=<?=$product->OnStock?> step=1 ><br/>
+            <input type='submit' name='addToCart' class='button' value='In den Einkaufswagen' /><br />
+        </form>
             </span>
 
 </section>

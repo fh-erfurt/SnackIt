@@ -64,20 +64,20 @@ CREATE TABLE IF NOT EXISTS `SnackIt`.`Orders` (
   `CreatedAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `UpdatedAt` TIMESTAMP NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `Status` INT NOT NULL DEFAULT 0,
-  `Account_AccountID` INT NOT NULL,
-  `Address_AddressId` INT NULL,
+  `AccountID` INT NOT NULL,
+  `AddressId` INT NULL,
   `FirstName` VARCHAR(50) NULL,
   `LastName` VARCHAR(30) NULL,
   PRIMARY KEY (`OrderID`),
-  INDEX `fk_Orders_Account1_idx` (`Account_AccountID` ASC),
-  INDEX `fk_Orders_Address1_idx` (`Address_AddressId` ASC),
+  INDEX `fk_Orders_Account1_idx` (`AccountID` ASC),
+  INDEX `fk_Orders_Address1_idx` (`AddressId` ASC),
   CONSTRAINT `fk_Orders_Account1`
-    FOREIGN KEY (`Account_AccountID`)
+    FOREIGN KEY (`AccountID`)
     REFERENCES `SnackIt`.`Account` (`AccountID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Orders_Address1`
-    FOREIGN KEY (`Address_AddressId`)
+    FOREIGN KEY (`AddressId`)
     REFERENCES `SnackIt`.`Address` (`AddressId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
