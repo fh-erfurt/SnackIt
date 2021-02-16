@@ -6,7 +6,7 @@
 <h1 class=yourshoppingcart>Ihr Einkaufswagen</h1>
 </br>
 <section class=shoppingtable>
-<? if(isset($products)): ?>
+<? if(isset($products)) ?>
     <section class='products productTable'>
     <div class='tableHeader row'>
         <span class='head col noRightBorder'></span>
@@ -21,7 +21,7 @@
             $count = $productEntry['count'];?>
             <article class='product row'>
                 <div class='imageContainer col'>
-                    <img src='assets/pictures/products/<?=($product->getProperty('mainPicture') !== null) ? $product->getProperty('mainPicture')->value : 'placeholder.png'?>' alt='<?=$product->name?>'>
+                <img  class='img' src='assets/pictures/products/<?=$product->ProdName;?>.png'>
                 </div>
                 <a class='productTitle col' href='index.php?c=products&a=item&id=<?=$product->productId?>'><?=$product->name?></a>
                 <span class='productPrice col'><?=$product->price?></span>
