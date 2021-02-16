@@ -1,0 +1,17 @@
+.agb{
+    width: 1000px;
+    margin: auto;
+    padding-bottom: 50px;
+    padding-top: 50px;
+    color: #c2c2c2;
+}
+
+.agb h1, a{
+    color: #FF6E00;
+}
+
+@media screen and (max-width: 768px){
+    .agb{
+        width: 100%;
+    }
+}

@@ -10,8 +10,7 @@ class PagesController extends Controller
 	public function actionIndex()
 	{
 
-	header('Location: index.php?c=accounts&a=login');
-
+		header('Location: index.php?c=accounts&a=login');
 	}
 
 	public function actionLogin()
@@ -19,44 +18,38 @@ class PagesController extends Controller
 		$this->params['title'] = 'Login';
 
 		// store error message
-		$errMsg =null;
+		$errMsg = null;
 
 		// retrieve inputs 
 		$email = isset($_POST['email']) ? $_POST['email'] : 'fehler';
 		$password = isset($_POST['password']) ? $_POST['password'] : '';
-		
-		
-	
+
+
+
 		// check user send login field
-		if(isset($_POST['submitBtn']))
-		{
-			
-			if($_POST['rememberMe']){
+		if (isset($_POST['submitBtn'])) {
+
+			if ($_POST['rememberMe']) {
 				$duration = time() + 3600 * 24 * 30;
-				setcookie('Email', $email, $duration,'/');
-				setcookie('Password', $password, $duration,'/');	
+				setcookie('Email', $email, $duration, '/');
+				setcookie('Password', $password, $duration, '/');
 			}
-			
-			
-			if(validateAccount($email, $password))
-			{
-				
+
+
+			if (validateAccount($email, $password)) {
+
 				$_SESSION['loggedIn'] = true;
-                $_SESSION['AccountID'] = getAccountIdByEmail($email);
+				$_SESSION['AccountID'] = getAccountIdByEmail($email);
 				header('Location: index.php');
-				
-			}
-			else{
+			} else {
 				$errMsg = "Passwort und Email stimmen nicht überein.";
 				$_SESSION['loggedIn'] = false;
 			}
-			
 		}
-			
+
 
 		// if there is no error reset mail
-		if($errMsg === null)
-		{
+		if ($errMsg === null) {
 			$email = '';
 		}
 
@@ -69,10 +62,8 @@ class PagesController extends Controller
 	{
 		$this->params['title'] = 'Registrierung';
 		$this->params['ErrorMsg'] = null;
-		if(!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] === false)
-		{
-			if(isset($_POST['submit']))
-			{
+		if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] === false) {
+			if (isset($_POST['submit'])) {
 				$input['email']    = htmlspecialchars($_POST['email']) ?? null;
 				$input['password'] = htmlspecialchars($_POST['password']) ?? null;
 				$input['password2'] = htmlspecialchars($_POST['password2']) ?? null;
@@ -85,28 +76,29 @@ class PagesController extends Controller
 				$input['number'] = htmlspecialchars($_POST['number']) ?? null;
 
 				//passwords should be the same
-				if($input['password'] == $input['password2'])
-				{
-					if(!containsNullValue($input))
-					{
-					
-						$this->params['ErrorMsg'] = insertnewAccount($input['email'], $input['password'], $input['password2'], $input['firstname'], $input['lastname'], $input['country'],
-											$input['zipcode'], $input['city'], $input['street'], $input['number']);
-					
-					
-					
+				if ($input['password'] == $input['password2']) {
+					if (!containsNullValue($input)) {
+
+						$this->params['ErrorMsg'] = insertnewAccount(
+							$input['email'],
+							$input['password'],
+							$input['password2'],
+							$input['firstname'],
+							$input['lastname'],
+							$input['country'],
+							$input['zipcode'],
+							$input['city'],
+							$input['street'],
+							$input['number']
+						);
 					}
-				}
-				else
-				{
+				} else {
 					$this->params['ErrorMsg'] = 'Passwörter stimmen nicht überein.';
 				}
 			}
-		
 		}
-		
 	}
-	
+
 
 	public function actionLogout()
 	{
@@ -115,178 +107,167 @@ class PagesController extends Controller
 		session_destroy();
 		header('Location: index.php?c=pages&a=login');
 	}
-	
+
 	public function actionProfil()
 	{
-	$this->params['title'] = 'Dein Profil';	
-	
-	$db = $GLOBALS['db'];
-	$Account = [];
-	$Account = getAccountDataById($_SESSION['AccountID']);
-	$this->params['Account'] = $Account;
-	
-	
-	
-	if(isset($_POST['changeEmail']))
-			{
-				$this->params['changeEmail'] = true;
-				// there is no need for executing the rest of the function 
-				// because the view does not have to know about the user data
-				return; 
-			}
-	
-	if(isset($_POST['confirmEmail']) && $_POST['NewEmail'] != null)
-			{
-				$newEmail = htmlspecialchars($_POST['NewEmail']) ?? null;
-				if(getAccountIdByEmail($newEmail) == null){
-					
-					//change Email
-							
-							$sql = 'UPDATE account set Email=(:email) WHERE AccountId ='.$_SESSION['AccountID'];
-							$statement = $db->prepare($sql);
-							$statement->bindParam(':email', $newEmail);
-							$statement->execute();
+		$this->params['title'] = 'Dein Profil';
 
-					
-					$this->params['changeEmail'] = true;
-					$this->params['messageType'] = 'success';
-					$this->params['message'] = 'Deine Email wurde erfolgreich geändert!';
-				}
-				else{
+		$db = $GLOBALS['db'];
+		$Account = [];
+		$Account = getAccountDataById($_SESSION['AccountID']);
+		$this->params['Account'] = $Account;
+
+
+
+		if (isset($_POST['changeEmail'])) {
+			$this->params['changeEmail'] = true;
+			// there is no need for executing the rest of the function 
+			// because the view does not have to know about the user data
+			return;
+		}
+
+		if (isset($_POST['confirmEmail']) && $_POST['NewEmail'] != null) {
+			$newEmail = htmlspecialchars($_POST['NewEmail']) ?? null;
+			if (getAccountIdByEmail($newEmail) == null) {
+
+				//change Email
+
+				$sql = 'UPDATE account set Email=(:email) WHERE AccountId =' . $_SESSION['AccountID'];
+				$statement = $db->prepare($sql);
+				$statement->bindParam(':email', $newEmail);
+				$statement->execute();
+
+
+				$this->params['changeEmail'] = true;
+				$this->params['messageType'] = 'success';
+				$this->params['message'] = 'Deine Email wurde erfolgreich geändert!';
+			} else {
 				$this->params['changeEmail'] = true;
 				$this->params['messageType'] = 'error';
 				$this->params['message'] = 'Diese Email existiert bereits!';
-				}
 			}
-			else if(isset($_POST['confirmEmail']) && $_POST['NewEmail'] == null)
-			{
-				$this->params['changeEmail'] = true;
-				$this->params['messageType'] = 'error';
-				$this->params['message'] = 'Email Feld ist leer!';
-				}
-	
-	
-		else if(isset($_POST['changePassword']))
-			{
-				$this->params['changePassword'] = true;
-				// there is no need for executing the rest of the function 
-				// because the view does not have to know about the user data
-				return; 
-			}
-			
-			if(isset($_POST['changeData']))
-			{
-				$this->params['changeData'] = true;
-			}
-			else if(isset($_POST['confirmPassword']))
-			{
-				$oldPassword = htmlspecialchars($_POST['oldPassword']) ?? null;
-				$newPassword = htmlspecialchars($_POST['newPassword']) ?? null;
-				$newPassword2 = htmlspecialchars($_POST['newPassword2']) ?? null;
-				//check old password
-				if(validateAccount($Account['Email'], $oldPassword))
-				{
-					//passwords should be the same
-					if($newPassword == $newPassword2)
-					{
-						//newPassword should not be null
-						if($newPassword != null)
-						{
-							//change password
-							
-							$sql = 'UPDATE account set Password=(:password) WHERE AccountId ='.$_SESSION['AccountID'];
-							$newPassword = password_hash($newPassword, PASSWORD_DEFAULT);
-							$statement = $db->prepare($sql);
-							$statement->bindParam(':password', $newPassword);
-
-							$statement->execute();
-							
-							
-							$this->params['messageType'] = 'success';
-								$this->params['message'] = 'Dein Passwort wurde erfolgreich geändert!';
-							
-						}
-						
-					}
-					else
-					{
-						$this->params['changePassword'] = true;
-						$this->params['messageType'] = 'error';
-						$this->params['message'] = 'Die eingegebenen Passwörter stimmen nicht überein!';
-					}
-				}
-				else
-				{
-					$this->params['changePassword'] = true;
-					$this->params['messageType'] = 'error';
-					$this->params['message'] = 'Dein aktuelles Passwort ist nicht korrekt!';
-				}
+		} else if (isset($_POST['confirmEmail']) && $_POST['NewEmail'] == null) {
+			$this->params['changeEmail'] = true;
+			$this->params['messageType'] = 'error';
+			$this->params['message'] = 'Email Feld ist leer!';
+		} else if (isset($_POST['changePassword'])) {
+			$this->params['changePassword'] = true;
+			// there is no need for executing the rest of the function 
+			// because the view does not have to know about the user data
+			return;
 		}
 
+		if (isset($_POST['changeData'])) {
+			$this->params['changeData'] = true;
+		} else if (isset($_POST['confirmPassword'])) {
+			$oldPassword = htmlspecialchars($_POST['oldPassword']) ?? null;
+			$newPassword = htmlspecialchars($_POST['newPassword']) ?? null;
+			$newPassword2 = htmlspecialchars($_POST['newPassword2']) ?? null;
+			//check old password
+			if (validateAccount($Account['Email'], $oldPassword)) {
+				//passwords should be the same
+				if ($newPassword == $newPassword2) {
+					//newPassword should not be null
+					if ($newPassword != null) {
+						//change password
+
+						$sql = 'UPDATE account set Password=(:password) WHERE AccountId =' . $_SESSION['AccountID'];
+						$newPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+						$statement = $db->prepare($sql);
+						$statement->bindParam(':password', $newPassword);
+
+						$statement->execute();
+
+
+						$this->params['messageType'] = 'success';
+						$this->params['message'] = 'Dein Passwort wurde erfolgreich geändert!';
+					}
+				} else {
+					$this->params['changePassword'] = true;
+					$this->params['messageType'] = 'error';
+					$this->params['message'] = 'Die eingegebenen Passwörter stimmen nicht überein!';
+				}
+			} else {
+				$this->params['changePassword'] = true;
+				$this->params['messageType'] = 'error';
+				$this->params['message'] = 'Dein aktuelles Passwort ist nicht korrekt!';
+			}
+		}
 	}
-	
+
 	public function actionAgb()
 	{
 		$this->params['title'] = 'AGB';
 	}
-	
+
+	public function actionDatenschutzerklärung()
+	{
+		$this->params['title'] = 'Datenschutzerklärung';
+	}
+
+	public function actionImpressum()
+	{
+		$this->params['title'] = 'Datenschutzerklärung';
+	}
+
 	public function actionStartseite()
 	{
 		$this->params['title'] = 'Alles was du brauchst!';
-		
-		if(isset($_COOKIE['Email']) && isset($_COOKIE['Password'])){
-			if(validateAccount($_COOKIE['Email'],$_COOKIE['Password']))
-			{
+
+		if (isset($_COOKIE['Email']) && isset($_COOKIE['Password'])) {
+			if (validateAccount($_COOKIE['Email'], $_COOKIE['Password'])) {
 				$_SESSION['loggedIn'] = true;
 				$_SESSION['AccountID'] = getAccountIdByEmail($_COOKIE['Email']);
-				
 			}
 		}
 	}
-	
+
 	public function actionSnacks()
 	{
-	$this->params['title'] = 'Snacks';	
+		$this->params['title'] = 'Snacks';
 
-	$typeSnacks=0;
-	$products = Product::getProductsByType($typeSnacks);
-	$this->params['products'] = $products;
+		$typeSnacks = 0;
+		$products = Product::getProductsByType($typeSnacks);
+		$this->params['products'] = $products;
 	}
 
 	public function actionGetränke()
 	{
-	$this->params['title'] = 'Getränke';
+		$this->params['title'] = 'Getränke';
 
-	$typeDrinks=1;
-	$products = Product::getProductsByType($typeDrinks);
-	$this->params['products'] = $products;
-    }
-	
+		$typeDrinks = 1;
+		$products = Product::getProductsByType($typeDrinks);
+		$this->params['products'] = $products;
+	}
+
 	public function actionAngebote()
 	{
-	$this->params['title'] = 'Angebote';
+		$this->params['title'] = 'Angebote';
 
-	$typeSale=2;
-	$products = Product::getProductsByType($typeSale);
-	$this->params['products'] = $products;
+		$typeSale = 2;
+		$products = Product::getProductsByType($typeSale);
+		$this->params['products'] = $products;
 	}
 
 	public function actionItem()
 	{
-	
 
-	$ProductID = $_GET['id'] ?? null;
-	$ProductID=htmlspecialchars($ProductID);
-	$product = Product::getProductById($ProductID);
-	$this->params['product'] = $product;
-	
-	$this->params['title']= $product->ProdName;
+
+		$ProductID = $_GET['id'] ?? null;
+		$ProductID = htmlspecialchars($ProductID);
+		$product = Product::getProductById($ProductID);
+		$this->params['product'] = $product;
+
+		$this->params['title'] = $product->ProdName;
 	}
-	
+
 	public function actionShoppingCart()
 	{
-	$this->params['title']= 'Item';
+		$this->params['title'] = 'Item';
+	}
 
-	
+	function actionError404()
+	{
+		$this->_params['title'] = 'Seite nicht gefunden';
 	}
 }

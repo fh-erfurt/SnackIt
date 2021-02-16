@@ -1,0 +1,17 @@
+.impressum{
+    width: 1000px;
+    margin: auto;
+    padding-bottom: 50px;
+    padding-top: 50px;
+    color: #c2c2c2;
+}
+
+.impressum h1, h2, a{
+    color: #FF6E00;
+}
+
+@media screen and (max-width: 768px){
+    .impressum{
+        width: 100%;
+    }
+}
