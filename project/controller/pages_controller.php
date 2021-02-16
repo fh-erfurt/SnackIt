@@ -2,6 +2,7 @@
 
 
 require_once 'models/product.class.php';
+require 'models/order.class.php';
 
 
 class PagesController extends Controller
@@ -259,13 +260,74 @@ class PagesController extends Controller
 		$this->params['product'] = $product;
 
 		$this->params['title'] = $product->ProdName;
+
+
+		//when the 'In Den Einkaufswagen' button is clicked
+		if (isset($_POST['addToCart'])) {
+
+			if (intval($_POST['count']) > 0) {
+				// if user is logged in, use shopping cart stored in database
+				if ($_SESSION['loggedIn'] === true) {
+					if (isset($_SESSION['shoppingCartId'])) {
+						var_dump($_SESSION['shoppingCartId']);
+						$shoppingCart = Order::getOrderById($_SESSION['shoppingCartId']);
+					} else {
+						$shoppingCart = new Order($_SESSION['AccountID']);
+						$shoppingCart->insert();
+						$_SESSION['shoppingCartId'] = $shoppingCart->orderId;
+						var_dump($_SESSION['shoppingCartId']);
+					}
+					$products[$ProductID] = intval($_POST['count']);
+
+					$shoppingCart->addProducts($products);
+				} else {
+					$shoppingCart = isset($_SESSION['shoppingCart']) ? $_SESSION['shoppingCart'] : array();
+					if (array_key_exists($productId, $shoppingCart)) {
+						$shoppingCart[$productId] = intval($shoppingCart[$productId]) + intval($_POST['count']);
+					} else {
+						$shoppingCart[$productId] = intval($_POST['count']);
+					}
+					$_SESSION['shoppingCart'] = $shoppingCart;
+				}
+				if (!isset($_SESSION['shoppingCartCount'])) {
+					$_SESSION['shoppingCartCount'] = 0;
+				}
+				$_SESSION['shoppingCartCount'] += intval($_POST['count']);
+				//header('Location: index.php?a=Startseite');
+				exit(0);
+			}
+		}
 	}
 
 	public function actionShoppingCart()
 	{
 		$this->params['title'] = 'Item';
-	}
 
+		if (isset($_SESSION['shoppingCartId'])) {
+			// user is logged in -> get shopping cart from DB
+
+			$order = Order::getOrderById($_SESSION['shoppingCartId']);
+			$totalPrice = 0;
+			var_dump($_SESSION['shoppingCartId']);
+			foreach ($order->products as $productContainer) {
+				$totalPrice += floatval($productContainer['product']->price) * intval($productContainer['count']);
+			}
+			$this->_params['products'] = $order->products;
+			$this->_params['totalPrice'] = $totalPrice;
+		} else if (isset($_SESSION['shoppingCart'])) {
+			echo 'boob';
+			// user is not logged in -> get shopping cart from session
+			$products = array();
+			$totalPrice = 0;
+			foreach ($_SESSION['shoppingCart'] as $id => $count) {
+				$product = Product::getProductById($id);
+				$products[] = ['product' => $product, 'count' => $count];
+				$totalPrice += floatval($product->price) * intval($count);
+			}
+			$this->_params['products'] = $products;
+			$this->_params['totalPrice'] = $totalPrice;
+		}
+	}
 	function actionError404()
 	{
 		$this->_params['title'] = 'Seite nicht gefunden';

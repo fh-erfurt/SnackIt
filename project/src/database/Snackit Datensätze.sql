@@ -27,8 +27,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `SnackIt`;
-INSERT INTO `Orders` (`OrderId`, `createdAt`, `updatedAt`, `Status`, `Account_AccountID`, `Address_AddressId`, `FirstName`, `LastName`) VALUES (1, DEFAULT, NULL, 0, 2, 2, 'Bernd', 'Benod');
-INSERT INTO `Orders` (`OrderId`, `createdAt`, `updatedAt`, `Status`, `Account_AccountID`, `Address_AddressId`, `FirstName`, `LastName`) VALUES (2, DEFAULT, NULL, 1, 1, 1, 'Lukas', 'Arnold');
+INSERT INTO `Orders` (`OrderId`, `createdAt`, `updatedAt`, `Status`, `AccountID`, `AddressId`, `FirstName`, `LastName`) VALUES (1, DEFAULT, NULL, 0, 2, 2, 'Bernd', 'Benod');
+INSERT INTO `Orders` (`OrderId`, `createdAt`, `updatedAt`, `Status`, `AccountID`, `AddressId`, `FirstName`, `LastName`) VALUES (2, DEFAULT, NULL, 1, 1, 1, 'Lukas', 'Arnold');
 
 COMMIT;
 -- -----------------------------------------------------
