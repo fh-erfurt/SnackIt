@@ -295,20 +295,20 @@ class PagesController extends Controller
 			{
 				if(isset($_SESSION['shoppingCartId']))
 				{
-					var_dump($_SESSION['shoppingCartId']);
 					$shoppingCart = Order::getOrderById($_SESSION['shoppingCartId']);
-					
 				}
 				else
 				{
 					$shoppingCart = new Order($_SESSION['AccountID']);
 					$shoppingCart->insert();
 					$_SESSION['shoppingCartId'] = $shoppingCart->orderId;
-					var_dump($_SESSION['shoppingCartId']);
 				}
 				$products[$ProductID] = intval($_POST['count']);
+				$shoppingCart->addProducts($products);
 				
-                $shoppingCart->addProducts($products);
+				var_dump($shoppingCart->products);
+				var_dump($products);
+				
 			}
 			else
 			{
@@ -343,17 +343,17 @@ class PagesController extends Controller
 		
 			$order = Order::getOrderById($_SESSION['shoppingCartId']);
             $totalPrice = 0;
-			var_dump($_SESSION['shoppingCartId']);
 			foreach($order->products as $productContainer)
 			{
 				$totalPrice += floatval($productContainer['product']->price)*intval($productContainer['count']);
 			}
-			$this->_params['products'] = $order->products;
-			$this->_params['totalPrice'] = $totalPrice;
+			$this->params['order'] = $order;
+			$this->params['products'] = $products;
+			$this->params['totalPrice'] = $totalPrice;
 		}
         else if(isset($_SESSION['shoppingCart']))
         { 
-			echo 'boob';
+			
 			// user is not logged in -> get shopping cart from session
             $products = array();
             $totalPrice = 0;
@@ -363,8 +363,8 @@ class PagesController extends Controller
                 $products[] = ['product' => $product, 'count' => $count];
                 $totalPrice += floatval($product->price)*intval($count);
             }
-			$this->_params['products'] = $products;
-			$this->_params['totalPrice'] = $totalPrice;
+			$this->params['products'] = $products;
+			$this->params['totalPrice'] = $totalPrice;
         }
 	
 	}

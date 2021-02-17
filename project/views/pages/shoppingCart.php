@@ -3,7 +3,9 @@
 </head>
 
 </br>
-<h1 class=yourshoppingcart>Ihr Einkaufswagen</h1>
+<h1 class=yourshoppingcart>Ihr Einkaufswagen
+
+<?var_dump($products)?></h1>
 </br>
 <section class=shoppingtable>
 <? if(isset($products)): ?>
