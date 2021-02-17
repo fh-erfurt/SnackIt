@@ -40,11 +40,11 @@ class Order extends si\models\baseModel{
     
                 $result = $db->query($sql)->fetch();
 
-                if(!empty($result['accountId']))
+                if(!empty($result['AccountID']))
                 {
-                    $order = new Order($result['accountId'], $result['status'], $result['addressId'], $result['firstname'], $result['lastname']);
+                    $order = new Order($result['AccountID'], $result['Status'], $result['AddressID'], $result['Firstname'], $result['Lastname']);
                     $order->data['OrderID'] = $orderId;
-                    $order->loadProducts();
+                    $order->loadProducts($orderId);
                     return $order;
                 }
                    
@@ -73,7 +73,7 @@ class Order extends si\models\baseModel{
                 {
                     $order = new Order($accountId, $result['status'], $result['addressId'], $result['firstname'], $result['lastname']);
                     $order->data['orderId'] = $result['orderId'];
-                    $order->loadProducts();
+                    $order->loadProducts($orderId);
                     return $order;
                 }   
             }
@@ -103,7 +103,7 @@ class Order extends si\models\baseModel{
                     {
                         $order = new Order($accountId, $row['status'], $row['addressId'], $row['firstname'], $row['lastname']);
                         $order->data['orderId'] = $row['orderId'];
-                        $order->loadProducts();
+                        $order->loadProducts($orderId);
                         $orders[]=$order;
                     }
                 }   
@@ -136,13 +136,14 @@ class Order extends si\models\baseModel{
         {
             $sqlUpdate = 'UPDATE Product_to_Order SET ProductCount = :productCount WHERE OrderID = :orderId AND ProductID = :productId;'; 
             $sqlInsert = 'INSERT INTO Product_to_Order (OrderID, ProductID, ProductCount) VALUES (:orderId, :productId, :productCount)'; 
-            $update = $db->prepare($sqlUpdate);
-            $insert = $db->prepare($sqlInsert);
+            
+      
             foreach($products as $productId => $productCount)
             {
                 $oldProductCount = intval($this->getProductCountByProductId($productId));
                 if($oldProductCount > 0)
                 {
+                    $update = $db->prepare($sqlUpdate);
                     $newProductCount = $oldProductCount + intval($productCount);
                     $update->bindParam(':orderId', $this->data['orderId']);
                     $update->bindParam(':productId', $productId);
@@ -151,28 +152,31 @@ class Order extends si\models\baseModel{
                 }
                 else
                 {
+                    
+                    $insert = $db->prepare($sqlInsert);
                     $insert->bindParam(':orderId', $this->data['orderId']);
                     $insert->bindParam(':productId', $productId);
                     $insert->bindParam(':productCount', $productCount);
                     $insert->execute();
                 }
             }
-            $this->loadProducts();
+            $this->loadProducts($orderId);
             return true;
         }
         catch(\PDOException $e)
         {
             die('Error inserting products to order: ' . $e->getMessage());
         }
+        
     }
 
    
-    public function loadProducts()
+    public function loadProducts($orderId)
     {
         $db = $GLOBALS['db'];
         try
         {
-            $sql = 'SELECT ProductID, ProductCount FROM Product_to_Order WHERE OrderId = ' . $db->quote($this->orderId) . ';';
+            $sql = 'SELECT ProductID, ProductCount FROM Product_to_Order WHERE OrderID = ' . $db->quote($orderId) . ';';
             $result = $db->query($sql)->fetchAll();
 
             if(!empty($result))
@@ -182,8 +186,16 @@ class Order extends si\models\baseModel{
                 {
                     $this->data['products'][] = [
                         'product' => Product::getProductById($row['ProductID']),
-                        'count' => $row['ProductCount']];
+                        'count' => $row['ProductCount']
+                    ];
                 }
+            }
+            else
+            {
+                $this->data['products'][]=[
+                    'product' => 'leer',
+                    'count' => 99
+                ];
             }
             return true;
         }
