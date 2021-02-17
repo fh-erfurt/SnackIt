@@ -1,5 +1,14 @@
 
 .error404{
-	color: red;
-	font-size: 36px;
+	margin-left: 20%;
+	margin-top: 10%;
+	color: #FF6E00;
+}
+
+h1{
+	font-size: 70px;
+}
+
+h2{
+	font-size: 30px;
 }
