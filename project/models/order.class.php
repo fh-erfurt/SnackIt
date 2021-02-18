@@ -10,6 +10,7 @@ class Order extends si\models\baseModel{
     const TABLENAME = 'Orders';
     const P_T_O_TABLENAME = 'Product_to_Order';
     private $data;
+ 
 
     public function __construct($accountId ,$status=0, $addressId=null, $firstname=null, $lastname=null)
     {
@@ -160,7 +161,7 @@ class Order extends si\models\baseModel{
                     $insert->execute();
                 }
             }
-            $this->loadProducts($orderId);
+            $this->loadProducts($this->data['orderId']);
             return true;
         }
         catch(\PDOException $e)

@@ -5,10 +5,10 @@
 </br>
 <h1 class=yourshoppingcart>Ihr Einkaufswagen
 
-<?var_dump($products)?></h1>
+<?var_dump($order->products)?></h1>
 </br>
 <section class=shoppingtable>
-<? if(isset($products)): ?>
+<? if(isset($order->products)): ?>
     <section class='products productTable'>
     <div class='tableHeader row'>
         <span class='head col noRightBorder'></span>

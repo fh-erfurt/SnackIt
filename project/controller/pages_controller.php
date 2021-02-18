@@ -304,10 +304,11 @@ class PagesController extends Controller
 					$_SESSION['shoppingCartId'] = $shoppingCart->orderId;
 				}
 				$products[$ProductID] = intval($_POST['count']);
+				var_dump($products);
+				$shoppingCart->products=$products;
+				var_dump($shoppingCart->products);
 				$shoppingCart->addProducts($products);
 				
-				var_dump($shoppingCart->products);
-				var_dump($products);
 				
 			}
 			else
