@@ -126,7 +126,7 @@ class Order extends si\models\baseModel{
      */
     public function addProducts($products)
     {
-        if(!isset($this->data['orderId']) || !is_array($products))
+        if(!isset($this->data['OrderID']) || !is_array($products))
         {
             return false;
         }
@@ -146,7 +146,7 @@ class Order extends si\models\baseModel{
                 {
                     $update = $db->prepare($sqlUpdate);
                     $newProductCount = $oldProductCount + intval($productCount);
-                    $update->bindParam(':orderId', $this->data['orderId']);
+                    $update->bindParam(':orderId', $this->data['OrderID']);
                     $update->bindParam(':productId', $productId);
                     $update->bindParam(':productCount', $newProductCount);
                     $update->execute();
@@ -155,13 +155,13 @@ class Order extends si\models\baseModel{
                 {
                     
                     $insert = $db->prepare($sqlInsert);
-                    $insert->bindParam(':orderId', $this->data['orderId']);
+                    $insert->bindParam(':orderId', $this->data['OrderID']);
                     $insert->bindParam(':productId', $productId);
                     $insert->bindParam(':productCount', $productCount);
                     $insert->execute();
                 }
             }
-            $this->loadProducts($this->data['orderId']);
+            $this->loadProducts($this->data['OrderID']);
             return true;
         }
         catch(\PDOException $e)
@@ -229,14 +229,14 @@ class Order extends si\models\baseModel{
      * return product count if it is found
      *        0 if not found
      */
-    public function getProductCountByProductId($productId)
+    public function getProductCountByProductId($ProductID)
     {
         $products = $this->data['products'];
         if(is_array($products))
         {
             foreach($products as $productContainer)
             {
-                if($productContainer['product']->productId == $productId) return $productContainer['count'];
+                if($productContainer['product']->productId == $ProductID) return $productContainer['count'];
             }
         }
         return 0;
