@@ -115,6 +115,7 @@ class PagesController extends Controller
 		setcookie('Password', '', -1, '/');
 		session_destroy();
 		header('Location: index.php?c=pages&a=login');
+		$_SESSION['loggedIn']=false;
 	}
 	
 	public function actionProfil()
@@ -304,9 +305,7 @@ class PagesController extends Controller
 					$_SESSION['shoppingCartId'] = $shoppingCart->orderId;
 				}
 				$products[$productId] = intval($_POST['count']);
-				var_dump($products);
 				$shoppingCart->products=$products;
-				var_dump($shoppingCart->products);
 				$shoppingCart->addProducts($products);
 				
 				
@@ -328,7 +327,7 @@ class PagesController extends Controller
 				$_SESSION['shoppingCartCount']=0;
 			}
 			$_SESSION['shoppingCartCount'] += intval($_POST['count']);
-			//header('Location: index.php?a=Startseite');
+			header('Location: index.php?a=Startseite');
 			exit(0);
 		}
 	}

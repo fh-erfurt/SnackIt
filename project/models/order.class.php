@@ -178,10 +178,6 @@ class Order extends si\models\baseModel{
         $db = $GLOBALS['db'];
         try
         {
-            echo '######################';
-            var_dump($orderId);
-            echo '######################';
-
             $sql = 'SELECT productId, ProductCount FROM Product_to_Order WHERE orderId = ' . $db->quote($orderId) . ';';
             $result = $db->query($sql)->fetchAll();
             var_dump($result);
