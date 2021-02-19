@@ -47,13 +47,13 @@ class Product extends \si\models\baseModel
 
         try
         {
-            $sql = 'SELECT ProductID, ProdName, Price, ProdType, OnStock FROM product WHERE ProductID = ' . $db->quote($id) . ';';
+            $sql = 'SELECT productId, ProdName, Price, ProdType, OnStock FROM product WHERE productId = ' . $db->quote($id) . ';';
             $result = $db->query($sql)->fetch();
 
             if(!empty($result))
             {
                 $product = new Product($result['ProdName'], $result['Price'], $result['ProdType'], $result['OnStock']);
-                $product->productId = $result['ProductID'];
+                $product->productId = $result['productId'];
                 //$product->loadProperties();
             }
             return $product;
@@ -72,7 +72,7 @@ class Product extends \si\models\baseModel
 
         try
         {
-            $sql = 'SELECT ProductID, ProdName, Price, ProdType, OnStock FROM product WHERE ProdType = ' . $type . ';';
+            $sql = 'SELECT productId, ProdName, Price, ProdType, OnStock FROM product WHERE ProdType = ' . $type . ';';
             $result = $db->query($sql)->fetchAll();
           
             if(!empty($result))
@@ -80,7 +80,7 @@ class Product extends \si\models\baseModel
                 foreach($result as $row)
                 {
                     $product = new Product($row['ProdName'], $row['Price'], $row['ProdType'], $row['OnStock']);
-                    $product->productId = $row['ProductID'];
+                    $product->productId = $row['productId'];
                     //$product->loadProperties();
                     $products[] = $product;
                 }
@@ -102,7 +102,7 @@ class Product extends \si\models\baseModel
         try
         {  
             //check if this product already exists in DB
-            $productId = $this->queryProductId();
+            $productId = $this->queryproductId();
             if($productId !== false)
             {
                 return false;
@@ -118,10 +118,10 @@ class Product extends \si\models\baseModel
             $statement->execute();
 
             // set the new productId
-            $productId = $this->queryProductId();
+            $productId = $this->queryproductId();
             if($productId !== false)
             {
-                $this->data['AddressId'] = $addressId;
+                $this->data['addressId'] = $addressId;
             }
             return true;
         }
@@ -202,7 +202,7 @@ class Product extends \si\models\baseModel
         $db = $GLOBALS['db'];
         try
         {
-            $sql = 'DELETE FROM ' . self::tablename() . ' WHERE ProductID=' . $db->quote($this->productId) . ';';
+            $sql = 'DELETE FROM ' . self::tablename() . ' WHERE productId=' . $db->quote($this->productId) . ';';
             $db->exec($sql);
             return true;
         }
