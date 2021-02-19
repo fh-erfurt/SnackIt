@@ -323,7 +323,7 @@ class PagesController extends Controller
 	public function actionShoppingCart()
 	{
 		$this->params['title'] = 'Item';
-	}
+	
 
 	if(isset($_SESSION['shoppingCartId']))
 		{
