@@ -8,7 +8,6 @@
 <?var_dump($order->products)?></h1>
 </br>
 <section class=shoppingtable>
-<? if(isset($order->products)): ?>
     <section class='products productTable'>
     <div class='tableHeader row'>
         <span class='head col noRightBorder'></span>
@@ -18,17 +17,17 @@
         <span class='head col noRightBorder'>Gesamtpreis</span>
     </div>
     <div class='tableBody'>
-        <? foreach($products as $productEntry):
+        <? foreach($order->products as $productEntry):
             $product = $productEntry['product'];
             $count = $productEntry['count'];?>
             <article class='product row'>
                 <div class='imageContainer col'>
                 <img  class='img' src='assets/pictures/products/<?=$product->ProdName;?>.png'>
                 </div>
-                <a class='productTitle col' href='index.php?c=products&a=item&id=<?=$product->productId?>'><?=$product->name?></a>
-                <span class='productPrice col'><?=$product->price?></span>
+                <span class='productTitle col'><?=$product->ProdName?></span>
+                <span class='productPrice col'><?=$product->Price?></span>
                 <span class='count col'><?=$count?></span>
-                <span class='totalProductPrice col noRightBorder'><?=floatval($product->price)*intval($count)?></span>
+                <span class='totalProductPrice col noRightBorder'><?=floatval($product->Price)*intval($count)?></span>
             </article>
         <? endforeach;?>
     </div>
@@ -43,6 +42,4 @@
         </form>
     </section>
     
-<? else:?>
-    <h3>Ihr Einkaufswagen ist leer!</h3>
-<? endif;?>
+
