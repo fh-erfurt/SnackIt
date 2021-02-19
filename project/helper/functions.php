@@ -33,7 +33,7 @@
         }
     }
 
-    function getAccountIdByEmail($email)
+    function getaccountIdByEmail($email)
     {
         $db = $GLOBALS['db'];
         try
@@ -41,13 +41,13 @@
             if(!empty($email))
             {
                 // TODO: check if email is safe to use in SQL Statement
-                $sql = 'SELECT AccountID FROM ' . 'account' . ' WHERE Email = ' . $db->quote($email) . ';';
+                $sql = 'SELECT accountId FROM ' . 'account' . ' WHERE Email = ' . $db->quote($email) . ';';
     
                 $result = $db->query($sql)->fetch(\PDO::FETCH_ASSOC);
 
-                if(!empty($result['AccountID']))
+                if(!empty($result['accountId']))
                 {
-                    return $result['AccountID'];
+                    return $result['accountId'];
                 }   
             }
             return null;
@@ -59,15 +59,15 @@
         }
     }
 	
-	function getAccountDataById($AccountID)
+	function getAccountDataById($accountId)
     {
         $db = $GLOBALS['db'];
         try
         {
-            if(!empty($AccountID))
+            if(!empty($accountId))
             {
                 // TODO: check if email is safe to use in SQL Statement
-                $sql = 'SELECT * FROM account JOIN address on account.AddressId = address.AddressId WHERE AccountID = ' . $db->quote($AccountID) .';';
+                $sql = 'SELECT * FROM account JOIN address on account.addressId = address.addressId WHERE accountId = ' . $db->quote($accountId) .';';
     
                 $result = $db->query($sql)->fetch(\PDO::FETCH_ASSOC);
 
@@ -90,7 +90,7 @@
 		$db = $GLOBALS['db'];
        try
        {
-		   $addressId = queryAddressId($country, $zipcode, $city, $street, $number);
+		   $addressId = queryaddressId($country, $zipcode, $city, $street, $number);
 		   $password = password_hash($password, PASSWORD_DEFAULT);
 		   $Emailexists = null;
 		   
@@ -107,7 +107,7 @@
             {
 				
                 //address found
-                $sql = 'INSERT INTO ' . 'account' . '(FirstName, LastName, Email, Password, AddressId) VALUES  (:firstname, :lastname, :email, :password, :addressId)';
+                $sql = 'INSERT INTO ' . 'account' . '(FirstName, LastName, Email, Password, addressId) VALUES  (:firstname, :lastname, :email, :password, :addressId)';
                 $statement = $db->prepare($sql);
                 $statement->bindParam(':firstname', $firstname);               
                 $statement->bindParam(':lastname', $lastname);
@@ -132,11 +132,11 @@
                 $statement->execute();
 
                 // set the new addressId
-                $addressId = queryAddressId($country, $zipcode, $city, $street, $number);
+                $addressId = queryaddressId($country, $zipcode, $city, $street, $number);
                 
                 
 					
-                    $sql = 'INSERT INTO ' . 'account' . '(FirstName, LastName, Email, Password, AddressId) VALUES  (:firstname, :lastname, :email, :password, :addressId)';
+                    $sql = 'INSERT INTO ' . 'account' . '(FirstName, LastName, Email, Password, addressId) VALUES  (:firstname, :lastname, :email, :password, :addressId)';
                     $statement = $db->prepare($sql);
                     $statement->bindParam(':firstname', $firstname);               
                     $statement->bindParam(':lastname', $lastname);
@@ -148,7 +148,7 @@
                 
             }
 			$_SESSION['loggedIn'] = true;
-            $_SESSION['AccountID'] = getAccountIdByEmail($email);
+            $_SESSION['accountId'] = getaccountIdByEmail($email);
 			header('Location: index.php');
 		   }
 		   catch(\PDOException $e)
@@ -162,12 +162,12 @@
 	
 	
     //gives the addressid of the address
-	function queryAddressId($country, $zipcode, $city, $street, $number)
+	function queryaddressId($country, $zipcode, $city, $street, $number)
     {
         $db = $GLOBALS['db'];
         try
         {
-            $sql = 'SELECT AddressId FROM '. 'address' . 
+            $sql = 'SELECT addressId FROM '. 'address' . 
             ' WHERE Country = ' . $db->quote($country) . 
             ' AND Zipcode = '   . $db->quote($zipcode) . 
             ' AND City = '      . $db->quote($city) . 
@@ -176,15 +176,15 @@
             
             $result = $db->query($sql)->fetch(\PDO::FETCH_ASSOC);
 
-            if(!empty($result['AddressId']))
+            if(!empty($result['addressId']))
             {
-                return $result['AddressId'];
+                return $result['addressId'];
             }
             return false;
         }
         catch(\PDOException $e)
         {
-            die('Select statement failed in queryAddressId: ' . $e->getMessage());
+            die('Select statement failed in queryaddressId: ' . $e->getMessage());
         }
         
     }

@@ -21,7 +21,7 @@ USE `SnackIt` ;
 -- Table `SnackIt`.`Address`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `SnackIt`.`Address` (
-  `AddressId` INT NOT NULL AUTO_INCREMENT,
+  `addressId` INT NOT NULL AUTO_INCREMENT,
   `CreatedAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `UpdatedAt` TIMESTAMP NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `Country` VARCHAR(45) NOT NULL,
@@ -30,14 +30,14 @@ CREATE TABLE IF NOT EXISTS `SnackIt`.`Address` (
   `City` VARCHAR(45) NOT NULL,
   `Street` VARCHAR(45) NOT NULL,
   `Number` VARCHAR(10) NOT NULL,
-  PRIMARY KEY (`AddressId`));
+  PRIMARY KEY (`addressId`));
 
 
 -- -----------------------------------------------------
 -- Table `SnackIt`.`Account`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `SnackIt`.`Account` (
-  `AccountID` INT NOT NULL AUTO_INCREMENT,
+  `accountId` INT NOT NULL AUTO_INCREMENT,
   `CreatedAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `UpdatedAt` TIMESTAMP NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `FirstName` VARCHAR(50) NOT NULL,
@@ -45,13 +45,13 @@ CREATE TABLE IF NOT EXISTS `SnackIt`.`Account` (
   `Email` VARCHAR(255) UNIQUE NOT NULL,
   `Password` VARCHAR(100) NOT NULL,
   `Role` INT NOT NULL DEFAULT 0,
-  `AddressId` INT NULL,
-  PRIMARY KEY (`AccountID`),
+  `addressId` INT NULL,
+  PRIMARY KEY (`accountId`),
   UNIQUE INDEX `Email_UNIQUE` (`Email` ASC),
-  INDEX `fk_Account_Address1_idx` (`AddressId` ASC),
+  INDEX `fk_Account_Address1_idx` (`addressId` ASC),
   CONSTRAINT `fk_Account_Address1`
-    FOREIGN KEY (`AddressId`)
-    REFERENCES `SnackIt`.`Address` (`AddressId`)
+    FOREIGN KEY (`addressId`)
+    REFERENCES `SnackIt`.`Address` (`addressId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
@@ -60,25 +60,25 @@ CREATE TABLE IF NOT EXISTS `SnackIt`.`Account` (
 -- Table `SnackIt`.`Orders`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `SnackIt`.`Orders` (
-  `OrderID` INT NOT NULL AUTO_INCREMENT,
+  `orderId` INT NOT NULL AUTO_INCREMENT,
   `CreatedAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `UpdatedAt` TIMESTAMP NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `Status` INT NOT NULL DEFAULT 0,
-  `AccountID` INT NOT NULL,
-  `AddressId` INT NULL,
+  `accountId` INT NOT NULL,
+  `addressId` INT NULL,
   `FirstName` VARCHAR(50) NULL,
   `LastName` VARCHAR(30) NULL,
-  PRIMARY KEY (`OrderID`),
-  INDEX `fk_Orders_Account1_idx` (`AccountID` ASC),
-  INDEX `fk_Orders_Address1_idx` (`AddressId` ASC),
+  PRIMARY KEY (`orderId`),
+  INDEX `fk_Orders_Account1_idx` (`accountId` ASC),
+  INDEX `fk_Orders_Address1_idx` (`addressId` ASC),
   CONSTRAINT `fk_Orders_Account1`
-    FOREIGN KEY (`AccountID`)
-    REFERENCES `SnackIt`.`Account` (`AccountID`)
+    FOREIGN KEY (`accountId`)
+    REFERENCES `SnackIt`.`Account` (`accountId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Orders_Address1`
-    FOREIGN KEY (`AddressId`)
-    REFERENCES `SnackIt`.`Address` (`AddressId`)
+    FOREIGN KEY (`addressId`)
+    REFERENCES `SnackIt`.`Address` (`addressId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
@@ -87,14 +87,14 @@ CREATE TABLE IF NOT EXISTS `SnackIt`.`Orders` (
 -- Table `SnackIt`.`Product`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `SnackIt`.`Product` (
-  `ProductID` INT NOT NULL AUTO_INCREMENT,
+  `productId` INT NOT NULL AUTO_INCREMENT,
   `CreatedAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `UpdatedAt` TIMESTAMP NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `ProdName` VARCHAR(100) NOT NULL,
   `Price` DECIMAL(10,2) NOT NULL,
   `ProdType` INT NOT NULL,
   `OnStock` INT NOT NULL,
-  PRIMARY KEY (`ProductID`),
+  PRIMARY KEY (`productId`),
   UNIQUE INDEX `ProdName_UNIQUE` (`ProdName` ASC));
 
 
@@ -106,19 +106,19 @@ CREATE TABLE IF NOT EXISTS `SnackIt`.`Product_to_Order` (
   `CreatedAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `UpdatedAt` TIMESTAMP NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `ProductCount` INT NOT NULL,
-  `OrderID` INT NOT NULL,
-  `ProductID` INT NOT NULL,
+  `orderId` INT NOT NULL,
+  `productId` INT NOT NULL,
   PRIMARY KEY (`PtoID`),
-  INDEX `fk_Product_to_Order_Orders1_idx` (`OrderID` ASC),
-  INDEX `fk_Product_to_Order_Product1_idx` (`ProductID` ASC),
+  INDEX `fk_Product_to_Order_Orders1_idx` (`orderId` ASC),
+  INDEX `fk_Product_to_Order_Product1_idx` (`productId` ASC),
   CONSTRAINT `fk_Product_to_Order_Orders1`
-    FOREIGN KEY (`OrderID`)
-    REFERENCES `SnackIt`.`Orders` (`OrderID`)
+    FOREIGN KEY (`orderId`)
+    REFERENCES `SnackIt`.`Orders` (`orderId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Product_to_Order_Product1`
-    FOREIGN KEY (`ProductID`)
-    REFERENCES `SnackIt`.`Product` (`ProductID`)
+    FOREIGN KEY (`productId`)
+    REFERENCES `SnackIt`.`Product` (`productId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
@@ -143,14 +143,14 @@ CREATE TABLE IF NOT EXISTS `SnackIt`.`Product_has_Property` (
   `PhpID` INT NOT NULL AUTO_INCREMENT,
   `CreatedAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `UpdatedAt` TIMESTAMP NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `ProductID` INT NOT NULL,
+  `productId` INT NOT NULL,
   `PropertyID` INT NOT NULL,
   PRIMARY KEY (`PhpID`),
-  INDEX `fk_Product_has_Property_Product1_idx` (`ProductID` ASC),
+  INDEX `fk_Product_has_Property_Product1_idx` (`productId` ASC),
   INDEX `fk_Product_has_Property_Property1_idx` (`PropertyID` ASC),
   CONSTRAINT `fk_Product_has_Property_Product1`
-    FOREIGN KEY (`ProductID`)
-    REFERENCES `SnackIt`.`Product` (`ProductID`)
+    FOREIGN KEY (`productId`)
+    REFERENCES `SnackIt`.`Product` (`productId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Product_has_Property_Property1`

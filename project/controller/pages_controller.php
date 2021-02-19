@@ -43,7 +43,7 @@ class PagesController extends Controller
 			{
 				
 				$_SESSION['loggedIn'] = true;
-                $_SESSION['AccountID'] = getAccountIdByEmail($email);
+                $_SESSION['accountId'] = getaccountIdByEmail($email);
 				header('Location: index.php');
 				
 			}
@@ -123,7 +123,7 @@ class PagesController extends Controller
 	
 	$db = $GLOBALS['db'];
 	$Account = [];
-	$Account = getAccountDataById($_SESSION['AccountID']);
+	$Account = getAccountDataById($_SESSION['accountId']);
 	$this->params['Account'] = $Account;
 	
 	
@@ -139,11 +139,11 @@ class PagesController extends Controller
 	if(isset($_POST['confirmEmail']) && $_POST['NewEmail'] != null)
 			{
 				$newEmail = htmlspecialchars($_POST['NewEmail']) ?? null;
-				if(getAccountIdByEmail($newEmail) == null){
+				if(getaccountIdByEmail($newEmail) == null){
 					
 					//change Email
 							
-							$sql = 'UPDATE account set Email=(:email) WHERE AccountId ='.$_SESSION['AccountID'];
+							$sql = 'UPDATE account set Email=(:email) WHERE accountId ='.$_SESSION['accountId'];
 							$statement = $db->prepare($sql);
 							$statement->bindParam(':email', $newEmail);
 							$statement->execute();
@@ -195,7 +195,7 @@ class PagesController extends Controller
 						{
 							//change password
 							
-							$sql = 'UPDATE account set Password=(:password) WHERE AccountId ='.$_SESSION['AccountID'];
+							$sql = 'UPDATE account set Password=(:password) WHERE accountId ='.$_SESSION['accountId'];
 							$newPassword = password_hash($newPassword, PASSWORD_DEFAULT);
 							$statement = $db->prepare($sql);
 							$statement->bindParam(':password', $newPassword);
@@ -239,7 +239,7 @@ class PagesController extends Controller
 			if(validateAccount($_COOKIE['Email'],$_COOKIE['Password']))
 			{
 				$_SESSION['loggedIn'] = true;
-				$_SESSION['AccountID'] = getAccountIdByEmail($_COOKIE['Email']);
+				$_SESSION['accountId'] = getaccountIdByEmail($_COOKIE['Email']);
 				
 			}
 		}
@@ -276,9 +276,9 @@ class PagesController extends Controller
 	{
 	
 
-	$ProductID = $_GET['id'] ?? null;
-	$ProductID=htmlspecialchars($ProductID);
-	$product = Product::getProductById($ProductID);
+	$productId = $_GET['id'] ?? null;
+	$productId=htmlspecialchars($productId);
+	$product = Product::getProductById($productId);
 	$this->params['product'] = $product;
 	
 	$this->params['title']= $product->ProdName;
@@ -299,11 +299,11 @@ class PagesController extends Controller
 				}
 				else
 				{
-					$shoppingCart = new Order($_SESSION['AccountID']);
+					$shoppingCart = new Order($_SESSION['accountId']);
 					$shoppingCart->insert();
 					$_SESSION['shoppingCartId'] = $shoppingCart->orderId;
 				}
-				$products[$ProductID] = intval($_POST['count']);
+				$products[$productId] = intval($_POST['count']);
 				var_dump($products);
 				$shoppingCart->products=$products;
 				var_dump($shoppingCart->products);
