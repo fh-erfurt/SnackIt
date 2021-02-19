@@ -17,8 +17,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `SnackIt`;
-INSERT INTO `Account` (`accountid`, `createdAt`, `updatedAt`, `firstname`, `lastname`, `email`, `password`, `role`, `Addressid`) VALUES (1, DEFAULT, NULL, 'Lukas', 'Arnold', 'Jan204@t-online.de', 'Penis123', 1, 1);
-INSERT INTO `Account` (`accountid`, `createdAt`, `updatedAt`, `firstname`, `lastname`, `email`, `password`, `role`, `Addressid`) VALUES (2, DEFAULT, NULL, 'Bernd', 'Benod', 'Biobernd@t-online.de', 'Bernand123', 0, 2);
+INSERT INTO `Account` (`accountid`, `createdAt`, `updatedAt`, `firstname`, `lastname`, `email`, `password`, `role`, `addressId`) VALUES (1, DEFAULT, NULL, 'Lukas', 'Arnold', 'Jan204@t-online.de', 'Penis123', 1, 1);
+INSERT INTO `Account` (`accountid`, `createdAt`, `updatedAt`, `firstname`, `lastname`, `email`, `password`, `role`, `addressId`) VALUES (2, DEFAULT, NULL, 'Bernd', 'Benod', 'Biobernd@t-online.de', 'Bernand123', 0, 2);
 
 COMMIT;
 
@@ -27,8 +27,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `SnackIt`;
-INSERT INTO `Orders` (`OrderId`, `createdAt`, `updatedAt`, `Status`, `AccountID`, `AddressId`, `FirstName`, `LastName`) VALUES (1, DEFAULT, NULL, 0, 2, 2, 'Bernd', 'Benod');
-INSERT INTO `Orders` (`OrderId`, `createdAt`, `updatedAt`, `Status`, `AccountID`, `AddressId`, `FirstName`, `LastName`) VALUES (2, DEFAULT, NULL, 1, 1, 1, 'Lukas', 'Arnold');
+INSERT INTO `Orders` (`orderId`, `createdAt`, `updatedAt`, `Status`, `AccountID`, `addressId`, `FirstName`, `LastName`) VALUES (1, DEFAULT, NULL, 0, 2, 2, 'Bernd', 'Benod');
+INSERT INTO `Orders` (`orderId`, `createdAt`, `updatedAt`, `Status`, `AccountID`, `addressId`, `FirstName`, `LastName`) VALUES (2, DEFAULT, NULL, 1, 1, 1, 'Lukas', 'Arnold');
 
 COMMIT;
 -- -----------------------------------------------------

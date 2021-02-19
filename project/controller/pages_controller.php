@@ -43,7 +43,7 @@ class PagesController extends Controller
 			if (validateAccount($email, $password)) {
 
 				$_SESSION['loggedIn'] = true;
-				$_SESSION['AccountID'] = getAccountIdByEmail($email);
+				$_SESSION['accountId'] = getaccountIdByEmail($email);
 				header('Location: index.php');
 			} else {
 				$errMsg = "Passwort und Email stimmen nicht überein.";
@@ -110,6 +110,7 @@ class PagesController extends Controller
 		setcookie('Password', '', -1, '/');
 		session_destroy();
 		header('Location: index.php?c=pages&a=login');
+		$_SESSION['loggedIn'] = false;
 	}
 
 	public function actionProfil()
@@ -118,7 +119,7 @@ class PagesController extends Controller
 
 		$db = $GLOBALS['db'];
 		$Account = [];
-		$Account = getAccountDataById($_SESSION['AccountID']);
+		$Account = getAccountDataById($_SESSION['accountId']);
 		$this->params['Account'] = $Account;
 
 
@@ -132,11 +133,11 @@ class PagesController extends Controller
 
 		if (isset($_POST['confirmEmail']) && $_POST['NewEmail'] != null) {
 			$newEmail = htmlspecialchars($_POST['NewEmail']) ?? null;
-			if (getAccountIdByEmail($newEmail) == null) {
+			if (getaccountIdByEmail($newEmail) == null) {
 
 				//change Email
 
-				$sql = 'UPDATE account set Email=(:email) WHERE AccountId =' . $_SESSION['AccountID'];
+				$sql = 'UPDATE account set Email=(:email) WHERE accountId =' . $_SESSION['accountId'];
 				$statement = $db->prepare($sql);
 				$statement->bindParam(':email', $newEmail);
 				$statement->execute();
@@ -150,41 +151,36 @@ class PagesController extends Controller
 				$this->params['messageType'] = 'error';
 				$this->params['message'] = 'Diese Email existiert bereits!';
 			}
-		} else if (isset($_POST['confirmEmail']) && $_POST['NewEmail'] == null) {
-			$this->params['changeEmail'] = true;
-			$this->params['messageType'] = 'error';
-			$this->params['message'] = 'Email Feld ist leer!';
-		} else if (isset($_POST['changePassword'])) {
-			$this->params['changePassword'] = true;
-			// there is no need for executing the rest of the function 
-			// because the view does not have to know about the user data
-			return;
-		}
 
-		if (isset($_POST['changeData'])) {
-			$this->params['changeData'] = true;
-		} else if (isset($_POST['confirmPassword'])) {
-			$oldPassword = htmlspecialchars($_POST['oldPassword']) ?? null;
-			$newPassword = htmlspecialchars($_POST['newPassword']) ?? null;
-			$newPassword2 = htmlspecialchars($_POST['newPassword2']) ?? null;
-			//check old password
-			if (validateAccount($Account['Email'], $oldPassword)) {
-				//passwords should be the same
-				if ($newPassword == $newPassword2) {
-					//newPassword should not be null
-					if ($newPassword != null) {
-						//change password
+			if (isset($_POST['changeData'])) {
+				$this->params['changeData'] = true;
+			} else if (isset($_POST['confirmPassword'])) {
+				$oldPassword = htmlspecialchars($_POST['oldPassword']) ?? null;
+				$newPassword = htmlspecialchars($_POST['newPassword']) ?? null;
+				$newPassword2 = htmlspecialchars($_POST['newPassword2']) ?? null;
+				//check old password
+				if (validateAccount($Account['Email'], $oldPassword)) {
+					//passwords should be the same
+					if ($newPassword == $newPassword2) {
+						//newPassword should not be null
+						if ($newPassword != null) {
+							//change password
 
-						$sql = 'UPDATE account set Password=(:password) WHERE AccountId =' . $_SESSION['AccountID'];
-						$newPassword = password_hash($newPassword, PASSWORD_DEFAULT);
-						$statement = $db->prepare($sql);
-						$statement->bindParam(':password', $newPassword);
+							$sql = 'UPDATE account set Password=(:password) WHERE accountId =' . $_SESSION['accountId'];
+							$newPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+							$statement = $db->prepare($sql);
+							$statement->bindParam(':password', $newPassword);
 
-						$statement->execute();
+							$statement->execute();
 
 
-						$this->params['messageType'] = 'success';
-						$this->params['message'] = 'Dein Passwort wurde erfolgreich geändert!';
+							$this->params['messageType'] = 'success';
+							$this->params['message'] = 'Dein Passwort wurde erfolgreich geändert!';
+						}
+					} else {
+						$this->params['changePassword'] = true;
+						$this->params['messageType'] = 'error';
+						$this->params['message'] = 'Die eingegebenen Passwörter stimmen nicht überein!';
 					}
 				} else {
 					$this->params['changePassword'] = true;
@@ -221,7 +217,7 @@ class PagesController extends Controller
 		if (isset($_COOKIE['Email']) && isset($_COOKIE['Password'])) {
 			if (validateAccount($_COOKIE['Email'], $_COOKIE['Password'])) {
 				$_SESSION['loggedIn'] = true;
-				$_SESSION['AccountID'] = getAccountIdByEmail($_COOKIE['Email']);
+				$_SESSION['accountId'] = getaccountIdByEmail($_COOKIE['Email']);
 			}
 		}
 	}
@@ -257,47 +253,44 @@ class PagesController extends Controller
 	{
 
 
-		$ProductID = $_GET['id'] ?? null;
-		$ProductID = htmlspecialchars($ProductID);
-		$product = Product::getProductById($ProductID);
+		$productId = $_GET['id'] ?? null;
+		$productId = htmlspecialchars($productId);
+		$product = Product::getProductById($productId);
 		$this->params['product'] = $product;
 
 		$this->params['title'] = $product->ProdName;
 
-		if(intval($_POST['count']) > 0)
-		{
-			// if user is logged in, use shopping cart stored in database
-			if($_SESSION['loggedIn'] === true)
-			{
-				if(isset($_SESSION['shoppingCartId']))
-				{
-					$shoppingCart = Order::getOrderById($_SESSION['shoppingCartId']);
-				}
-				else
-				{
-					$shoppingCart = new Order($_SESSION['AccountID']);
-					$shoppingCart->insert();
-					$_SESSION['shoppingCartId'] = $shoppingCart->orderId;
-				}
-				$products[$ProductID] = intval($_POST['count']);
-				$shoppingCart->addProducts($products);
-				
-				var_dump($shoppingCart->products);
-				var_dump($products);
-				
-			}
-			else
-			{
-				$shoppingCart = isset($_SESSION['shoppingCart']) ? $_SESSION['shoppingCart'] : array();
-				if(array_key_exists($productId, $shoppingCart))
-				{
-					$shoppingCart[$productId] = intval($shoppingCart[$productId]) + intval($_POST['count']);
+
+		//when the 'In Den Einkaufswagen' button is clicked
+		if (isset($_POST['addToCart'])) {
+
+			if (intval($_POST['count']) > 0) {
+				// if user is logged in, use shopping cart stored in database
+				if ($_SESSION['loggedIn'] === true) {
+					if (isset($_SESSION['shoppingCartId'])) {
+						$shoppingCart = Order::getOrderById($_SESSION['shoppingCartId']);
+					} else {
+						$shoppingCart = new Order($_SESSION['accountId']);
+						$shoppingCart->insert();
+						$_SESSION['shoppingCartId'] = $shoppingCart->orderId;
+					}
+					$products[$productId] = intval($_POST['count']);
+					$shoppingCart->products = $products;
+					$shoppingCart->addProducts($products);
+				} else {
+					$shoppingCart = isset($_SESSION['shoppingCart']) ? $_SESSION['shoppingCart'] : array();
+					if (array_key_exists($productId, $shoppingCart)) {
+						$shoppingCart[$productId] = intval($shoppingCart[$productId]) + intval($_POST['count']);
+					} else {
+						$shoppingCart[$productId] = intval($_POST['count']);
+					}
+					$_SESSION['shoppingCart'] = $shoppingCart;
 				}
 				if (!isset($_SESSION['shoppingCartCount'])) {
 					$_SESSION['shoppingCartCount'] = 0;
 				}
 				$_SESSION['shoppingCartCount'] += intval($_POST['count']);
-				//header('Location: index.php?a=Startseite');
+				header('Location: index.php?a=Startseite');
 				exit(0);
 			}
 		}
@@ -307,34 +300,29 @@ class PagesController extends Controller
 	{
 		$this->params['title'] = 'Item';
 
+
 		if (isset($_SESSION['shoppingCartId'])) {
 			// user is logged in -> get shopping cart from DB
 
 			$order = Order::getOrderById($_SESSION['shoppingCartId']);
-            $totalPrice = 0;
-			foreach($order->products as $productContainer)
-			{
-				$totalPrice += floatval($productContainer['product']->price)*intval($productContainer['count']);
+			$totalPrice = 0;
+			foreach ($order->products as $productContainer) {
+				$totalPrice += floatval($productContainer['product']->price) * intval($productContainer['count']);
 			}
 			$this->params['order'] = $order;
+			$this->params['totalPrice'] = $totalPrice;
+		} else if (isset($_SESSION['shoppingCart'])) {
+
+			// user is not logged in -> get shopping cart from session
+			$products = array();
+			$totalPrice = 0;
+			foreach ($_SESSION['shoppingCart'] as $id => $count) {
+				$product = Product::getProductById($id);
+				$products[] = ['product' => $product, 'count' => $count];
+				$totalPrice += floatval($product->price) * intval($count);
+			}
 			$this->params['products'] = $products;
 			$this->params['totalPrice'] = $totalPrice;
 		}
-        else if(isset($_SESSION['shoppingCart']))
-        { 
-			
-			// user is not logged in -> get shopping cart from session
-            $products = array();
-            $totalPrice = 0;
-            foreach($_SESSION['shoppingCart'] as $id => $count)
-            {
-                $product = Product::getProductById($id);
-                $products[] = ['product' => $product, 'count' => $count];
-                $totalPrice += floatval($product->price)*intval($count);
-            }
-			$this->params['products'] = $products;
-			$this->params['totalPrice'] = $totalPrice;
-        }
-	
 	}
 }

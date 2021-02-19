@@ -1,19 +1,30 @@
 .landing{
   position: relative;
-  text-align: left;
+  height: 500px;
+  overflow: hidden;
+  background: url(../pictures/home.jpg) no-repeat center;
+  background-size: cover;
 }
 
-
-.banner{
-  width: 100%;
-
-
-}
-
-.text{
-  color: white;
+.container{
   position: absolute;
-  left: 20%;
-  top: 50%;
-
+  top: 30%;
+  left: 30%;
 }
+
+.payment h2{
+  text-align: center;
+}
+
+.paymentPicture{
+  display: flex;
+  margin: auto;
+  justify-content: center; 
+  align-items: center;
+}
+
+.paymentPicture img{
+  width: 15%;
+  max-width: 200px;
+}
+

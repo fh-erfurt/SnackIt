@@ -10,10 +10,11 @@ class Order extends si\models\baseModel{
     const TABLENAME = 'Orders';
     const P_T_O_TABLENAME = 'Product_to_Order';
     private $data;
+ 
 
     public function __construct($accountId ,$status=0, $addressId=null, $firstname=null, $lastname=null)
     {
-        $this->data['AccountID'] = $accountId;
+        $this->data['accountId'] = $accountId;
         $this->data['addressId'] = $addressId;
         $this->data['firstname'] = $firstname;
         $this->data['lastname'] = $lastname;
@@ -36,14 +37,14 @@ class Order extends si\models\baseModel{
         {
             if(!empty($orderId))
             {
-                $sql = 'SELECT AccountID, Status, AddressID, Firstname, Lastname FROM Orders WHERE OrderID = ' . $db->quote($orderId) . ';';
+                $sql = 'SELECT accountId, Status, addressId, Firstname, Lastname FROM Orders WHERE orderId = ' . $db->quote($orderId) . ';';
     
                 $result = $db->query($sql)->fetch();
 
-                if(!empty($result['AccountID']))
+                if(!empty($result['accountId']))
                 {
-                    $order = new Order($result['AccountID'], $result['Status'], $result['AddressID'], $result['Firstname'], $result['Lastname']);
-                    $order->data['OrderID'] = $orderId;
+                    $order = new Order($result['accountId'], $result['Status'], $result['addressId'], $result['Firstname'], $result['Lastname']);
+                    $order->data['orderId'] = $orderId;
                     $order->loadProducts($orderId);
                     return $order;
                 }
@@ -58,14 +59,14 @@ class Order extends si\models\baseModel{
         }
     }
 
-    public static function getShoppingCartByAccountId($accountId)
+    public static function getShoppingCartByaccountId($accountId)
     {
         $db = $GLOBALS['db'];
         try
         {
             if(!empty($accountId))
             {
-                $sql = 'SELECT OrderID, Status, AddressID, Firstname, Lastname FROM Orders WHERE AccountID = ' . $db->quote($accountId) . ' AND status = 0;';
+                $sql = 'SELECT orderId, Status, addressId, Firstname, Lastname FROM Orders WHERE accountId = ' . $db->quote($accountId) . ' AND status = 0;';
     
                 $result = $db->query($sql)->fetch();
 
@@ -85,14 +86,14 @@ class Order extends si\models\baseModel{
         }
     }
 
-    public static function getOrdersByAccountId($accountId)
+    public static function getOrdersByaccountId($accountId)
     {
         $db = $GLOBALS['db'];
         try
         {
             if(!empty($accountId))
             {
-                $sql = 'SELECT OrderID, Status, AddressID, Firstname, Lastname FROM Orders WHERE AccountID = ' . $db->quote($accountId) . ';';
+                $sql = 'SELECT orderId, Status, addressId, Firstname, Lastname FROM Orders WHERE accountId = ' . $db->quote($accountId) . ';';
     
                 $result = $db->query($sql)->fetchAll();
 
@@ -121,10 +122,11 @@ class Order extends si\models\baseModel{
      * This function fills the Product_to_Order table with the given products and loads the products into the order object
      * The products parameter should be an associative array with key=productId and value=count
      * return TRUE if products were successfully added,
-     *        FALSE if order has no orderID or the parameter is not an array
+     *        FALSE if order has no orderId or the parameter is not an array
      */
     public function addProducts($products)
     {
+        
         if(!isset($this->data['orderId']) || !is_array($products))
         {
             return false;
@@ -134,8 +136,8 @@ class Order extends si\models\baseModel{
 
         try
         {
-            $sqlUpdate = 'UPDATE Product_to_Order SET ProductCount = :productCount WHERE OrderID = :orderId AND ProductID = :productId;'; 
-            $sqlInsert = 'INSERT INTO Product_to_Order (OrderID, ProductID, ProductCount) VALUES (:orderId, :productId, :productCount)'; 
+            $sqlUpdate = 'UPDATE Product_to_Order SET ProductCount = :productCount WHERE orderId = :orderId AND productId = :productId;'; 
+            $sqlInsert = 'INSERT INTO Product_to_Order (orderId, productId, ProductCount) VALUES (:orderId, :productId, :productCount)'; 
             
       
             foreach($products as $productId => $productCount)
@@ -160,7 +162,7 @@ class Order extends si\models\baseModel{
                     $insert->execute();
                 }
             }
-            $this->loadProducts($orderId);
+            $this->loadProducts($this->data['orderId']);
             return true;
         }
         catch(\PDOException $e)
@@ -176,16 +178,16 @@ class Order extends si\models\baseModel{
         $db = $GLOBALS['db'];
         try
         {
-            $sql = 'SELECT ProductID, ProductCount FROM Product_to_Order WHERE OrderID = ' . $db->quote($orderId) . ';';
+            $sql = 'SELECT productId, ProductCount FROM Product_to_Order WHERE orderId = ' . $db->quote($orderId) . ';';
             $result = $db->query($sql)->fetchAll();
-
+            var_dump($result);
             if(!empty($result))
             {
                 $this->data['products'] = [];
                 foreach($result as $row)
                 {
                     $this->data['products'][] = [
-                        'product' => Product::getProductById($row['ProductID']),
+                        'product' => Product::getProductById($row['productId']),
                         'count' => $row['ProductCount']
                     ];
                 }
@@ -228,7 +230,7 @@ class Order extends si\models\baseModel{
      * return product count if it is found
      *        0 if not found
      */
-    public function getProductCountByProductId($productId)
+    public function getProductCountByproductId($productId)
     {
         $products = $this->data['products'];
         if(is_array($products))
@@ -256,9 +258,9 @@ class Order extends si\models\baseModel{
         $db = $GLOBALS['db'];
         try
         {
-            $sql = 'INSERT INTO Orders (AccountID, Status, AddressID, Firstname, Lastname) VALUES (:accountId, :status, :addressId, :firstname, :lastname);'; 
+            $sql = 'INSERT INTO Orders (accountId, Status, addressId, Firstname, Lastname) VALUES (:accountId, :status, :addressId, :firstname, :lastname);'; 
             $statement = $db->prepare($sql);
-            $statement->bindParam(':accountId', $this->data['AccountID']);
+            $statement->bindParam(':accountId', $this->data['accountId']);
             $statement->bindParam(':addressId', $this->data['addressId']);
             $statement->bindParam(':firstname', $this->data['firstname']);
             $statement->bindParam(':lastname', $this->data['lastname']);
