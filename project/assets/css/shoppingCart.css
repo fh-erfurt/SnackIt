@@ -1,0 +1,87 @@
+*{
+    color: white;
+    text-decoration: none;
+    font-size: large;
+}
+
+.img {
+    width: 150px;
+    height: auto;
+}
+
+.productTable{
+    display: table;
+    text-align: center;
+    margin: 0px 20%;
+}
+
+.productTable .tableHeader{
+    display: table-header-group;
+}
+
+.productTable .row{
+    display: table-row;
+}
+
+.productTable .col{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.productTable .tableBody{
+    display: table-row-group;
+}
+
+.productTable .imageContainer{
+    width: 1%;
+    white-space: nowrap;
+    border-right: none;
+}
+
+.productTable .noRightBorder{
+    border-right: 0px;
+}
+
+.delete{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.number-input {
+    display: inline-flex;
+  }
+  .number-input input[type=number]::-webkit-inner-spin-button,
+  .number-input input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+
+  }
+  .number-input,
+  .number-input * {
+    box-sizing: border-box;
+  }
+  
+  .number-input button {
+    padding: 0;
+    outline:none;
+    -webkit-appearance: none;
+    border: none;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    background-color: transparent;
+    font-size: 40px;
+  }
+  
+  .number-input input[type=number] {
+    max-width: 50px;
+    height: 50px;
+    border: none;
+    font-weight: bold;
+    text-align: center;
+    background-color: transparent;
+  }
+  
+  .img{
+      width: 200px;
+  }
