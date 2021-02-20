@@ -4,6 +4,7 @@
 <title><?=isset($title)? 'SnackIt: '. $title : 'SnackIt'?></title>
 </head>
 
+<body>
 <div class = "register">
 	<br>
 	<h1>Registriere dich jetzt</h1>
@@ -46,13 +47,15 @@
 		<label for='number'>Hausnummer</label> <br />
 		<input type='text' name='number' id='number' value=<?=isset($_POST['number']) ? htmlspecialchars($_POST['number']) : '';?> ><br />
 		<br />
-		<input type='submit' name='submit' value='Registrieren' class='registerButton'><br/>
+		<input type='submit' name='submit' value='Registrieren' class='registerButton' id='submitBtn'><br/>
 		<br>
-		<p class="error"><?echo $ErrorMsg;?></p><br>
+		<p class="error" id='errorfield'><?echo $ErrorMsg;?></p><br>
 		<p class='accExists' for='Register'>Schon Registriert?<a class='loginNow' href='index.php?c=pages&a=login'> Jetzt einloggen</a></p> <br />
 	</form>
 	<br>
-
-</div>
 </section>
+</div>
+<script src='assets/js/register.js'></script>
+</body>
+
 

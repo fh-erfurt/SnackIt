@@ -3,6 +3,7 @@
 
 require_once 'models/product.class.php';
 require 'models/order.class.php';
+require 'helper/filter.class.php';
 
 
 class PagesController extends Controller
@@ -122,77 +123,98 @@ class PagesController extends Controller
 		$Account = getAccountDataById($_SESSION['accountId']);
 		$this->params['Account'] = $Account;
 
-
-
-		if (isset($_POST['changeEmail'])) {
-			$this->params['changeEmail'] = true;
-			// there is no need for executing the rest of the function 
-			// because the view does not have to know about the user data
-			return;
-		}
-
-		if (isset($_POST['confirmEmail']) && $_POST['NewEmail'] != null) {
-			$newEmail = htmlspecialchars($_POST['NewEmail']) ?? null;
-			if (getaccountIdByEmail($newEmail) == null) {
-
-				//change Email
-
-				$sql = 'UPDATE account set Email=(:email) WHERE accountId =' . $_SESSION['accountId'];
-				$statement = $db->prepare($sql);
-				$statement->bindParam(':email', $newEmail);
-				$statement->execute();
-
-
+		if(isset($_POST['changeEmail']))
+			{
 				$this->params['changeEmail'] = true;
-				$this->params['messageType'] = 'success';
-				$this->params['message'] = 'Deine Email wurde erfolgreich geändert!';
-			} else {
+				// there is no need for executing the rest of the function 
+				// because the view does not have to know about the user data
+				return; 
+			}
+	
+	if(isset($_POST['confirmEmail']))
+			{
+				$newEmail = htmlspecialchars($_POST['NewEmail']) ?? null;
+				if(getAccountIdByEmail($newEmail) == null){
+					
+					//change Email
+							
+							$sql = 'UPDATE account set Email=(:email) WHERE AccountId ='.$_SESSION['AccountID'];
+							$statement = $db->prepare($sql);
+							$statement->bindParam(':email', $newEmail);
+							$statement->execute();
+
+					
+					$this->params['changeEmail'] = true;
+					$this->params['messageType'] = 'success';
+					$this->params['message'] = 'Deine Email wurde erfolgreich geändert!';
+				}
+				else{
 				$this->params['changeEmail'] = true;
 				$this->params['messageType'] = 'error';
 				$this->params['message'] = 'Diese Email existiert bereits!';
+				}
 			}
-
-			if (isset($_POST['changeData'])) {
+	
+	
+	
+		else if(isset($_POST['changePassword']))
+			{
+				$this->params['changePassword'] = true;
+				// there is no need for executing the rest of the function 
+				// because the view does not have to know about the user data
+				return; 
+			}
+			
+			if(isset($_POST['changeData']))
+			{
 				$this->params['changeData'] = true;
-			} else if (isset($_POST['confirmPassword'])) {
+			}
+			else if(isset($_POST['confirmPassword']))
+			{
 				$oldPassword = htmlspecialchars($_POST['oldPassword']) ?? null;
 				$newPassword = htmlspecialchars($_POST['newPassword']) ?? null;
 				$newPassword2 = htmlspecialchars($_POST['newPassword2']) ?? null;
 				//check old password
-				if (validateAccount($Account['Email'], $oldPassword)) {
+				if(validateAccount($Account['Email'], $oldPassword))
+				{
 					//passwords should be the same
-					if ($newPassword == $newPassword2) {
+					if($newPassword == $newPassword2)
+					{
 						//newPassword should not be null
-						if ($newPassword != null) {
+						if($newPassword != null)
+						{
 							//change password
-
-							$sql = 'UPDATE account set Password=(:password) WHERE accountId =' . $_SESSION['accountId'];
+							
+							$sql = 'UPDATE account set Password=(:password) WHERE AccountId ='.$_SESSION['AccountID'];
 							$newPassword = password_hash($newPassword, PASSWORD_DEFAULT);
 							$statement = $db->prepare($sql);
 							$statement->bindParam(':password', $newPassword);
 
 							$statement->execute();
-
-
+							
+							
 							$this->params['messageType'] = 'success';
-							$this->params['message'] = 'Dein Passwort wurde erfolgreich geändert!';
+								$this->params['message'] = 'Dein Passwort wurde erfolgreich geändert!';
+							
 						}
-					} else {
+						
+					}
+					else
+					{
 						$this->params['changePassword'] = true;
 						$this->params['messageType'] = 'error';
 						$this->params['message'] = 'Die eingegebenen Passwörter stimmen nicht überein!';
 					}
-				} else {
+				}
+				else
+				{
 					$this->params['changePassword'] = true;
 					$this->params['messageType'] = 'error';
-					$this->params['message'] = 'Die eingegebenen Passwörter stimmen nicht überein!';
+					$this->params['message'] = 'Dein aktuelles Passwort ist nicht korrekt!';
 				}
-			} else {
-				$this->params['changePassword'] = true;
-				$this->params['messageType'] = 'error';
-				$this->params['message'] = 'Dein aktuelles Passwort ist nicht korrekt!';
-			}
 		}
+
+		
 	}
 
 	public function actionAgb()
@@ -229,6 +251,26 @@ class PagesController extends Controller
 		$typeSnacks = 0;
 		$products = Product::getProductsByType($typeSnacks);
 		$this->params['products'] = $products;
+		$this->_params['js'][] = 'products';
+
+		if (isset($_GET['applyFilter'])) {
+			$products = Filter::applyFilter($products);
+		}
+
+		// dynamically load products
+		if (isset($_GET['ajax'])) {
+			$productCount = $_GET['productCount'];
+			$products = array_slice($products, $productCount, 10);
+			$productArray = [];
+			foreach ($products as $product) {
+				$productArray[] = $product->toArray();
+			}
+			$result['productCount'] = $productCount;
+			$result['products'] = $productArray;
+			$result = json_encode($result);
+			echo $result;
+			exit(0);
+		}
 	}
 
 	public function actionGetränke()
