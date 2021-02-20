@@ -18,6 +18,9 @@ class PagesController extends Controller
 	public function actionLogin()
 	{
 		$this->params['title'] = 'Login';
+		//$this->params['js'][] = 'savePW';
+		$this->params['js'][] = 'test';
+
 
 		// store error message
 		$errMsg = null;
