@@ -3,6 +3,7 @@
 
 require_once 'models/product.class.php';
 require 'models/order.class.php';
+require 'helper/filter.class.php';
 
 
 class PagesController extends Controller
@@ -19,8 +20,8 @@ class PagesController extends Controller
 		$this->params['title'] = 'Login';
 		//$this->params['js'][] = 'savePW';
 		$this->params['js'][] = 'test';
-		
-		
+
+
 		// store error message
 		$errMsg = null;
 
@@ -250,6 +251,26 @@ class PagesController extends Controller
 		$typeSnacks = 0;
 		$products = Product::getProductsByType($typeSnacks);
 		$this->params['products'] = $products;
+		$this->_params['js'][] = 'products';
+
+		if (isset($_GET['applyFilter'])) {
+			$products = Filter::applyFilter($products);
+		}
+
+		// dynamically load products
+		if (isset($_GET['ajax'])) {
+			$productCount = $_GET['productCount'];
+			$products = array_slice($products, $productCount, 10);
+			$productArray = [];
+			foreach ($products as $product) {
+				$productArray[] = $product->toArray();
+			}
+			$result['productCount'] = $productCount;
+			$result['products'] = $productArray;
+			$result = json_encode($result);
+			echo $result;
+			exit(0);
+		}
 	}
 
 	public function actionGetränke()

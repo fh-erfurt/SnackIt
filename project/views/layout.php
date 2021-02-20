@@ -69,7 +69,13 @@
 			?>
 		</main>
 	</div>
-	
+
+
+	<?php if (isset($js) && is_array($js)) : ?>
+		<?php foreach ($js as $file) : ?>
+			<script src='assets/js/<?= $file ?>.js'></script>
+		<?php endforeach; ?>
+	<?php endif; ?>
 </body>
 <footer>
 	<br>
