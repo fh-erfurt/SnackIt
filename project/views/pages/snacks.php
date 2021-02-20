@@ -6,6 +6,9 @@
 
 <form method='get'>
     <div class="products">
+        <section class='search column'>
+            <? include(__DIR__ . '/../viewparts/filter.php');?>
+        </section>
 
         <?foreach($products as $id => $product): ?>
         <article class='product'>
