@@ -1,0 +1,17 @@
+.filter{
+
+}
+
+.filter input{
+    padding: 0px;
+    height: 20px;
+    width: 100%;
+    border: none;
+    color: white;
+    background-color: #212121;
+}
+
+.filter input[type=number], input[type=search]{
+    -webkit-text-fill-color: white;
+    -webkit-box-shadow: 0 0 0px 1000px #212121 inset;
+}
