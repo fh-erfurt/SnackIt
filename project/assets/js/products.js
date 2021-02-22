@@ -1,3 +1,5 @@
+//this is for the dynamic load of the items in the shop
+
 function dynLoadContentOnScroll(){
     var content = document.getElementById('products');
     var contentOffset = getOffset(content);

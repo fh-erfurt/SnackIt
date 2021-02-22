@@ -14,7 +14,7 @@
 	<? endif;?>
 	<br />
 	<section class=registerStyle>
-
+<!-- The register form -->
 	<form method='POST'>
 		<label for='firstname'>Vorname</label> <br />
 		<input type='text' name='firstname' id='firstname' value=<?=isset($_POST['firstname']) ? htmlspecialchars($_POST['firstname']) : '';?> ><br />

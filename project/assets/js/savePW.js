@@ -1,4 +1,4 @@
-//variable
+//gives the user feedback if he does something wrong in the login
 
 document.addEventListener('DOMContentLoaded', function(){
 	var btnSubmit = document.getElementById('submitBtn');

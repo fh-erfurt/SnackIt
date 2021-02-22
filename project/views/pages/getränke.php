@@ -7,11 +7,11 @@
 
 
 <div class="products">
-    <section class='search column'>
+    <section>
         <? include(__DIR__ . '/../viewparts/filter.php');?>
     </section>
     <?foreach($products as $id => $product): ?>
-    <article class='product'>
+    <article>
         <a href='index.php?c=pages&a=item&id=<?= $product->productId ?>'>
             <div>
                 <span><img class='img' src='assets/pictures/products/<?= $product->ProdName; ?>.png'></span><br>

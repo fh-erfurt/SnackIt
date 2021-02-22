@@ -62,4 +62,8 @@
     </ul>
     <p style="margin-top:15px;">Quelle: Erstellt mit dem <a title="Datenschutz Generator Deutschland" href="https://www.adsimple.de/datenschutz-generator/" target="_blank" rel="follow" style="text-decoration:none;">Datenschutz Generator</a> von AdSimple in Kooperation mit <a href="https://www.hashtagmann.de" target="_blank" rel="follow" title="">hashtagmann.de</a>
     </p>
+	<br>
+	<br>
+	<h2><a href='index.php?c=pages&a=dokumentation'>Unsere Dokumentation</a></h2>
 </div>
+

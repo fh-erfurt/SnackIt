@@ -15,7 +15,7 @@
  
 	<br>
 	<br>
-
+	<!-- The Login Form -->
 	<form method='post' name='loginForm' id=login-form>
 		<label class="email" for='email'>E-Mail</label> <br>
 		<input type='email' name='email' id='email' value=<?=isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '';?> ><br>

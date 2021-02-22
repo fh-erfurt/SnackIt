@@ -1,4 +1,4 @@
-//variable
+//For giving the user errors when he does something wrong in the registration
 
 
 
@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function(){
 	if(inputPassword)
 	{
 		
-		
+		//gives the user a feedback when the password is safe enough
 		inputPassword.addEventListener('keyup', function(){
 			
 			var regex1 = /^(?=.*?[A-Z].*?)(?=.*?[a-z].*?)(?=.*?[0-9].*?).{6,}$/m;

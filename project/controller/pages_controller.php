@@ -1,6 +1,6 @@
 <?php
 
-
+//Here most of the functions and all variables that the pages use
 require_once 'models/product.class.php';
 require 'models/order.class.php';
 require 'helper/filter.class.php';
@@ -16,9 +16,9 @@ class PagesController extends Controller
 	}
 
 	public function actionLogin()
-	{
+	{	//this->params gives the variable to the page
 		$this->params['title'] = 'Login';
-		//$this->params['js'][] = 'savePW';
+		
 		$this->params['js'][] = 'test';
 
 
@@ -34,13 +34,15 @@ class PagesController extends Controller
 		// check user send login field
 		if (isset($_POST['submitBtn'])) {
 
+
+			//set cookie when user sets remember me on login 
 			if ($_POST['rememberMe']) {
 				$duration = time() + 3600 * 24 * 30;
 				setcookie('Email', $email, $duration, '/');
 				setcookie('Password', $password, $duration, '/');
 			}
 
-
+				//validates the acc
 			if (validateAccount($email, $password)) {
 
 				$_SESSION['loggedIn'] = true;
@@ -67,8 +69,10 @@ class PagesController extends Controller
 	{
 		$this->params['title'] = 'Registrierung';
 		$this->params['ErrorMsg'] = null;
+		
 		if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] === false) {
 			if (isset($_POST['submit'])) {
+				//gets the variables from the register
 				$input['email']    = htmlspecialchars($_POST['email']) ?? null;
 				$input['password'] = htmlspecialchars($_POST['password']) ?? null;
 				$input['password2'] = htmlspecialchars($_POST['password2']) ?? null;
@@ -83,7 +87,7 @@ class PagesController extends Controller
 				//passwords should be the same
 				if ($input['password'] == $input['password2']) {
 					if (!containsNullValue($input)) {
-
+						//inserts the acc
 						$this->params['ErrorMsg'] = insertnewAccount(
 							$input['email'],
 							$input['password'],
@@ -107,6 +111,7 @@ class PagesController extends Controller
 
 	public function actionLogout()
 	{
+		//destroys session and cookie
 		setcookie('Email', '', -1, '/');
 		setcookie('Password', '', -1, '/');
 		session_destroy();
@@ -120,6 +125,7 @@ class PagesController extends Controller
 
 		$db = $GLOBALS['db'];
 		$Account = [];
+		//gets the acc from the session
 		$Account = getAccountDataById($_SESSION['accountId']);
 		$this->params['Account'] = $Account;
 
@@ -222,6 +228,11 @@ class PagesController extends Controller
 		$this->params['title'] = 'AGB';
 	}
 
+	public function actionError404()
+	{
+		$this->params['title'] = 'Error404';
+	}
+
 	public function actionDatenschutzerklärung()
 	{
 		$this->params['title'] = 'Datenschutzerklärung';
@@ -235,7 +246,8 @@ class PagesController extends Controller
 	public function actionStartseite()
 	{
 		$this->params['title'] = 'Alles was du brauchst!';
-
+		
+		//autologin over the cookie 
 		if (isset($_COOKIE['Email']) && isset($_COOKIE['Password'])) {
 			if (validateAccount($_COOKIE['Email'], $_COOKIE['Password'])) {
 				$_SESSION['loggedIn'] = true;
@@ -276,6 +288,15 @@ class PagesController extends Controller
 	public function actionGetränke()
 	{
 		$this->params['title'] = 'Getränke';
+
+		$typeDrinks = 1;
+		$products = Product::getProductsByType($typeDrinks);
+		$this->params['products'] = $products;
+	}
+	
+	public function actionDokumentation()
+	{
+		$this->params['title'] = 'Dokumentation';
 
 		$typeDrinks = 1;
 		$products = Product::getProductsByType($typeDrinks);
@@ -332,7 +353,7 @@ class PagesController extends Controller
 					$_SESSION['shoppingCartCount'] = 0;
 				}
 				$_SESSION['shoppingCartCount'] += intval($_POST['count']);
-				//MUSS GEÄNDERT WERDEN DAMIT MAN IMMER JEWEILS AUF DIE SNACKS ODER GETRÄNKE SEITE ZURÜCK KOMMT
+				
 				//header('Location: index.php?a=Startseite');
 				exit(0);
 			}

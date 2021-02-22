@@ -11,28 +11,28 @@
 <? if(isset($order->products[0])): ?>
 </br>
 <section class=shoppingtable>
-    <section class='products productTable'>
+    <section class='productTable'>
         <div class='tableHeader row'>
-            <span class='head col noRightBorder'></span>
-            <span class='head col'>Produktname</span>
-            <span class='head col'>Einzelpreis</span>
-            <span class='head col'>Menge</span>
-            <span class='head col noRightBorder'>Gesamtpreis</span>
+            <span class='col noRightBorder'></span>
+            <span class='col'>Produktname</span>
+            <span class='col'>Einzelpreis</span>
+            <span class='col'>Menge</span>
+            <span class='col noRightBorder'>Gesamtpreis</span>
         </div>
         <div class='tableBody'>
             <? foreach($order->products as $productEntry):
             $product = $productEntry['product'];
             $count = $productEntry['count'];?>
-            <article class='product row'>
+            <article class='row'>
                 <a href='index.php?c=pages&a=item&id=<?= $product->productId ?>'>
                     <div class='imageContainer col'>
                         <img class='img' src='assets/pictures/products/<?= $product->ProdName; ?>.png'>
                     </div>
-                    <span class='productTitle col'><?= $product->ProdName ?></span>
+                    <span class='col'><?= $product->ProdName ?></span>
                 </a>
                 <span class='productPrice col'><?= $product->Price ?></span>
                 <span class='count col'><?= $count ?></span>
-                <span class='totalProductPrice col noRightBorder'><?= floatval($product->Price) * intval($count) ?></span>
+                <span class='col noRightBorder'><?= floatval($product->Price) * intval($count) ?></span>
             </article>
             <? endforeach;?>
         </div>
@@ -41,21 +41,21 @@
 <?elseif( isset($products)):?>
 </br>
 <section class=shoppingtable>
-    <section class='products productTable'>
+    <section class='productTable'>
         <div class='tableHeader row'>
-            <span class='head col'></span>
-            <span class='head col'></span>
-            <span class='head col'>Produktname</span>
-            <span class='head col'>Einzelpreis</span>
-            <span class='head col'>Menge</span>
-            <span class='head col'>Gesamtpreis</span>
-            <span class='head col'>Entfernen</span>
+            <span class='col'></span>
+            <span class='col'></span>
+            <span class='col'>Produktname</span>
+            <span class='col'>Einzelpreis</span>
+            <span class='col'>Menge</span>
+            <span class='col'>Gesamtpreis</span>
+            <span class='col'>Entfernen</span>
         </div>
         <div class='tableBody'>
             <? foreach($products as $productEntry):
             $product = $productEntry['product'];
             $count = $productEntry['count'];?>
-            <article class='product row'>
+            <article class='row'>
                 <a href='index.php?c=pages&a=item&id=<?= $product->productId ?>'>
                     <div class='imageContainer col'><img class='img' src='assets/pictures/products/<?= $product->ProdName; ?>.png'>
                 </a>

@@ -13,7 +13,7 @@
     <br>
 
     <form method=post>
-
+<!-- The Profile Page with all its options -->
         <? if(isset($changeEmail) && $changeEmail === true):?>
         <section class=Email>
             <h2>Email ändern</h2> <br>
@@ -23,6 +23,7 @@
 
         </section>
         <br>
+		<!-- If the right button is set the menue of the option opens -->
         <? elseif(isset($changePassword) && $changePassword === true):?>
         <section class=password>
             <h2>Passwort ändern</h2> <br>
@@ -58,7 +59,7 @@
 
 
         <section class=change>
-
+<!-- all the buttons -->
             <? if(isset($changeEmail) && $changeEmail === true):?>
             <input class='button' type=submit name=confirmEmail value='Email aktualisieren'> <br>
             <br>
