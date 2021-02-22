@@ -4,6 +4,7 @@
 require_once 'models/product.class.php';
 require 'models/order.class.php';
 require 'helper/filter.class.php';
+require 'models/address.class.php';
 
 
 class PagesController extends Controller
@@ -409,5 +410,21 @@ class PagesController extends Controller
 			$this->params['products'] = $products;
 			$this->params['totalPrice'] = $totalPrice;
 		}
+		if (isset($_POST['pay'])) {
+			header('Location: index.php?a=Checkout');
+		}
+	}
+
+	public function actionCheckout()
+	{
+		$this->params['title'] = 'Checkout';
+
+		$account = [];
+		//gets the acc from the session
+		$account = getAccountDataById($_SESSION['accountId']);
+		$this->params['account'] = $account;
+		$address = [];
+		$address = Address::getAddressById($account->addressId);
+		$this->params['address'] = $address;
 	}
 }

@@ -101,7 +101,7 @@
     <form method=post>
         <span class=totalPrice> Gesamtpreis: <?= $totalPrice ?>€</span></br>
         <br>
-        <input type=submit name=pay value='Zur Kasse gehen' class='payButton'></br>
+        <input type=submit name=pay value='Zur Kasse gehen' class='payButton'><a href='index.php?c=pages&a=Checkout'></a></br>
     </form>
 </section>
 
