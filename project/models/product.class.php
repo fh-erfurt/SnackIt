@@ -130,7 +130,7 @@ class Product extends \si\models\baseModel
             // set the new productId
             $productId = $this->queryproductId();
             if ($productId !== false) {
-                $this->data['addressId'] = $addressId;
+                $this->data['productId'] = $productId;
             }
             return true;
         } catch (\PDOException $e) {

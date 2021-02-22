@@ -38,7 +38,7 @@ START TRANSACTION;
 USE `SnackIt`;
 INSERT INTO `Product` (`productId`, `createdAt`, `updatedAt`, `prodname`, `price`, `prodType`, `onStock`) VALUES (1, DEFAULT, NULL, 'Pringles Original Chips 200g', 2.50, 0, 30);
 INSERT INTO `Product` (`productId`, `createdAt`, `updatedAt`, `prodname`, `price`, `prodType`, `onStock`) VALUES (2, DEFAULT, NULL, 'Pringles Sour Cream & Onion Chips 200g', 2.60, 0, 45);
-INSERT INTO `Product` (`productId`, `createdAt`, `updatedAt`, `prodname`, `price`, `prodType`, `onStock`) VALUES (3, DEFAULT, NULL, 'ja! Happy Knabberbox 300g', 3.20, 0, 54);
+INSERT INTO `Product` (`productId`, `createdAt`, `updatedAt`, `prodname`, `price`, `prodType`, `onStock`) VALUES (3, DEFAULT, NULL, 'ja! Happy Knabberbox 300g', 3.20, 0, 0);
 INSERT INTO `Product` (`productId`, `createdAt`, `updatedAt`, `prodname`, `price`, `prodType`, `onStock`) VALUES (4, DEFAULT, NULL, 'Maryland Studentenfutter 300g', 4.99, 0, 20);
 INSERT INTO `Product` (`productId`, `createdAt`, `updatedAt`, `prodname`, `price`, `prodType`, `onStock`) VALUES (5, DEFAULT, NULL, 'Lorenz Geistes Blitzer 125g', 1.99, 0, 40);
 INSERT INTO `Product` (`productId`, `createdAt`, `updatedAt`, `prodname`, `price`, `prodType`, `onStock`) VALUES (6, DEFAULT, NULL, 'Quelly Vita 10 ACE Getränk 1,5l(EINWEG)', 1.99, 1, 36);
