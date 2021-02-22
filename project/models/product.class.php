@@ -1,15 +1,15 @@
 <?php
 
-require_once __DIR__.'/baseModel.class.php';
+require_once __DIR__ . '/baseModel.class.php';
 //require_once __DIR__.'/property.class.php';
 
 class Product extends \si\models\baseModel
 {
     const PRODUCT_TYPES = [
         'Snacks' => 0,
-        'Drinks' => 1, 
-        'Bundles' => 2, 
-       ];
+        'Drinks' => 1,
+        'Bundles' => 2,
+    ];
     const TABLENAME = 'Product';
     const P_H_P_TABLENAME = 'Product_has_Property';
     private $data;
@@ -25,8 +25,7 @@ class Product extends \si\models\baseModel
 
     public function __get($key)
     {
-        if(isset($this->data[$key]))
-        {
+        if (isset($this->data[$key])) {
             return $this->data[$key];
         }
     }
@@ -45,40 +44,33 @@ class Product extends \si\models\baseModel
         $db = $GLOBALS['db'];
         $product = null;
 
-        try
-        {
+        try {
             $sql = 'SELECT productId, ProdName, Price, ProdType, OnStock FROM product WHERE productId = ' . $db->quote($id) . ';';
             $result = $db->query($sql)->fetch();
 
-            if(!empty($result))
-            {
+            if (!empty($result)) {
                 $product = new Product($result['ProdName'], $result['Price'], $result['ProdType'], $result['OnStock']);
                 $product->productId = $result['productId'];
                 //$product->loadProperties();
             }
             return $product;
-        }
-        catch(\PDOException $e)
-        {
+        } catch (\PDOException $e) {
             die('Error recieving product with id "' . $id . '": ' . $e->getMessage());
         }
     }
 
-    
+
     public static function getProductsByType($type)
     {
         $db = $GLOBALS['db'];
         $products = [];
 
-        try
-        {
+        try {
             $sql = 'SELECT productId, ProdName, Price, ProdType, OnStock FROM product WHERE ProdType = ' . $type . ';';
             $result = $db->query($sql)->fetchAll();
-          
-            if(!empty($result))
-            {
-                foreach($result as $row)
-                {
+
+            if (!empty($result)) {
+                foreach ($result as $row) {
                     $product = new Product($row['ProdName'], $row['Price'], $row['ProdType'], $row['OnStock']);
                     $product->productId = $row['productId'];
                     //$product->loadProperties();
@@ -86,10 +78,30 @@ class Product extends \si\models\baseModel
                 }
             }
             return $products;
-        }
-        catch(\PDOException $e)
-        {
+        } catch (\PDOException $e) {
             die('Error recieving all products of type "' . $type . '": ' . $e->getMessage());
+        }
+    }
+
+    /**
+     * returns the productId which belongs to the combination of name and prodType
+     */
+    private function queryProductId()
+    {
+        $db = $GLOBALS['db'];
+        try {
+            $sql = 'SELECT productId FROM ' . self::tablename() .
+                ' WHERE name = '    . $db->quote($this->name) .
+                ' AND prodType = '  . $db->quote($this->prodType) . ';';
+
+            $result = $db->query($sql)->fetch();
+
+            if (!empty($result['productId'])) {
+                return $result['productId'];
+            }
+            return false;
+        } catch (\PDOException $e) {
+            die('Select statement failed: ' . $e->getMessage());
         }
     }
 
@@ -99,16 +111,14 @@ class Product extends \si\models\baseModel
     public function insert()
     {
         $db = $GLOBALS['db'];
-        try
-        {  
+        try {
             //check if this product already exists in DB
             $productId = $this->queryproductId();
-            if($productId !== false)
-            {
+            if ($productId !== false) {
                 return false;
             }
 
-            $sql = 'INSERT INTO ' . self::tablename() . ' (ProdName, Price, ProdType, OnStock) VALUES (:ProdName, :Price, :ProdType, :OnStock);'; 
+            $sql = 'INSERT INTO ' . self::tablename() . ' (ProdName, Price, ProdType, OnStock) VALUES (:ProdName, :Price, :ProdType, :OnStock);';
             $statement = $db->prepare($sql);
             $statement->bindParam(':ProdName', $this->ProdName);
             $statement->bindParam(':Price', $this->Price);
@@ -119,24 +129,20 @@ class Product extends \si\models\baseModel
 
             // set the new productId
             $productId = $this->queryproductId();
-            if($productId !== false)
-            {
+            if ($productId !== false) {
                 $this->data['addressId'] = $addressId;
             }
             return true;
-        }
-        catch(\PDOException $e)
-        {
+        } catch (\PDOException $e) {
             die('Error inserting product: ' . $e->getMessage());
         }
     }
 
-    
+
 
     public function getProperty($type)
     {
-        if(isset($this->properties[$type]))
-        {
+        if (isset($this->properties[$type])) {
             return $this->properties[$type];
         }
         return null;
@@ -211,5 +217,5 @@ class Product extends \si\models\baseModel
             die('Error deleting product: ' . $e->getMessage());
         }
     }
-    */ 
+    */
 }
