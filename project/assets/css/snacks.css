@@ -3,9 +3,10 @@ main{
     justify-content: left;
 }
 
-.searchColumn{
+.filter{
     text-align: left;
-    padding-top: 100px;
+    padding-top: 30px;
+    width: 400px;
 }
 
 
@@ -51,15 +52,30 @@ article:hover{
 
 @media screen and (max-width: 768px){
 
-    article{
+    main{
+        display: block;
+    }
 
+    .filter{
+        width: 80%;
+        padding-top: 10px;
+        margin-left: 10px;
+    }
+
+    article{
+        display: block;
     }
 
     .products{
         width: 100%;
-        margin: 0px;
+        margin: auto;
     }
 
-    .img{
+    .product{
+        width: 90%;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 10px;
     }
 }
