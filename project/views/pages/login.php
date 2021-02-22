@@ -17,15 +17,15 @@
 	<br>
 	<!-- The Login Form -->
 	<form method='post' name='loginForm' id=login-form>
-		<label class="email" for='email'>E-Mail</label> <br>
+		<label for='email'>E-Mail</label> <br>
 		<input type='email' name='email' id='email' value=<?=isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '';?> ><br>
 		<br>
-		<label class="password" for='password' >Passwort</label> <br>
+		<label for='password' >Passwort</label> <br>
 		<input type='password' name='password' id='password'/><br>
 		<br>
 		<input type='submit' name='submitBtn' value='Anmelden' class='loginButton' id='submitBtn'><br>
 		<br>
-		<input type="checkbox" class="check" name="rememberMe" id="check" value="set"
+		<input type="checkbox" name="rememberMe" id="check" value="set"
         <?=isset($_POST['rememberMe']) ? 'checked' : ''?>>
 		<label for="check">angemeldet bleiben?</label><br>
 		<br>

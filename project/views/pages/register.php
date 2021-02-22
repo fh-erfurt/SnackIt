@@ -10,10 +10,10 @@
 	<h1>Registriere dich jetzt</h1>
 	<br>
 	<? if(isset($error)): ?>
-		<p class='errorMessage'><?=$error?></p>
+		<p><?=$error?></p>
 	<? endif;?>
 	<br />
-	<section class=registerStyle>
+	<section>
 <!-- The register form -->
 	<form method='POST'>
 		<label for='firstname'>Vorname</label> <br />
