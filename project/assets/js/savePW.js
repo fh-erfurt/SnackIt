@@ -1,7 +1,5 @@
 //variable
 
-
-
 document.addEventListener('DOMContentLoaded', function(){
 	var btnSubmit = document.getElementById('submitBtn');
 	var inputEmail = document.getElementById('email');
@@ -13,17 +11,23 @@ document.addEventListener('DOMContentLoaded', function(){
 			btnSubmit.addEventListener('click', function(){
 			var valid = true;
 			var emailReg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
-			
-			if(!inputEmail.value.lenght || !inputEmail.value.match(emailReg))
+
+				
+			if(!inputPassword.value.length)
+			{
+				giveErrorMsg('Bitte Passwort eingeben');
+				valid = false;
+				
+				inputPassword.style.border = '2px solid red';
+				
+			}
+						
+			if(!inputEmail.value.length || !inputEmail.value.match(emailReg))
 			{
 				giveErrorMsg('Bitte gültige Email eingeben');
 				valid = false;
-			}
-			
-			if(!inputPassword.value.lenght || inputPassword.value.lenght < 8){
-				giveErrorMsg('Passwort ungültig');
-				valid = false;
 				
+				inputEmail.style.border = '2px solid red';
 			}
 			
 			if(valid === false)

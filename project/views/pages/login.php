@@ -4,6 +4,7 @@
 <title><?=isset($title)? 'SnackIt: '. $title : 'SnackIt'?></title>
 </head>
 
+<body>
 <div class="login">
 	<br>
 	<h1>Login</h1>
@@ -22,17 +23,19 @@
 		<label class="password" for='password' >Passwort</label> <br>
 		<input type='password' name='password' id='password'/><br>
 		<br>
-		<input type='submit' name='submitBtn' value='Anmelden' class='loginButton'><br>
+		<input type='submit' name='submitBtn' value='Anmelden' class='loginButton' id='submitBtn'><br>
 		<br>
 		<input type="checkbox" class="check" name="rememberMe" id="check" value="set"
         <?=isset($_POST['rememberMe']) ? 'checked' : ''?>>
 		<label for="check">angemeldet bleiben?</label><br>
 		<br>
-		<p class="error"><?echo $errMsg;?></p><br>
+		<p class="error" id="errorfield"><?echo $errMsg;?></p><br>
 		<p class='noAcc' for='Register'>Noch kein Konto?<a class='registerNow' href='index.php?c=pages&a=register'> Jetzt registrieren</a></p>  <br>
 
 
 		<br>
 	</form>
+	</section>
 </div>	
-</section>
+<script src='assets/js/savePW.js'></script>
+</body>

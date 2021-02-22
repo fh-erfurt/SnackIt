@@ -332,7 +332,8 @@ class PagesController extends Controller
 					$_SESSION['shoppingCartCount'] = 0;
 				}
 				$_SESSION['shoppingCartCount'] += intval($_POST['count']);
-				header('Location: index.php?a=Startseite');
+				//MUSS GEÄNDERT WERDEN DAMIT MAN IMMER JEWEILS AUF DIE SNACKS ODER GETRÄNKE SEITE ZURÜCK KOMMT
+				//header('Location: index.php?a=Startseite');
 				exit(0);
 			}
 		}
