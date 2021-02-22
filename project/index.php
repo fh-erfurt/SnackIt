@@ -17,6 +17,11 @@ require_once 'core/controller.class.php';
 // start session to handle login
 session_start();
 
+if (!isset($_SESSION['loggedIn'])){
+	
+	$_SESSION['loggedIn'] = false;
+}
+
 // check which controller should be loaded
 $controllerName = 'pages'; // default controller if noting is set
 $actionName = 'startseite'; // default action if nothing is set

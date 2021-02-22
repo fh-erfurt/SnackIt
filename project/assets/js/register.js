@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', function(){
 	var inputPassword2 = document.getElementById('password2');
 	var inputFirstname = document.getElementById('firstname');
 	var inputLastname = document.getElementById('lastname');
-	
 	var inputCity = document.getElementById('city');
 	var inputZipcode = document.getElementById('zipcode');
 	var inputStreet = document.getElementById('street');
@@ -18,11 +17,11 @@ document.addEventListener('DOMContentLoaded', function(){
 	
 	if(btnSubmit)
 	{
-			alert("geht");
+		
 		btnSubmit.addEventListener('click', function(){
 			var valid = true;
 			var emailReg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
-			var regex = /^(?=.*?[A-Z].*?[A-Z])(?=.*?[a-z].*?[a-z])(?=.*?[0-9].*?[0-9])(?=.*?[^\w\s].*?[^\w\s]).{12,}$/m;
+			var regex = /^(?=.*?[A-Z].*?)(?=.*?[a-z].*?[a-z])(?=.*?[0-9].*?[0-9])(?=.*?[^\w\s].*?).{8,}$/m;
 					
 			
 			if(!inputnumber.value.length)
@@ -118,16 +117,13 @@ document.addEventListener('DOMContentLoaded', function(){
 			
 			var regex1 = /^(?=.*?[A-Z].*?)(?=.*?[a-z].*?)(?=.*?[0-9].*?).{6,}$/m;
 			var regex2 = /^(?=.*?[A-Z].*?)(?=.*?[a-z].*?[a-z])(?=.*?[0-9].*?[0-9])(?=.*?[^\w\s].*?).{8,}$/m;
-			var regex3 = /^(?=.*?[A-Z].*?[A-Z])(?=.*?[a-z].*?[a-z])(?=.*?[0-9].*?[0-9])(?=.*?[^\w\s].*?[^\w\s]).{12,}$/m;
+			
 			var str = this.value;
 			
-			if(inputPassword.value.match(regex3))
+			
+			if(inputPassword.value.match(regex2))
 			{
 				inputPassword.style.border = '2px solid green';
-			}
-			else if(inputPassword.value.match(regex2))
-			{
-				inputPassword.style.border = '2px solid blue';
 			}
 			else if(inputPassword.value.match(regex1))
 			{
