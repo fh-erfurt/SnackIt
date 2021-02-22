@@ -23,7 +23,7 @@ class Filter
         if (isset($_GET['minPrice']) && is_numeric($_GET['minPrice'])) {
             $minPrice = $_GET['minPrice'];
             $filterByMinPrice = function ($product) use ($minPrice) {
-                return floatval($product->price) >= floatval($minPrice);
+                return floatval($product->Price) >= floatval($minPrice);
             };
             $products = array_filter($products, $filterByMinPrice);
         }
@@ -38,7 +38,7 @@ class Filter
         // filter onStock
         if (isset($_GET['onStock'])) {
             $filterByOnStock = function ($product) {
-                return intval($product->onStock) > 0;
+                return intval($product->OnStock) > 0;
             };
             $products = array_filter($products, $filterByOnStock);
         }
