@@ -14,7 +14,7 @@ class Filter
         if (isset($_GET['name']) && $_GET['name'] != '') {
             $nameToFilter = $_GET['name'];
             $filterByName = function ($product) use ($nameToFilter) {
-                return (strpos(strtolower($product->name), $nameToFilter) !== FALSE);
+                return (strpos(strtolower($product->ProdName), $nameToFilter) !== FALSE);
             };
             $products = array_filter($products, $filterByName);
         }
@@ -30,7 +30,7 @@ class Filter
         if (isset($_GET['maxPrice']) && is_numeric($_GET['maxPrice'])) {
             $maxPrice = $_GET['maxPrice'];
             $filterByMaxPrice = function ($product) use ($maxPrice) {
-                return floatval($product->price) <= floatval($maxPrice);
+                return floatval($product->Price) <= floatval($maxPrice);
             };
             $products = array_filter($products, $filterByMaxPrice);
         }
