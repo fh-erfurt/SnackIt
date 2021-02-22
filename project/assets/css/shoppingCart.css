@@ -4,15 +4,17 @@
     font-size: large;
 }
 
-.img {
-    width: 150px;
-    height: auto;
+h1{
+    text-align: center;
+    display: block;
+    font-size: 30px;
+    font-weight: bold;
 }
 
 .productTable{
     display: table;
     text-align: center;
-    margin: 0px 20%;
+    margin: 0px auto;
 }
 
 .productTable .tableHeader{
@@ -33,7 +35,7 @@
 }
 
 .productTable .imageContainer{
-    width: 1%;
+
     white-space: nowrap;
     border-right: none;
 }
@@ -83,5 +85,35 @@
   }
   
   .img{
-      width: 200px;
+      width: 150px;
+  }
+
+  .empty{
+      margin-top: 10%;
+      text-align: center;
+      font-size: 50px;
+      color: #FF6E00;
+      font-weight: bold;
+      font-style: italic;
+  }
+
+  .summary{
+      width: 300px;
+      margin: auto;
+      margin-bottom: 150px;
+      text-align: center;
+  }
+
+  .payButton{
+    border: none;
+    font-size: large;
+    cursor: pointer;
+    height: 50px !important;
+    background-color: #FF6E00;
+    padding: 0px;
+  }
+
+  .payButton:hover{
+    background-color: #dd6000;
+
   }

@@ -1,3 +1,14 @@
+main{
+    display: flex;
+    justify-content: left;
+}
+
+.searchColumn{
+    text-align: left;
+    width: 20%;
+    padding-top: 100px;
+}
+
 article{
     font-style: none;
     width: 200px;
@@ -18,7 +29,6 @@ article a{
 
 .products{
     width: 70%;
-    margin-left: 30%;
 }
 
 .img{

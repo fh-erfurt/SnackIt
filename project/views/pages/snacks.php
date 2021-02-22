@@ -4,11 +4,13 @@
     <title><?= isset($title) ? 'SnackIt: ' . $title : 'SnackIt' ?></title>
 </head>
 
+<section class='searchColumn'>
+    <? include(__DIR__ . '/../viewparts/filter.php');?>
+</section>
+
 <form method='get'>
     <div class="products">
-        <section class='search column'>
-            <? include(__DIR__ . '/../viewparts/filter.php');?>
-        </section>
+
 
         <?foreach($products as $id => $product): ?>
         <article class='product'>

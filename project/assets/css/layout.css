@@ -140,6 +140,25 @@ nav .icon-burger .line {
 	transition: all .3s ease-in-out;
 }
 
+footer{
+    flex-shrink: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    background-color: rgb(59, 59, 59);
+    text-align: center;
+}
+
+footer a{
+    color: black;
+    padding:10px;
+}
+
+footer a:hover{
+    color: white;
+}
+
 @media screen and (max-width: 768px) {
 
 	body{
@@ -198,21 +217,3 @@ nav .icon-burger .line {
 	}
 }
 
-footer{
-    flex-shrink: 0;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    color: white;
-    background-color: rgb(59, 59, 59);
-    text-align: center;
-}
-
-footer a{
-    color: black;
-    padding:10px;
-}
-
-footer a:hover{
-    color: white;
-}

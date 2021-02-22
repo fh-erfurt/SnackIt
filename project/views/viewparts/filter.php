@@ -1,4 +1,6 @@
-<form method=get>
+<link rel='stylesheet' type='text/css' href='assets/css/filter.css'>
+
+<form class="filter" method=get>
     <? if(isset($_GET['c'])): ?>
     <input type=hidden name='c' value='<?= $_GET['c'] ?>' ?>
     <? endif; ?>
@@ -61,7 +63,7 @@
     <? endforeach; ?>
     <? endif; ?>
     <input type=submit name='applyFilter' value='OK'>
+    <span class=note>
+        * Mehrfachauswahl möglich
+    </span>
 </form><br>
-<span class=note>
-    * Mehrfachauswahl möglich
-</span>

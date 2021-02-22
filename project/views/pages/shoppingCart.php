@@ -5,19 +5,24 @@
     <title><?= isset($title) ? 'SnackIt: ' . $title : 'SnackIt' ?></title>
 </head>
 
+<br>
 </br>
-<h1 class=yourshoppingcart>Ihr Einkaufswagen</h1>
+<h1>Ihr Einkaufswagen</h1><br>
+<br>
+<br>
 
 <? if(isset($order->products[0])): ?>
 </br>
 <section class=shoppingtable>
     <section class='products productTable'>
         <div class='tableHeader row'>
-            <span class='head col noRightBorder'></span>
+            <span class='head col'></span>
+            <span class='head col'></span>
             <span class='head col'>Produktname</span>
             <span class='head col'>Einzelpreis</span>
             <span class='head col'>Menge</span>
-            <span class='head col noRightBorder'>Gesamtpreis</span>
+            <span class='head col'>Gesamtpreis</span>
+            <span class='head col'>Entfernen</span>
         </div>
         <div class='tableBody'>
             <? foreach($order->products as $productEntry):
@@ -25,16 +30,22 @@
             $count = $productEntry['count'];?>
             <article class='product row'>
                 <a href='index.php?c=pages&a=item&id=<?= $product->productId ?>'>
-                    <div class='imageContainer col'>
-                        <img class='img' src='assets/pictures/products/<?= $product->ProdName; ?>.png'>
-                    </div>
-                    <span class='productTitle col'><?= $product->ProdName ?></span>
+                    <div class='imageContainer col'><img class='img' src='assets/pictures/products/<?= $product->ProdName; ?>.png'>
                 </a>
-                <span class='productPrice col'><?= $product->Price ?></span>
-                <span class='count col'><?= $count ?></span>
-                <span class='totalProductPrice col noRightBorder'><?= floatval($product->Price) * intval($count) ?></span>
-            </article>
-            <? endforeach;?>
+        </div>
+        <span class='col'><a href='index.php?c=pages&a=item&id=<?= $product->productId ?>'><?= $product->ProdName ?></a></span>
+        <span class='col'><?= $product->Price ?>€</span>
+        <span class='col'>
+            <div class="number-input">
+                <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">-</button>
+                <input class="col" min="0" max=<?= $product->OnStock ?> name="count" value="<?= $count ?>" type="number">
+                <button type="button" content onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus">+</button>
+            </div>
+        </span>
+        <span class='col'><?= number_format(floatval($product->Price) * intval($count), 2) ?>€</span>
+        <span class='col'><button class="delete" type="button">x</button></span>
+        </article>
+        <? endforeach;?>
         </div>
     </section>
 </section>
@@ -61,7 +72,7 @@
                 </a>
         </div>
         <span class='col'><a href='index.php?c=pages&a=item&id=<?= $product->productId ?>'><?= $product->ProdName ?></a></span>
-        <span class='col'><?= $product->Price ?></span>
+        <span class='col'><?= $product->Price ?>€</span>
         <span class='col'>
             <div class="number-input">
                 <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">-</button>
@@ -69,7 +80,7 @@
                 <button type="button" content onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus">+</button>
             </div>
         </span>
-        <span class='col'><?= floatval($product->Price) * intval($count) ?></span>
+        <span class='col'><?= number_format(floatval($product->Price) * intval($count), 2) ?>€</span>
         <span class='col'><button class="delete" type="button">x</button></span>
         </article>
         <br>
@@ -78,15 +89,20 @@
         </div>
     </section>
 
+    <? else:?>
+    <div class="empty">Ihr Einkaufswagen ist leer!</div>
+    <? endif;?>
+
+    <? if(isset($order->products[0]) ||  isset($products)): ?>
+
 </section>
 </br>
 <section class=summary>
     <form method=post>
-        <span class=totalPrice> Gesamtpreis: <?= $totalPrice ?> €</span></br>
+        <span class=totalPrice> Gesamtpreis: <?= $totalPrice ?>€</span></br>
+        <br>
         <input type=submit name=pay value='Zur Kasse gehen' class='payButton'></br>
     </form>
 </section>
 
-<? else:?>
-<h3>Ihr Einkaufswagen ist leer!</h3>
-<? endif;?>
+<?endif?>
