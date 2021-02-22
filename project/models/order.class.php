@@ -152,7 +152,6 @@ class Order extends si\models\baseModel
         try {
             $sql = 'SELECT productId, ProductCount FROM Product_to_Order WHERE orderId = ' . $db->quote($orderId) . ';';
             $result = $db->query($sql)->fetchAll();
-            var_dump($result);
             if (!empty($result)) {
                 $this->data['products'] = [];
                 foreach ($result as $row) {

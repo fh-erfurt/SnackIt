@@ -375,7 +375,7 @@ class PagesController extends Controller
 				}
 				$_SESSION['shoppingCartCount'] += intval($_POST['count']);
 
-				//header('Location: index.php?a=Startseite');
+				header('Location: index.php?a=Startseite');
 				exit(0);
 			}
 		}
@@ -392,7 +392,7 @@ class PagesController extends Controller
 			$order = Order::getOrderById($_SESSION['shoppingCartId']);
 			$totalPrice = 0;
 			foreach ($order->products as $productContainer) {
-				$totalPrice += floatval($productContainer['product']->price) * intval($productContainer['count']);
+				$totalPrice += floatval($productContainer['product']->Price) * intval($productContainer['count']);
 			}
 			$this->params['order'] = $order;
 			$this->params['totalPrice'] = $totalPrice;
@@ -404,7 +404,7 @@ class PagesController extends Controller
 			foreach ($_SESSION['shoppingCart'] as $id => $count) {
 				$product = Product::getProductById($id);
 				$products[] = ['product' => $product, 'count' => $count];
-				$totalPrice += floatval($product->price) * intval($count);
+				$totalPrice += floatval($product->Price) * intval($count);
 			}
 			$this->params['products'] = $products;
 			$this->params['totalPrice'] = $totalPrice;
