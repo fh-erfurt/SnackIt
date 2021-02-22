@@ -13,11 +13,11 @@
         Es sind <?= $product->OnStock ?> Stück verfügbar <br>
         <br>
         <label>Bitte wähle die Stückzahl aus</label>
-        <form method='post' class='addToCart'>
+        <form method='post'>
             <br>
             <div class="number-input">
                 <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">-</button>
-                <input class="count" min="0" max=<?= $product->OnStock ?> name="count" value="1" type="number">
+                <input min="0" max=<?= $product->OnStock ?> name="count" value="1" type="number">
                 <button type="button" content onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus">+</button>
             </div>
             <br>

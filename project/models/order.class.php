@@ -64,7 +64,7 @@ class Order extends si\models\baseModel
                 if (!empty($result['orderId'])) {
                     $order = new Order($accountId, $result['status'], $result['addressId'], $result['firstname'], $result['lastname']);
                     $order->data['orderId'] = $result['orderId'];
-                    $order->loadProducts($orderId);
+                    $order->loadProducts($order->orderId);
                     return $order;
                 }
             }
@@ -88,7 +88,7 @@ class Order extends si\models\baseModel
                     foreach ($result as $row) {
                         $order = new Order($accountId, $row['status'], $row['addressId'], $row['firstname'], $row['lastname']);
                         $order->data['orderId'] = $row['orderId'];
-                        $order->loadProducts($orderId);
+                        $order->loadProducts($order->orderId);
                         $orders[] = $order;
                     }
                 }
@@ -152,7 +152,6 @@ class Order extends si\models\baseModel
         try {
             $sql = 'SELECT productId, ProductCount FROM Product_to_Order WHERE orderId = ' . $db->quote($orderId) . ';';
             $result = $db->query($sql)->fetchAll();
-            var_dump($result);
             if (!empty($result)) {
                 $this->data['products'] = [];
                 foreach ($result as $row) {

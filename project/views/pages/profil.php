@@ -15,7 +15,7 @@
     <form method=post>
 <!-- The Profile Page with all its options -->
         <? if(isset($changeEmail) && $changeEmail === true):?>
-        <section class=Email>
+        <section>
             <h2>Email ändern</h2> <br>
 
             <label>Neue Email</label> <br>
@@ -25,7 +25,7 @@
         <br>
 		<!-- If the right button is set the menue of the option opens -->
         <? elseif(isset($changePassword) && $changePassword === true):?>
-        <section class=password>
+        <section>
             <h2>Passwort ändern</h2> <br>
 
             <label>Altes Passwort</label> <br>
@@ -39,26 +39,26 @@
         </section>
         <br>
         <? else:?>
-        <section class=person>
+        <section>
             <h2>Personendaten</h2> <br>
 
-            <label>Name: </label><label class="label2"><?= $Account['FirstName'] . ' ' . $Account['LastName'] ?></label> <br>
-            <label>E-mail: </label><label class="label2"><?= $Account['Email'] ?></label>
+            <label>Name: </label><label><?= $Account['FirstName'] . ' ' . $Account['LastName'] ?></label> <br>
+            <label>E-mail: </label><label><?= $Account['Email'] ?></label>
         </section>
         <br>
-        <section class=address>
+        <section>
             <h2>Adresse</h2> <br>
 
-            <label class="label2"><?= $Account['Street'] . ' ' . $Account['Number'] ?></label><br>
-            <label class="label2"><?= $Account['Zipcode'] . ' ' . $Account['City'] ?></label><br>
-            <label class="label2"><?= $Account['Country'] ?></label>
+            <label><?= $Account['Street'] . ' ' . $Account['Number'] ?></label><br>
+            <label><?= $Account['Zipcode'] . ' ' . $Account['City'] ?></label><br>
+            <label><?= $Account['Country'] ?></label>
         </section>
         <br>
         <? endif; ?>
 
 
 
-        <section class=change>
+        <section>
 <!-- all the buttons -->
             <? if(isset($changeEmail) && $changeEmail === true):?>
             <input class='button' type=submit name=confirmEmail value='Email aktualisieren'> <br>
