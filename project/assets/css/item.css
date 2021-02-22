@@ -49,6 +49,11 @@ h1{
  .number-input input[type=number]::-webkit-outer-spin-button {
    -webkit-appearance: none;
  }
+
+ input[type=number] {
+  -moz-appearance: textfield;
+}
+
  .number-input,
  .number-input * {
    box-sizing: border-box;
@@ -74,4 +79,3 @@ h1{
    font-weight: bold;
    text-align: center;
  }
- 
