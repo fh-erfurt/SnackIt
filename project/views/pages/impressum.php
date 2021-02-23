@@ -65,5 +65,6 @@
 	<br>
 	<br>
 	<h2><a href='index.php?c=pages&a=dokumentation'>Unsere Dokumentation</a></h2>
+	<h2><a href='index.php?c=pages&a=test'>Testseite</a></h2>
 </div>
 

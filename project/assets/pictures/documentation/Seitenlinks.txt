@@ -1,0 +1,19 @@
+https://shop.rewe.de/
+https://www.ikea.com/de/de/shoppingcart/
+Rollenverteilung:
+
+Rollen:
+Name:
+Kommunikationsmanager
+John Reinecke
+Anwendungsmanager
+Lukas Arnold
+Dokumentationsmanager
+Marvin Hof
+Architekt/Designer
+John Reinecke
+Entwickler
+Lukas Arnold, Marvin Hof
+Testmanager
+Marvin Hof
+

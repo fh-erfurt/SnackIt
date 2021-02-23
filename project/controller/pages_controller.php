@@ -206,6 +206,11 @@ class PagesController extends Controller
 		$this->params['title'] = 'AGB';
 	}
 
+	public function actionTest()
+	{
+		$this->params['title'] = 'AGB';
+	}
+
 	public function actionError404()
 	{
 		$this->params['title'] = 'Error404';
