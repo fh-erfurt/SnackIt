@@ -11,18 +11,23 @@
     <input type=hidden name='t' value='<?= $_GET['t'] ?>' ?>
     <? endif; ?>
     <!--search by name-->
-    <label>
-        Nach Namen Suchen:
-        <input class=searchbyname type=search name='name' value='<?= isset($_GET['name']) ? $_GET['name'] : ''; ?>' placeholder='Suche...'>
-    </label></br></br>
+    <label>Nach Namen Suchen:</label>
+    <br>
+    <input class=searchbyname type=search name='name' value='<?= isset($_GET['name']) ? $_GET['name'] : ''; ?>' placeholder='Suche...'>
+    </br>
+    </br>
+    <br>
     <!--price-->
-    <span>Preis:</span></br>
-    <label>
-        Min: <input class=searchbymin type=number name='minPrice' min='<?= isset($minPrice) ? $minPrice : 0 ?>' <?= isset($maxPrice) ? "max='$maxPrice'" : '' ?> value='<?= isset($_GET['minPrice']) ? $_GET['minPrice'] : isset($minPrice) ? $minPrice : '' ?>' placeholder='Minimum' step=any>
-    </label></br>
-    <label>
-        Max: <input class=searchbymax type=number name='maxPrice' min='<?= isset($minPrice) ? $minPrice : 0 ?>' <?= isset($maxPrice) ? "max='$maxPrice'" : '' ?> value='<?= isset($_GET['maxPrice']) ? $_GET['maxPrice'] : isset($maxPrice) ? $maxPrice : '' ?>' placeholder='Maximum' step=any>
-    </label></br></br>
+    <label>Preis Minimal:</label><br>
+    <input class=searchPrice type=number name='minPrice' min='<?= isset($minPrice) ? $minPrice : 0 ?>' <?= isset($maxPrice) ? "max='$maxPrice'" : '' ?> value='<?= isset($_GET['minPrice']) ? $_GET['minPrice'] : isset($minPrice) ? $minPrice : '' ?>' placeholder='Minimum' step=any>
+    </br>
+    <br>
+    <br>
+    <label>Preis Maximal:</label><br>
+    <input class=searchPrice type=number name='maxPrice' min='<?= isset($minPrice) ? $minPrice : 0 ?>' <?= isset($maxPrice) ? "max='$maxPrice'" : '' ?> value='<?= isset($_GET['maxPrice']) ? $_GET['maxPrice'] : isset($maxPrice) ? $maxPrice : '' ?>' placeholder='Maximum' step=any>
+    </br>
+    </br>
+    <br>
     <!--onStock-->
     <label>
         <input type=checkbox name='onStock' <?= isset($_GET['onStock']) ? 'checked' : '' ?>> nur verfügbare Produkte anzeigen
@@ -62,7 +67,8 @@
     </div>
     <? endforeach; ?>
     <? endif; ?>
-    <input type=submit name='applyFilter' value='OK'>
+    <div class="buttonContainer"> <input class="applyFilter" type=submit name='applyFilter' value='Anwenden'><br></div>
+
     <span class=note>
         * Mehrfachauswahl möglich
     </span>

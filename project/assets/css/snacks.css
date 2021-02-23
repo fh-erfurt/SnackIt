@@ -5,8 +5,15 @@ main{
 
 .searchColumn{
     text-align: left;
-    width: 20%;
     padding-top: 100px;
+}
+
+
+.products{
+    width: 100%;
+    margin: auto;
+    justify-content: center; 
+    align-items: center;
 }
 
 article{
@@ -25,10 +32,6 @@ article a{
     color: white;
     font-style: normal;
     text-decoration: none;
-}
-
-.products{
-    width: 70%;
 }
 
 .img{

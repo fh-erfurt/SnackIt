@@ -36,7 +36,7 @@
         <span class='col'><a href='index.php?c=pages&a=item&id=<?= $product->productId ?>'><?= $product->ProdName ?></a></span>
         <span class='col'><?= $product->Price ?>€</span>
         <span class='col'>
-            <div class="number-input">
+            <div class="number-input col">
                 <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">-</button>
                 <input class="col" min="0" max=<?= $product->OnStock ?> name="count" value="<?= $count ?>" type="number">
                 <button type="button" content onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus">+</button>
@@ -74,7 +74,7 @@
         <span class='col'><a href='index.php?c=pages&a=item&id=<?= $product->productId ?>'><?= $product->ProdName ?></a></span>
         <span class='col'><?= $product->Price ?>€</span>
         <span class='col'>
-            <div class="number-input">
+            <div class="number-input col">
                 <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">-</button>
                 <input class="col" min="0" max=<?= $product->OnStock ?> name="count" value="<?= $count ?>" type="number">
                 <button type="button" content onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus">+</button>
@@ -101,7 +101,7 @@
     <form method=post>
         <span class=totalPrice> Gesamtpreis: <?= $totalPrice ?>€</span></br>
         <br>
-        <input type=submit name=pay value='Zur Kasse gehen' class='payButton'></br>
+        <input type=submit name=pay value='Zur Kasse gehen' class='payButton'><a href='index.php?c=pages&a=Checkout'></a></br>
     </form>
 </section>
 

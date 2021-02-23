@@ -17,6 +17,11 @@ h1{
     margin: 0px auto;
 }
 
+.col{
+    padding:10px
+}
+
+
 .productTable .tableHeader{
     display: table-header-group;
 }
@@ -53,11 +58,16 @@ h1{
 .number-input {
     display: inline-flex;
   }
+
   .number-input input[type=number]::-webkit-inner-spin-button,
   .number-input input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
-
   }
+
+  input[type=number] {
+    -moz-appearance: textfield;
+  }
+
   .number-input,
   .number-input * {
     box-sizing: border-box;
@@ -115,5 +125,4 @@ h1{
 
   .payButton:hover{
     background-color: #dd6000;
-
   }

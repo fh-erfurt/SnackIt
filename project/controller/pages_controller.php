@@ -4,6 +4,7 @@
 require_once 'models/product.class.php';
 require 'models/order.class.php';
 require 'helper/filter.class.php';
+require 'models/address.class.php';
 
 
 class PagesController extends Controller
@@ -276,6 +277,27 @@ class PagesController extends Controller
 		$typeDrinks = 1;
 		$products = Product::getProductsByType($typeDrinks);
 		$this->params['products'] = $products;
+		$this->params['js'][] = 'products';
+
+		if (isset($_GET['applyFilter'])) {
+			$products = Filter::applyFilter($products);
+			$this->params['products'] = $products;
+		}
+
+		// dynamically load products
+		if (isset($_GET['ajax'])) {
+			$productCount = $_GET['productCount'];
+			$products = array_slice($products, $productCount, 10);
+			$productArray = [];
+			foreach ($products as $product) {
+				$productArray[] = $product->toArray();
+			}
+			$result['productCount'] = $productCount;
+			$result['products'] = $productArray;
+			$result = json_encode($result);
+			echo $result;
+			exit(0);
+		}
 	}
 
 	public function actionDokumentation()
@@ -294,6 +316,27 @@ class PagesController extends Controller
 		$typeSale = 2;
 		$products = Product::getProductsByType($typeSale);
 		$this->params['products'] = $products;
+		$this->params['js'][] = 'products';
+
+		if (isset($_GET['applyFilter'])) {
+			$products = Filter::applyFilter($products);
+			$this->params['products'] = $products;
+		}
+
+		// dynamically load products
+		if (isset($_GET['ajax'])) {
+			$productCount = $_GET['productCount'];
+			$products = array_slice($products, $productCount, 10);
+			$productArray = [];
+			foreach ($products as $product) {
+				$productArray[] = $product->toArray();
+			}
+			$result['productCount'] = $productCount;
+			$result['products'] = $productArray;
+			$result = json_encode($result);
+			echo $result;
+			exit(0);
+		}
 	}
 
 	public function actionItem()
@@ -338,7 +381,7 @@ class PagesController extends Controller
 				}
 				$_SESSION['shoppingCartCount'] += intval($_POST['count']);
 
-				//header('Location: index.php?a=Startseite');
+				header('Location: index.php?a=Startseite');
 				exit(0);
 			}
 		}
@@ -355,7 +398,7 @@ class PagesController extends Controller
 			$order = Order::getOrderById($_SESSION['shoppingCartId']);
 			$totalPrice = 0;
 			foreach ($order->products as $productContainer) {
-				$totalPrice += floatval($productContainer['product']->price) * intval($productContainer['count']);
+				$totalPrice += floatval($productContainer['product']->Price) * intval($productContainer['count']);
 			}
 			$this->params['order'] = $order;
 			$this->params['totalPrice'] = $totalPrice;
@@ -367,10 +410,26 @@ class PagesController extends Controller
 			foreach ($_SESSION['shoppingCart'] as $id => $count) {
 				$product = Product::getProductById($id);
 				$products[] = ['product' => $product, 'count' => $count];
-				$totalPrice += floatval($product->price) * intval($count);
+				$totalPrice += floatval($product->Price) * intval($count);
 			}
 			$this->params['products'] = $products;
 			$this->params['totalPrice'] = $totalPrice;
 		}
+		if (isset($_POST['pay'])) {
+			header('Location: index.php?a=Checkout');
+		}
+	}
+
+	public function actionCheckout()
+	{
+		$this->params['title'] = 'Checkout';
+
+		$account = [];
+		//gets the acc from the session
+		$account = getAccountDataById($_SESSION['accountId']);
+		$this->params['account'] = $account;
+		$address = [];
+		$address = Address::getAddressById($account->addressId);
+		$this->params['address'] = $address;
 	}
 }

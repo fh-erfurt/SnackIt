@@ -1,17 +1,40 @@
 .filter{
-
+    color: white;
+    margin-left: 30px;
+    width: 300px;
 }
 
-.filter input{
+.filter input[type=search], .searchPrice{
     padding: 0px;
     height: 20px;
-    width: 100%;
-    border: none;
+    width: 250px;
+    border:none;
+    border-bottom-style: solid;
     color: white;
-    background-color: #212121;
+    background-color: transparent;
 }
 
-.filter input[type=number], input[type=search]{
-    -webkit-text-fill-color: white;
-    -webkit-box-shadow: 0 0 0px 1000px #212121 inset;
+.filter input[type=search]:focus, .searchPrice:focus{
+    color: #FF6E00;
+    outline:none;
+}
+
+.applyFilter{
+    margin-left: 30px;
+    width: 200px;
+    border: none;
+    font-size: large;
+    cursor: pointer;
+    height: 50px !important;
+    background-color: #FF6E00;
+    padding: 0px;
+}
+
+.applyFilter:hover{
+    background-color: #dd6000;
+}
+
+.note{
+    margin-left: 30px;
+    font-size: small;
 }
