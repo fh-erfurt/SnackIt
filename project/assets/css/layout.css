@@ -159,7 +159,7 @@ footer a:hover{
     color: white;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 992px) {
 
 	body{
 
@@ -206,14 +206,6 @@ footer a:hover{
 	nav .icon-burger {
 		display: block;
 	}
-	nav  :checked ~ .icon-burger .line:nth-child(1) {
-		transform: translateY(10px) rotate(225deg);
-	}
-	nav :checked ~ .icon-burger .line:nth-child(3) {
-		transform: translateY(-10px) rotate(-225deg);
-	}
-	nav :checked ~ .icon-burger .line:nth-child(2) {
-		opacity: 0;
-	}
+
 }
 

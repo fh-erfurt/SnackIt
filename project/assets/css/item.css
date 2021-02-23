@@ -9,6 +9,7 @@
 .img{
     width: 400px;
     height: 400px;
+    padding-right: 10px;
 }
 
 .description{
@@ -78,4 +79,21 @@ h1{
    height: 50px;
    font-weight: bold;
    text-align: center;
+ }
+
+
+ @media screen and (max-width: 992px) {
+
+  .product{
+    display: block;
+    width: 95%;
+    margin: auto;
+    margin-top: 50px;
+    text-align: center;
+  }
+
+  .img{
+    width: 250px;
+    height: 250px;
+  }
  }

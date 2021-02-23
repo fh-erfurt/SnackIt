@@ -1,3 +1,5 @@
+<link rel='stylesheet' type='text/css' href='assets/css/checkout.css'>
+
 <head>
     <title><?= isset($title) ? 'SnackIt: ' . $title : 'SnackIt' ?></title>
 </head>
@@ -6,13 +8,15 @@
 <div class=checkout>
     <form method=Post>
         <section class=delivery>
-            <h3>1. Versandadresse</h3>
+            <br>
+            <h3>1. Versandadresse</h3><br>
             <? if(!isset($_POST['changeDeliveryAddress'])): ?>
             <div class=address>
-                <span class=name><?= $account["FirstName"] . ' ' . $account["LastName"] ?></span></br>
-                <span class=street><?= $account["Street"] . ' ' . $account["Number"] ?></span></br>
-                <span class=city><?= $account["City"] . ', ' . $account["Country"] . ',' . $account["Zipcode"] ?></span></br>
-                <input class=addressbutton type=submit name=changeDeliveryAddress value='Andere Lieferadresse'>
+                <label class=name><?= $account["FirstName"] . ' ' . $account["LastName"] ?></label></br>
+                <label class=street><?= $account["Street"] . ' ' . $account["Number"] ?></label></br>
+                <label class=city><?= $account["City"] . ', ' . $account["Country"] . ',' . $account["Zipcode"] ?></label></br>
+                <br>
+                <input class="button" type=submit name=changeDeliveryAddress value='Andere Lieferadresse'>
             </div>
             <input type=hidden name=firstname value='<?= $firstname ?>'>
             <input type=hidden name=lastname value='<?= $lastname ?>'>
@@ -24,33 +28,36 @@
             <input type=hidden name=number value='<?= $number ?>'>
             <? else: ?>
             <div class=address>
-                <label>
-                    Vorname: <input type=text name=firstname value='<?= isset($firstname) ? $firstname : '' ?>'>
-                </label></br>
-                <label>
-                    Nachname: <input type=text name=lastname value='<?= isset($lastname) ? $lastname : '' ?>'>
-                </label></br>
-                <label>
-                    Land: <input type=text name=country value='<?= isset($country) ? $country : '' ?>'>
-                </label></br>
-                <label>
-                    Bundesland: <input type=text name=state value='<?= isset($state) ? $state : '' ?>'>
-                </label></br>
-                <label>
-                    Stadt: <input type=text name=city value='<?= isset($city) ? $city : '' ?>'>
-                </label></br>
-                <label>
-                    Postleitzahl: <input type=text name=zipcode value='<?= isset($zipcode) ? $zipcode : '' ?>'>
-                </label></br>
-                <label>
-                    Straße: <input type=text name=street value='<?= isset($street) ? $street : '' ?>'>
-                </label></br>
-                <label>
-                    Hausnummer: <input type=text name=number value='<?= isset($number) ? $number : '' ?>'>
-                </label></br>
-                <input class=addressbutton type=submit name=saveAddressTemp value='Nur für diese Bestellung ändern'>
-                <input class=addressbutton type=submit name=saveAddressPerm value='Als neue Lieferadresse speichern'>
-                <input class=addressbutton type=submit name=cancelChangeAddress value='Abbrechen'>
+                <label>Vorname: </label></br>
+                <input type=text name=firstname value='<?= isset($firstname) ? $firstname : '' ?>'><br><br>
+
+                <label>Nachname: </label></br>
+                <input type=text name=lastname value='<?= isset($lastname) ? $lastname : '' ?>'><br><br>
+
+                <label>Land: </label></br>
+                <input type=text name=country value='<?= isset($country) ? $country : '' ?>'><br><br>
+
+                <label>Bundesland: </label>
+                </br> <input type=text name=state value='<?= isset($state) ? $state : '' ?>'><br><br>
+
+                <label>Stadt: </label></br>
+                <input type=text name=city value='<?= isset($city) ? $city : '' ?>'><br><br>
+
+                <label>Postleitzahl: </label>
+                </br> <input type=text name=zipcode value='<?= isset($zipcode) ? $zipcode : '' ?>'><br><br>
+
+                <label>Straße: </label></br>
+                <input type=text name=street value='<?= isset($street) ? $street : '' ?>'><br><br>
+
+                <label>Hausnummer: </label></br>
+                <input type=text name=number value='<?= isset($number) ? $number : '' ?>'><br><br>
+
+                <input class="button" type=submit name=saveAddressTemp value='Nur für diese Bestellung ändern'><br>
+                <br>
+                <input class="button" type=submit name=saveAddressPerm value='Als neue Lieferadresse speichern'><br>
+                <br>
+                <input class="button" type=submit name=cancelChangeAddress value='Abbrechen'><br>
+                <br>
             </div>
             <? endif; ?>
         </section>
@@ -58,31 +65,34 @@
         </br>
 
         <section class=paymentMethod>
-            <h3>2. Bezahlmethode</h3>
+            <h3>2. Bezahlmethode</h3><br>
             <input type=hidden name=payment value='<?= isset($payment) ? $payment : 'creditcard' ?>'>
-            <button class=paymentbutton type=submit name=changePayment value=creditcard> Kreditkarte</button>
-            <button class=paymentbutton type=submit name=changePayment value=paypal> PayPal</button><br>
+            <button class="button" type=submit name=changePayment value=creditcard> Kreditkarte</button>
+            <button class="button" type=submit name=changePayment value=paypal> PayPal</button><br>
+            <br>
             <span>Ausgewählte Bezahlmethode: <?= isset($payment) ? ($payment == 'creditcard' ? 'Kreditkarte' : 'PayPal') : 'Kreditkarte' ?></span><br>
-            <? if(!isset($payment) || $payment == 'creditcard'): ?>
+            <? if(!isset($payment) || $payment == 'creditcard'): ?><br>
             <label>
                 Kreditkartennummer:
                 <input type=text name=creditcardNumber value='<?= isset($creditcardNumber) ? $creditcardNumber : '' ?>'></br>
-            </label>
+            </label><br>
             <label>
                 Ablaufdatum:
-                <input class=expireMonth type=number name=creditcardMonth placeholder='MM' min=1 max=12 value='<?= isset($creditcardMonth) ? $creditcardMonth : '' ?>'> /
+                <input class=expireMonth type=number name=creditcardMonth placeholder='MM' min=1 max=12 value='<?= isset($creditcardMonth) ? $creditcardMonth : '' ?>'><br>
+                <br>
                 <input class=expireYear type=number name=creditcardYear placeholder='YY' value='<?= isset($creditcardYear) ? $creditcardYear : '' ?>'></br>
             </label>
+            <br>
             <label>
                 Sicherheitszahl:
                 <input class=secretNumber type=text name=creditcardSecureNumber value='<?= isset($creditcardSecureNumber) ? $creditcardSecureNumber : '' ?>'></br>
             </label>
+            <br>
             <? endif; ?>
         </section>
-        </br>
-        </br>
         <section class=pay>
-            <input class=paymentbutton type=submit name=pay value='Jetzt kaufen'>
+            <input class="button" type=submit name=pay value='Jetzt kaufen'><br>
+            <br>
         </section>
     </form>
 </div>

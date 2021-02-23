@@ -1,0 +1,107 @@
+*{
+    
+}
+
+main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.checkout{
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 150px;
+    width: 700px;
+    background-color: #2D2D2D;   
+    color: #FF6E00;
+}
+
+form{
+    text-align: left;
+    width: 40%;
+    margin: auto;
+}
+
+.checkout input{
+    padding: 0px;
+    height: 20px;
+    width: 100%;
+    border: none;
+    color: white;
+    background-color: #212121;
+}
+
+.checkout input[type=password], input[type=email]{
+    -webkit-text-fill-color: white;
+    -webkit-box-shadow: 0 0 0px 1000px #212121 inset;
+}
+
+.checkout input[type=password]:hover, input[type=email]:hover{
+    background-color: #191919;
+    -webkit-box-shadow: 0 0 0px 1000px #191919 inset;
+}
+
+.check{
+    width: 20px !important;
+}
+
+.button{
+    padding: 0px;
+    font-size: large;
+    cursor: pointer;
+    height: 50px !important;
+    -webkit-box-shadow: 0 0 0px 1000px #212121 inset;
+    -webkit-text-fill-color: #FF6E00 !important;
+    border: none;
+}
+
+
+.button:hover{
+    background-color: #191919;
+    -webkit-box-shadow: 0 0 0px 1000px #191919 inset;
+}
+
+.error{
+    color: #FF6E00;
+    font-size: large;
+    text-align: center;
+}
+
+.registerNow{
+    color: #8d0000;
+    font-size: larger;
+}
+
+.noAcc{
+    text-align: center;
+    width: 100%;
+}
+
+
+.registerNow:hover{
+    color: #bd0000;
+}
+
+
+
+@media screen and (max-width: 768px){
+
+    .checkout{
+        width: 100%;
+    }
+
+    form{
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 500px){
+
+    .checkout{
+        width: 100%;
+    }
+
+    form{
+        width: 80%;
+    }
+}

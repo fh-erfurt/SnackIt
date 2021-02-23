@@ -1,6 +1,26 @@
+main{
+    display: flex;
+    justify-content: left;
+}
+
+.filter{
+    text-align: left;
+    padding-top: 30px;
+    width: 300px;
+}
+
+
+.products{
+    width: 100%;
+    margin: auto;
+    justify-content: center; 
+    align-items: center;
+}
+
 article{
     font-style: none;
     width: 200px;
+    height: 250px;
     float: left;
     padding: 50px;
     display: flex;
@@ -13,11 +33,6 @@ article a{
     color: white;
     font-style: normal;
     text-decoration: none;
-}
-
-.products{
-    width: 70%;
-    margin-left: 30%;
 }
 
 .img{
@@ -33,4 +48,44 @@ article:hover{
 .prodPrice{
     color: #FF6E00;
     text-align: center !important;
+}
+
+@media screen and (max-width: 992px){
+
+    main{
+        display: block;
+    }
+
+    .filter{
+        width: 80%;
+        padding-top: 10px;
+        margin-left: 10px;
+    }
+
+    article{
+        display: block;
+    }
+
+    .products{
+        width: 100%;
+        margin: auto;
+    }
+
+    .product{
+        width: 40%;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 10px;
+    }
+}
+
+@media screen and (max-width: 500px){
+
+
+
+    .product{
+        width: 90%;
+
+    }
 }

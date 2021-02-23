@@ -6,7 +6,7 @@ main{
 .filter{
     text-align: left;
     padding-top: 30px;
-    width: 400px;
+    width: 300px;
 }
 
 
@@ -50,7 +50,7 @@ article:hover{
     text-align: center !important;
 }
 
-@media screen and (max-width: 768px){
+@media screen and (max-width: 992px){
 
     main{
         display: block;
@@ -72,10 +72,20 @@ article:hover{
     }
 
     .product{
-        width: 90%;
+        width: 40%;
         text-align: center;
         justify-content: center;
         align-items: center;
         padding: 10px 10px;
+    }
+}
+
+@media screen and (max-width: 500px){
+
+
+
+    .product{
+        width: 90%;
+
     }
 }
