@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function(){
 						
 			if(!inputPassword.value.length || !inputPassword.value.match(regex))
 			{
-				giveErrorMsg('Passwort ist zu unsicher, bitte mindestens 12 Stellen, groß und kleinschreibung sowie Zahlen und Sonderzeichen verwenden');
+				giveErrorMsg('Passwort ist zu unsicher, bitte mindestens 8 Stellen, groß und kleinschreibung sowie Zahlen und Sonderzeichen verwenden');
 				valid = false;
 				
 				inputPassword.style.border = '2px solid red';

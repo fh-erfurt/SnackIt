@@ -79,7 +79,6 @@
 </body>
 <footer>
 	<br>
-	<a href='index.php?a=documentation'>Dokumentation</a>
 	<a href='index.php?a=agb'>AGB</a>
 	<a href='index.php?a=impressum'>Impressum</a>
 	<a href='index.php?a=datenschutzerklärung'>Datenschutzerklärung</a><br>
