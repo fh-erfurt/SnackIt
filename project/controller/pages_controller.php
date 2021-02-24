@@ -247,7 +247,6 @@ class PagesController extends Controller
 		$typeSnacks = 0;
 		$products = Product::getProductsByType($typeSnacks);
 		$this->params['products'] = $products;
-		var_dump($products);
 		$this->params['js'][] = 'products';
 		if (isset($_POST['salty'])) {
 			$typeSalty = 'salty';
