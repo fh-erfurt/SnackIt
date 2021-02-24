@@ -36,11 +36,7 @@
 						<li><a href='index.php?c=pages&a=Snacks&t=Snacks'>Snacks</a></li>
 						<li><a href='index.php?c=pages&a=Getränke&t=Getränke'>Getränke</a></li>
 						<li><a href='index.php?c=pages&a=Angebote&t=Angebote'>Angebote</a></li>
-						<!-- <ul class=submenu>
-										<li><a href='index.php?c=products&a=list&t=soßen'>Soßen</a></li>
-										<li><a href='index.php?c=products&a=list&t=deko'>Deko</a></li>
-										<li><a href='index.php?c=products&a=list&t=more'>Weiteres Zubehör</a></li>
-									</ul> -->
+
 
 
 					</ul>

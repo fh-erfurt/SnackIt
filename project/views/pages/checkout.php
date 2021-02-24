@@ -5,6 +5,7 @@
 </head>
 
 </br>
+<?if ($_SESSION['loggedIn']==true):?>
 <div class=checkout>
     <form method=Post>
         <section class=delivery>
@@ -96,3 +97,7 @@
         </section>
     </form>
 </div>
+
+<?else:?>
+<p>Sie müssen sich erst anmelden!</p>
+<?endif?>

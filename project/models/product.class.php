@@ -1,7 +1,7 @@
 <?php
 
 require_once __DIR__ . '/baseModel.class.php';
-//require_once __DIR__.'/property.class.php';
+require_once __DIR__ . '/property.class.php';
 
 class Product extends \si\models\baseModel
 {
@@ -73,7 +73,7 @@ class Product extends \si\models\baseModel
                 foreach ($result as $row) {
                     $product = new Product($row['ProdName'], $row['Price'], $row['ProdType'], $row['OnStock']);
                     $product->productId = $row['productId'];
-                    //$product->loadProperties();
+                    $product->loadProperties();
                     $products[] = $product;
                 }
             }
@@ -152,53 +152,53 @@ class Product extends \si\models\baseModel
     {
         return $this->properties;
     }
-    /*
-    TODO:edit loadProperties
 
-    greetings 
-
-
-    THOMAS
-
-
-    */
-    /**
-     * retrieves all Properties of this product from database for use with functions like 'getProperty' and 'getAllProperties'
-     */
-    /*public function loadProperties()
+    public function loadProperties()
     {
         $db = $GLOBALS['db'];
-        try
-        {
-            $sql = 'SELECT p.propertyId, p.type, p.name, p.value FROM ' . Property::TABLENAME . ' p JOIN ' . self::P_H_P_TABLENAME . 
-                   ' php ON p.propertyId = php.propertyId AND php.productId = ' . $db->quote($this->productId) . ';';
+        try {
+            $sql = 'SELECT p.propertyId, p.Type, p.Name, p.Value FROM ' . Property::TABLENAME . ' p JOIN ' . self::P_H_P_TABLENAME .
+                ' php ON p.propertyId = php.propertyId AND php.productId = ' . $db->quote($this->productId) . ';';
             $result = $db->query($sql)->fetchAll();
 
-            if(!empty($result))
-            {
+            if (!empty($result)) {
                 $this->properties = null;
-                foreach($result as $row)
-                {
-                    $property = new Property($row['type'], $row['name'], $row['value']);
+                foreach ($result as $row) {
+                    $property = new Property($row['Type'], $row['Name'], $row['Value']);
                     $property->propertyId = $row['propertyId'];
-                    if(isset($this->properties[$row['type']]))
-                    {
-                        if(!is_array($this->properties[$row['type']]))
-                        {
-                            $this->properties[$row['type']] = array($this->properties[$row['type']]);
+                    if (isset($this->properties[$row['Type']])) {
+                        if (!is_array($this->properties[$row['Type']])) {
+                            $this->properties[$row['Type']] = array($this->properties[$row['Type']]);
                         }
-                        $this->properties[$row['type']][] = $property;
-                    }
-                    else
-                    {
-                        $this->properties[$row['type']] = $property;
+                        $this->properties[$row['Type']][] = $property;
+                    } else {
+                        $this->properties[$row['Type']] = $property;
                     }
                 }
             }
             return true;
+        } catch (\PDOException $e) {
+            die('Error reloading product properties: ' . $e->getMessage());
         }
-        catch(\PDOException $e)
-        {
+    }
+
+    public function getProductsByPropType($type, $prodType)
+    {
+        $db = $GLOBALS['db'];
+        try {
+            $sql = 'SELECT * FROM product Join product_has_property on product.productId = product_has_property.productId
+             join property on product_has_property.propertyId = property.propertyId where property.Type =' . $db->quote($type) . ' and product.ProdType = ' . $db->quote($prodType) . ';';
+            $result = $db->query($sql)->fetchAll();
+            if (!empty($result)) {
+                foreach ($result as $row) {
+                    $product = new Product($row['ProdName'], $row['Price'], $row['ProdType'], $row['OnStock']);
+                    $product->productId = $row['productId'];
+                    $product->loadProperties();
+                    $products[] = $product;
+                }
+            }
+            return $products;
+        } catch (\PDOException $e) {
             die('Error reloading product properties: ' . $e->getMessage());
         }
     }
@@ -206,16 +206,12 @@ class Product extends \si\models\baseModel
     public function delete()
     {
         $db = $GLOBALS['db'];
-        try
-        {
+        try {
             $sql = 'DELETE FROM ' . self::tablename() . ' WHERE productId=' . $db->quote($this->productId) . ';';
             $db->exec($sql);
             return true;
-        }
-        catch(\PDOException $e)
-        {
+        } catch (\PDOException $e) {
             die('Error deleting product: ' . $e->getMessage());
         }
     }
-    */
 }

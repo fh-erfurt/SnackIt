@@ -127,13 +127,13 @@ CREATE TABLE IF NOT EXISTS `SnackIt`.`Product_to_Order` (
 -- Table `SnackIt`.`Property`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `SnackIt`.`Property` (
-  `PropertyID` INT NOT NULL AUTO_INCREMENT,
+  `propertyId` INT NOT NULL AUTO_INCREMENT,
   `CreatedAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `UpdatedAt` TIMESTAMP NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `Type` VARCHAR(45) NOT NULL,
   `Name` VARCHAR(45) NOT NULL,
   `Value` VARCHAR(60) NOT NULL,
-  PRIMARY KEY (`PropertyID`));
+  PRIMARY KEY (`propertyId`));
 
 
 -- -----------------------------------------------------
@@ -144,18 +144,18 @@ CREATE TABLE IF NOT EXISTS `SnackIt`.`Product_has_Property` (
   `CreatedAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `UpdatedAt` TIMESTAMP NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `productId` INT NOT NULL,
-  `PropertyID` INT NOT NULL,
+  `propertyId` INT NOT NULL,
   PRIMARY KEY (`PhpID`),
   INDEX `fk_Product_has_Property_Product1_idx` (`productId` ASC),
-  INDEX `fk_Product_has_Property_Property1_idx` (`PropertyID` ASC),
+  INDEX `fk_Product_has_Property_Property1_idx` (`propertyId` ASC),
   CONSTRAINT `fk_Product_has_Property_Product1`
     FOREIGN KEY (`productId`)
     REFERENCES `SnackIt`.`Product` (`productId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Product_has_Property_Property1`
-    FOREIGN KEY (`PropertyID`)
-    REFERENCES `SnackIt`.`Property` (`PropertyID`)
+    FOREIGN KEY (`propertyId`)
+    REFERENCES `SnackIt`.`Property` (`propertyId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 

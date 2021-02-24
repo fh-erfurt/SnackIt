@@ -11,7 +11,7 @@
     <input type=hidden name='t' value='<?= $_GET['t'] ?>' ?>
     <? endif; ?>
     <!--search by name-->
-    <label>Nach Namen Suchen:</label>
+    <label>Nach Namen suchen:</label>
     <br>
     <input class=searchbyname type=search name='name' value='<?= isset($_GET['name']) ? $_GET['name'] : ''; ?>' placeholder='Suche...'>
     </br>

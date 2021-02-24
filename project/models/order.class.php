@@ -213,6 +213,18 @@ class Order extends si\models\baseModel
         return $count;
     }
 
+    public function deleteProductFromCart($orderId, $productId)
+    {
+        $db = $GLOBALS['db'];
+        try {
+            $sql = 'DELETE FROM Product_to_Order WHERE orderId = ' . $db->quote($orderId) . 'AND productId = ' . $db->quote($productId) . ';';
+            $db->exec($sql);
+            return true;
+        } catch (\PDOException $e) {
+            die('Error deleting Product from your Order :' . $e->getMessage());
+        }
+    }
+
     public function insert()
     {
         $db = $GLOBALS['db'];
@@ -240,18 +252,15 @@ class Order extends si\models\baseModel
     }
 
 
-    /*public function delete()
+    public function delete()
     {
         $db = $GLOBALS['db'];
-        try
-        {
-            $sql = 'DELETE FROM ' . self::tablename() . ' WHERE orderID=' . $this->orderId . ';';
+        try {
+            $sql = 'DELETE FROM ' . self::tablename() . ' WHERE orderId=' . $this->orderId . ';';
             $db->exec($sql);
             return true;
-        }
-        catch(\PDOException $e)
-        {
+        } catch (\PDOException $e) {
             die('Error deleting order: ' . $e->getMessage());
         }
-    }*/
+    }
 }

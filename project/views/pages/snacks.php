@@ -7,6 +7,18 @@
 <section class='filter'>
     <? include(__DIR__ . '/../viewparts/filter.php');?>
 </section>
+<!--search by proptype-->
+<label>Nach Geschmacksrichtung suchen:</label>
+<br>
+<form method='post'>
+    <input type='submit' name='all' class='add' value='Alles' /><br />
+</form>
+<form method='post'>
+    <input type='submit' name='salty' class='add' value='Herzhaft' /><br />
+</form>
+<form method='post'>
+    <input type='submit' name='sweet' class='add' value='Süß' /><br />
+</form>
 
 <div class="products">
     <?foreach($products as $id => $product): ?>

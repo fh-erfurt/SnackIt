@@ -247,7 +247,23 @@ class PagesController extends Controller
 		$typeSnacks = 0;
 		$products = Product::getProductsByType($typeSnacks);
 		$this->params['products'] = $products;
+		var_dump($products);
 		$this->params['js'][] = 'products';
+		if (isset($_POST['salty'])) {
+			$typeSalty = 'salty';
+			$products = Product::getProductsByPropType($typeSalty, $typeSnacks);
+			$this->params['products'] = $products;
+		}
+		if (isset($_POST['sweet'])) {
+			$typeSweet = 'sweet';
+			$products = Product::getProductsByPropType($typeSweet, $typeSnacks);
+			$this->params['products'] = $products;
+		}
+		if (isset($_POST['all'])) {
+			$products = Product::getProductsByType($typeSnacks);
+			$this->params['products'] = $products;
+		}
+
 
 		if (isset($_GET['applyFilter'])) {
 			$products = Filter::applyFilter($products);
@@ -415,6 +431,17 @@ class PagesController extends Controller
 			$this->params['products'] = $products;
 			$this->params['totalPrice'] = $totalPrice;
 		}
+		if (isset($_POST['delete'])) {
+			$order->deleteProductFromCart($order->orderId, $product->productId);
+			$order = Order::getOrderById($_SESSION['shoppingCartId']);
+			$totalPrice = 0;
+			foreach ($order->products as $productContainer) {
+				$totalPrice += floatval($productContainer['product']->Price) * intval($productContainer['count']);
+			}
+			$this->params['order'] = $order;
+			$this->params['totalPrice'] = $totalPrice;
+		}
+
 		if (isset($_POST['pay'])) {
 			header('Location: index.php?a=Checkout');
 		}
@@ -424,12 +451,14 @@ class PagesController extends Controller
 	{
 		$this->params['title'] = 'Checkout';
 
-		$account = [];
-		//gets the acc from the session
-		$account = getAccountDataById($_SESSION['accountId']);
-		$this->params['account'] = $account;
-		$address = [];
-		$address = Address::getAddressById($account->addressId);
-		$this->params['address'] = $address;
+		if ($_SESSION['loggedIn'] == true) {
+			$account = [];
+			//gets the acc from the session
+			$account = getAccountDataById($_SESSION['accountId']);
+			$this->params['account'] = $account;
+			$address = [];
+			$address = Address::getAddressById($account->addressId);
+			$this->params['address'] = $address;
+		}
 	}
 }

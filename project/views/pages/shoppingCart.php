@@ -43,7 +43,9 @@
             </div>
         </span>
         <span class='col'><?= number_format(floatval($product->Price) * intval($count), 2) ?>€</span>
-        <span class='col'><button class="delete" type="button">x</button></span>
+        <form method='post'>
+            <input type='submit' name='delete' class='delete' value='x' />
+        </form>
         </article>
         <? endforeach;?>
         </div>

@@ -66,11 +66,11 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `SnackIt`;
-INSERT INTO `Property` (`propertyId`, `createdAt`, `updatedAt`, `type`, `name`, `value`) VALUES (1, DEFAULT, NULL, 'featured', 'mainPicture', 'Pringles Original Chips 200g.jpg');
-INSERT INTO `Property` (`propertyId`, `createdAt`, `updatedAt`, `type`, `name`, `value`) VALUES (2, DEFAULT, NULL, DEFAULT, 'mainPicture', 'Pringles Sour Cream & Onion Chips 200g.jpg');
-INSERT INTO `Property` (`propertyId`, `createdAt`, `updatedAt`, `type`, `name`, `value`) VALUES (3, DEFAULT, NULL, DEFAULT, 'mainPicture', 'ja! Happy Knabberbox 300g.jpg');
-INSERT INTO `Property` (`propertyId`, `createdAt`, `updatedAt`, `type`, `name`, `value`) VALUES (4, DEFAULT, NULL, DEFAULT, 'mainPicture', 'Maryland Studentenfutter 300g.jpg');
-INSERT INTO `Property` (`propertyId`, `createdAt`, `updatedAt`, `type`, `name`, `value`) VALUES (5, DEFAULT, NULL, DEFAULT, 'mainPicture', 'Lorenz Geistes Blitzer 125g.jpg');
+INSERT INTO `Property` (`propertyId`, `createdAt`, `updatedAt`, `type`, `name`, `value`) VALUES (1, DEFAULT, NULL, 'salty', 'mainPicture', 'Pringles Original Chips 200g.jpg');
+INSERT INTO `Property` (`propertyId`, `createdAt`, `updatedAt`, `type`, `name`, `value`) VALUES (2, DEFAULT, NULL, 'salty', 'mainPicture', 'Pringles Sour Cream & Onion Chips 200g.jpg');
+INSERT INTO `Property` (`propertyId`, `createdAt`, `updatedAt`, `type`, `name`, `value`) VALUES (3, DEFAULT, NULL, 'salty', 'mainPicture', 'ja! Happy Knabberbox 300g.jpg');
+INSERT INTO `Property` (`propertyId`, `createdAt`, `updatedAt`, `type`, `name`, `value`) VALUES (4, DEFAULT, NULL, 'sweet', 'mainPicture', 'Maryland Studentenfutter 300g.jpg');
+INSERT INTO `Property` (`propertyId`, `createdAt`, `updatedAt`, `type`, `name`, `value`) VALUES (5, DEFAULT, NULL, 'sweet', 'mainPicture', 'Lorenz Geistes Blitzer 125g.jpg');
 INSERT INTO `Property` (`propertyId`, `createdAt`, `updatedAt`, `type`, `name`, `value`) VALUES (6, DEFAULT, NULL, DEFAULT, 'mainPicture', 'Quelly Vita 10 ACE Getränk 1,5l(EINWEG).jpg');
 INSERT INTO `Property` (`propertyId`, `createdAt`, `updatedAt`, `type`, `name`, `value`) VALUES (7, DEFAULT, NULL, DEFAULT, 'mainPicture', 'Coca Cola Cherry ohne Zucker 1,5l(EINWEG).jpg');
 INSERT INTO `Property` (`propertyId`, `createdAt`, `updatedAt`, `type`, `name`, `value`) VALUES (8, DEFAULT, NULL, DEFAULT, 'mainPicture', 'Red Bull Energy Drink 0,25l(EINWEG).jpg');
