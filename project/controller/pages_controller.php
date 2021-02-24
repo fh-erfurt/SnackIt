@@ -444,10 +444,6 @@ class PagesController extends Controller
 			$this->params['totalPrice'] = $totalPrice;
 		}
 
-		if($order->orderId != $_SESSION['shoppingCartId']){
-			$this->params['order'] = null;
-			}
-
 		if (isset($_POST['pay'])) {
 			header('Location: index.php?a=Checkout');
 		}
