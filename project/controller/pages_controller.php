@@ -431,8 +431,10 @@ class PagesController extends Controller
 			$this->params['products'] = $products;
 			$this->params['totalPrice'] = $totalPrice;
 		}
+		
 		if (isset($_POST['delete'])) {
-			$order->deleteProductFromCart($order->orderId, $product->productId);
+			
+			$order->deleteProductFromCart($order->orderId, $_POST['productId']);
 			$order = Order::getOrderById($_SESSION['shoppingCartId']);
 			$totalPrice = 0;
 			foreach ($order->products as $productContainer) {
@@ -441,6 +443,10 @@ class PagesController extends Controller
 			$this->params['order'] = $order;
 			$this->params['totalPrice'] = $totalPrice;
 		}
+
+		if($order->orderId != $_SESSION['shoppingCartId']){
+			$this->params['order'] = null;
+			}
 
 		if (isset($_POST['pay'])) {
 			header('Location: index.php?a=Checkout');
