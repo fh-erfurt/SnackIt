@@ -32,14 +32,14 @@
 							<div class="line"></div>
 							<div class="line"></div>
 						</label>
-						<li><a href='index.php?c=pages&a=Snacks&t=Snacks'>Snacks</a>
-							<div class="dropdown">
-								<div class="dropdown-content">
-									<a href='index.php?c=pages&a=Snackssalty&t=Snackssalty'>Herzhaftes</a>
-									<a href='index.php?c=pages&a=Snackssweet&t=Snackssweet'>Süßes</a>
-								</div>
 
+						<div class="dropdown"><a href='index.php?c=pages&a=Snacks&t=Snacks'>Snacks</a>
+							<div class="dropdown-content">
+								<li><a href='index.php?c=pages&a=Snackssalty&t=Snackssalty'>Herzhaftes</a></li>
+								<li><a href='index.php?c=pages&a=Snackssweet&t=Snackssweet'>Süßes</a></li>
 							</div>
+						</div>
+
 						</li>
 						<li><a href='index.php?c=pages&a=Getränke&t=Getränke'>Getränke</a></li>
 						<li><a href='index.php?c=pages&a=Angebote&t=Angebote'>Angebote</a></li>

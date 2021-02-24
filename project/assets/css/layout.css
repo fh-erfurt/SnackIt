@@ -140,6 +140,19 @@ nav .icon-burger .line {
 	transition: all .3s ease-in-out;
 }
 
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #FF6E00;
+	min-width: 160px;
+
+  }
+
+  .dropdown:hover .dropdown-content {
+	display: block;
+  }
+  
+
 footer{
     flex-shrink: 0;
     left: 0;
@@ -158,6 +171,9 @@ footer a{
 footer a:hover{
     color: white;
 }
+  
+
+
 
 @media screen and (max-width: 992px) {
 
