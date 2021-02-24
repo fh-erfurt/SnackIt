@@ -47,6 +47,7 @@ form{
 
 .button{
     padding: 0px;
+    width: 49%;
     font-size: large;
     cursor: pointer;
     height: 50px !important;

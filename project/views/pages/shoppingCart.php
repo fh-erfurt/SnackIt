@@ -35,17 +35,11 @@
         </div>
         <span class='col'><a href='index.php?c=pages&a=item&id=<?= $product->productId ?>'><?= $product->ProdName ?></a></span>
         <span class='col'><?= $product->Price ?>€</span>
-        <span class='col'>
-            <div class="number-input col">
-                <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">-</button>
-                <input class="col" min="0" max=<?= $product->OnStock ?> name="count" value="<?= $count ?>" type="number">
-                <button type="button" content onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus">+</button>
-            </div>
-        </span>
+        <span class='col'><?= $product->OnStock ?></span>
         <span class='col'><?= number_format(floatval($product->Price) * intval($count), 2) ?>€</span>
-        <form method='post'>
+        <form method='post' class='col'>
             <input type='submit' name='delete' class='delete' value='x' />
-			<input type="hidden" name="productId" value= <?=$product->productId?> >
+            <input type="hidden" name="productId" value=<?= $product->productId ?>>
         </form>
         </article>
         <? endforeach;?>
@@ -76,13 +70,7 @@
         </div>
         <span class='col'><a href='index.php?c=pages&a=item&id=<?= $product->productId ?>'><?= $product->ProdName ?></a></span>
         <span class='col'><?= $product->Price ?>€</span>
-        <span class='col'>
-            <div class="number-input col">
-                <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">-</button>
-                <input class="col" min="0" max=<?= $product->OnStock ?> name="count" value="<?= $count ?>" type="number">
-                <button type="button" content onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus">+</button>
-            </div>
-        </span>
+        <span class='col'><?= $product->OnStock ?></span>
         <span class='col'><?= number_format(floatval($product->Price) * intval($count), 2) ?>€</span>
         <span class='col'><button class="delete" type="button">x</button></span>
         </article>
@@ -102,7 +90,7 @@
 </br>
 <section class=summary>
     <form method=post>
-        <span class=totalPrice> Gesamtpreis: <?= $totalPrice ?>€</span></br>
+        <span class=totalPrice> Gesamtpreis: <?= number_format($totalPrice, 2) ?>€</span></br>
         <br>
         <input type=submit name=pay value='Zur Kasse gehen' class='payButton'><a href='index.php?c=pages&a=Checkout'></a></br>
     </form>
