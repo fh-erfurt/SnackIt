@@ -247,6 +247,7 @@ class PagesController extends Controller
 		$typeSnacks = 0;
 		$products = Product::getProductsByType($typeSnacks);
 		$this->params['products'] = $products;
+		
 		$this->params['js'][] = 'products';
 		if (isset($_POST['salty'])) {
 			$typeSalty = 'salty';
@@ -442,6 +443,7 @@ class PagesController extends Controller
 			$this->params['order'] = $order;
 			$this->params['totalPrice'] = $totalPrice;
 		}
+
 
 		if (isset($_POST['pay'])) {
 			header('Location: index.php?a=Checkout');
