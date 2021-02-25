@@ -7,15 +7,14 @@
 <section class='filter'>
     <? include(__DIR__ . '/../viewparts/filter.php');?>
     <!--search by proptype-->
-    <label>Nach Geschmacksrichtung suchen:</label>
-    <form method='post'>
-        <input type='submit' name='all' class='add' value='Alles' /><br />
-    </form>
-    <form method='post'>
-        <input type='submit' name='salty' class='add' value='Herzhaft' /><br />
-    </form>
-    <form method='post'>
-        <input type='submit' name='sweet' class='add' value='Süß' /><br />
+
+    <form class="taste-wrap" method='post'>
+        <label>Nach Geschmacksrichtung suchen:</label><br>
+        <input class="taste" type='submit' name='all' class='add' value='Alles' /><br />
+
+        <input class="taste" type='submit' name='salty' class='add' value='Herzhaft' /><br />
+
+        <input class="taste" type='submit' name='sweet' class='add' value='Süß' /><br />
     </form>
 </section>
 

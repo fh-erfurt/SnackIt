@@ -50,6 +50,23 @@ article:hover{
     text-align: center !important;
 }
 
+.taste-wrap{
+    text-align: center;
+}
+
+.taste{
+    width: 50%;
+    margin: 5px;
+    height: 20px;
+    background-color: #2D2D2D;
+    color: white;
+    border: none;
+}
+
+.taste:hover{
+    color: #FF6E00;
+}
+
 @media screen and (max-width: 992px){
 
     main{
