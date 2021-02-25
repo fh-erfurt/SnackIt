@@ -52,7 +52,7 @@
 	<br>
 	Unser ER-Modell
 	<br>
-	<a href="assets/pictures/documentation/ER-Modell.png" target="_blank"><img src=assets/pictures/documentation/ER-Modell.png"></a> <br>
+	<a href="assets/pictures/documentation/ER-Modell.png" target="_blank"><img src="assets/pictures/documentation/ER-Modell.png"></a> <br>
 	<br>
 	<br>
 	<h2>Rollenmodell</h2>
@@ -98,7 +98,9 @@
 	<br>
 	<br>
 	<h2>Flussbild für Dateneingabe</h2>
-	Thomas (Denke damit ist auch auswahl von produkt zum wahrenkorb etc gemeint)
+	<br>
+	Die Daten der Produkte selbst werden mittels dem $_GET Operator übergeben. Im $_SESSION Operator liegt die ShoppingCartId, die für den Aufruf des Einkaufswagens verantwortlich ist.
+	Wenn man nicht eingeloggt ist, wird der Einkaufswagen mittels eines normalen Arrays übergeben. Actions die mittels Buttons ausgeführt werden, laufen über den $_POST Operator.
 	<br>
 	<br>
 	<h2>Herausforderungen</h2>
@@ -120,7 +122,7 @@
 	</p>
 	<br>
 	<br>
-	<h2>Projektmanagement-Dokumentation: Auflistung von Tätigkeiten, zuständiger Person und benötigtem Aufwand</h2>
+	<h2>Projektmanagement-Dokumentation: Auflistung von Tätigkeiten und zuständiger Person</h2>
 	<br>
 	Backend: Thomas Konietzny, Lukas Arnold
 	Frontend: Marvin Hof
