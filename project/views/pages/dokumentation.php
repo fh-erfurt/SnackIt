@@ -42,11 +42,17 @@
 	<br>
 	<br>
 	<h2>Funktionalitäten</h2>
-	Thomas
+	<br>
+	Die Funktionalitäten der Webseite beziehen sich auf ein Shopsystem, welches mit einer Datenbank zusammenhängt. Der Kunde kann Artikel sowohl im eingeloggten, als auch im
+	uneingeloggten Zustand in den Einkaufswagen legen und entfernen. Falls der Kunde kein Kundenkonto besitzt, kann er sich über das Registrationsformular eins erstellen.
+	Die Produkte sind Filterbar und bei den Snacks ist sogar eine zweite Navigationsebene vorhanden.
 	<br>
 	<br>
-	<h2>ER-Modell und relationales Modell</h2>
-	Thomas
+	<h2>ER-Modell</h2>
+	<br>
+	Unser ER-Modell
+	<br>
+	<a href="assets/pictures/documentation/ER-Modell.png" target="_blank"><img src=assets/pictures/documentation/ER-Modell.png"></a> <br>
 	<br>
 	<br>
 	<h2>Rollenmodell</h2>
@@ -115,7 +121,10 @@
 	<br>
 	<br>
 	<h2>Projektmanagement-Dokumentation: Auflistung von Tätigkeiten, zuständiger Person und benötigtem Aufwand</h2>
-	Thomas
+	<br>
+	Backend: Thomas Konietzny, Lukas Arnold
+	Frontend: Marvin Hof
+
 	<br>
 	<br>
 </div>
