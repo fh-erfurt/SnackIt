@@ -285,6 +285,66 @@ class PagesController extends Controller
 			exit(0);
 		}
 	}
+	public function actionSnackssweet()
+	{
+		$this->params['title'] = 'Snacks';
+
+		$typeSnacks = 0;
+		$typeSweet = 'sweet';
+		$products = Product::getProductsByPropType($typeSweet, $typeSnacks);
+		$this->params['products'] = $products;
+		$this->params['js'][] = 'products';
+
+		if (isset($_GET['applyFilter'])) {
+			$products = Filter::applyFilter($products);
+			$this->params['products'] = $products;
+		}
+
+		// dynamically load products
+		if (isset($_GET['ajax'])) {
+			$productCount = $_GET['productCount'];
+			$products = array_slice($products, $productCount, 10);
+			$productArray = [];
+			foreach ($products as $product) {
+				$productArray[] = $product->toArray();
+			}
+			$result['productCount'] = $productCount;
+			$result['products'] = $productArray;
+			$result = json_encode($result);
+			echo $result;
+			exit(0);
+		}
+	}
+	public function actionSnackssalty()
+	{
+		$this->params['title'] = 'Snacks';
+
+		$typeSnacks = 0;
+		$typeSalty = 'salty';
+		$products = Product::getProductsByPropType($typeSalty, $typeSnacks);
+		$this->params['products'] = $products;
+		$this->params['js'][] = 'products';
+
+		if (isset($_GET['applyFilter'])) {
+			$products = Filter::applyFilter($products);
+			$this->params['products'] = $products;
+		}
+
+		// dynamically load products
+		if (isset($_GET['ajax'])) {
+			$productCount = $_GET['productCount'];
+			$products = array_slice($products, $productCount, 10);
+			$productArray = [];
+			foreach ($products as $product) {
+				$productArray[] = $product->toArray();
+			}
+			$result['productCount'] = $productCount;
+			$result['products'] = $productArray;
+			$result = json_encode($result);
+			echo $result;
+			exit(0);
+		}
+	}
 
 	public function actionGetränke()
 	{
@@ -431,9 +491,9 @@ class PagesController extends Controller
 			$this->params['products'] = $products;
 			$this->params['totalPrice'] = $totalPrice;
 		}
-		
+
 		if (isset($_POST['delete'])) {
-			
+
 			$order->deleteProductFromCart($order->orderId, $_POST['productId']);
 			$order = Order::getOrderById($_SESSION['shoppingCartId']);
 			$totalPrice = 0;

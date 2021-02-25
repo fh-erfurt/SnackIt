@@ -99,5 +99,5 @@
 </div>
 
 <?else:?>
-<p>Sie müssen sich erst anmelden!</p>
+<div class="loginFirst">Sie müssen sich erst anmelden!</div>
 <?endif?>

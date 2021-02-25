@@ -47,6 +47,7 @@ form{
 
 .button{
     padding: 0px;
+    width: 49%;
     font-size: large;
     cursor: pointer;
     height: 50px !important;
@@ -80,6 +81,15 @@ form{
 
 .registerNow:hover{
     color: #bd0000;
+}
+
+.loginFirst{
+    margin-top: 10%;
+    text-align: center;
+    font-size: 50px;
+    color: #FF6E00;
+    font-weight: bold;
+    font-style: italic;
 }
 
 
