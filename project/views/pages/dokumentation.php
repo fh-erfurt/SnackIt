@@ -117,16 +117,27 @@
 	Lukas
 	<p><br>
 		- Bitte vor dem start des Projekts die Datenbank aus dem src Ordner in MySQL laden<br>
+		- Fehler im Warenkorb wenn man alle Objekte entfernt
 
 
 	</p>
 	<br>
 	<br>
-	<h2>Projektmanagement-Dokumentation: Auflistung von Tätigkeiten und zuständiger Person</h2>
+	<h2>Projektmanagement-Dokumentation: Auflistung von Tätigkeiten, zuständiger Person und benötigtem Aufwand</h2>
+	Thomas
 	<br>
-	Backend: Thomas Konietzny, Lukas Arnold
-	Frontend: Marvin Hof
+	<br>
+</div>
 
-	<br>
-	<br>
+
+</p>
+<br>
+<br>
+<h2>Projektmanagement-Dokumentation: Auflistung von Tätigkeiten und zuständiger Person</h2>
+<br>
+Backend: Thomas Konietzny, Lukas Arnold
+Frontend: Marvin Hof
+
+<br>
+<br>
 </div>
